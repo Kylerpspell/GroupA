@@ -15,7 +15,7 @@ public class Account {
 		this.UserAccountType = AccountType;
 	}
 
-	public String getPassword() {
+	public String getPassword(Account CurrentUser) {
 		return password;
 	}
 	public void setPassword(String password, Account currentUser) {
@@ -24,7 +24,7 @@ public class Account {
 		}
 	}
 
-	public String getEmail() {
+	public String getEmail(Account CurrentUser) {
 		return email;
 	}
 

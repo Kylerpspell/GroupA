@@ -10,7 +10,7 @@ import org.json.simple.parser.JSONParser;;
 
 public class DataLoader extends DataConstants{
 
-	public static ArrayList<Account> getUsers() {
+	public static ArrayList<Account> getAccounts() {
 		ArrayList<Account> accounts = new ArrayList<Account>();
 		
 		try {
@@ -67,7 +67,7 @@ public class DataLoader extends DataConstants{
 		return null;
 	}
 
-	public ArrayList<Job> getJobs() {
+	public static ArrayList<Job> getJobs() {
 		ArrayList<Job> jobs = new ArrayList<Job>();
 		
 		try {
