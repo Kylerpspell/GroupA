@@ -1,3 +1,4 @@
+package src;
 public class Account {
 	String password;
 	String email;

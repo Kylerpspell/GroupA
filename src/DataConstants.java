@@ -1,8 +1,9 @@
+package src;
 public abstract class DataConstants {
 	// File Names
-	protected static final String JOBS_FILE_NAME = "src/jobs.json";
-	protected static final String ACCOUNTS_FILE_NAME = "src/accounts.json";
-	protected static final String RESUMUES_FILE_NAME = "src/resumes.json";
+	protected static final String JOBS_FILE_NAME = "data/jobs.json";
+	protected static final String ACCOUNTS_FILE_NAME = "data/accounts.json";
+	protected static final String RESUMES_FILE_NAME = "data/resumes.json";
 	// UUIDs
 	protected static final String JOB_UUID = "jobUUID";
 	protected static final String ACCOUNT_UUID = "accountUUID";
