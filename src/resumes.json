@@ -1,0 +1,30 @@
+[
+    {
+        "resumeID": "resumeBobby",
+        "name": "Bobby Bobinson",
+        "Major": "Business",
+        "GPA": 4.0,
+        "Experiences": [
+            "ExperienceStock",
+            "ExperienceMoney"
+        ],
+        "Skills": [
+            "Money Management",
+            "Stock Finding"
+        ]
+    } , 
+    {
+        "resumeID": "resumeBill",
+        "name": "Bill Gates",
+        "Major": "Computer Science",
+        "GPA": 2.9,
+        "Experiences": [
+            "CreatedMicrosoft",
+            "MadeOperatingSystem"
+        ],
+        "Skills": [
+            "Creating Operating Systems",
+            "Making Companies"
+        ]
+    }
+]
