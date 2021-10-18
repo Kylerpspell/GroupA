@@ -1,3 +1,4 @@
+package src;
 import java.util.Date;
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public class Resume {
     public void AddSkill(Account currentUser, String Skill) {
         this.skills.add(Skill);
     }
-    public void removeExperience(Account currentUser, String Skill) {
+    public void removeSkill(Account currentUser, String Skill) {
         this.skills.remove(Skill);
     }
 }
