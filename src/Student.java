@@ -32,8 +32,8 @@ public class Student {
         return placeholder;
     }
 
-    public ArrayList<Job> getSubmittedApplications(Account currentUser){
-         ArrayList<Job> placeholder = new ArrayList<Job>();
+    public ArrayList<Jobs> getSubmittedApplications(Account currentUser){
+         ArrayList<Jobs> placeholder = new ArrayList<Jobs>();
          return placeholder;
     }
 
