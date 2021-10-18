@@ -25,11 +25,11 @@ public class Job {
 		return Applicants;
 	}
 
-	public Boolean checkAvailability() {
+	public Boolean checkAvailability(Account currentUser) {
 		return isAvailible;
 	}
 
-	public Boolean checkVisibility() {
+	public Boolean checkVisibility(Account currentUser) {
 		return isVisible;
 	}
 
@@ -49,15 +49,15 @@ public class Job {
 		Applicants.remove(applicant);
 	}
 
-	public Account getPostingEmployeer() {
+	public Account getPostingEmployer(Account currentUser) {
 		return PostingEmployeer;
 	}
 
-	public String getJobTitle() {
+	public String getJobTitle(Account currentUser) {
 		return JobTitle;
 	}
 
-	public String getJobDescription() {
+	public String getJobDescription(Account currentUser) {
 		return JobDescription;
 	}
 }
