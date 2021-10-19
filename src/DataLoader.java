@@ -26,7 +26,7 @@ public class DataLoader extends DataConstants{
 				UUID resumeUuid = UUID.fromString((String)accountJSON.get(USER_RESUME_UUID));
 				AccountType userAccountType = AccountType.valueOf((String)accountJSON.get(USER_ACCOUNT_TYPE));
 				
-				accounts.add(new Account(password, email, userAccountType));
+				accounts.add(new Account(id, password, email, userAccountType));
 			}
 			
 			return accounts;
@@ -48,7 +48,7 @@ public class DataLoader extends DataConstants{
 			
 			for(int i=0; i < resumesJSON.size(); i++) {
 				JSONObject resumeJSON = (JSONObject)resumesJSON.get(i);
-				UUID id = UUID.fromString((String)resumeJSON.get(ACCOUNT_UUID));
+				UUID id = UUID.fromString((String)resumeJSON.get(RESUME_UUID));
 				String name = (String)resumeJSON.get(RESUME_NAME);
 				Date graduationDate = (Date)resumeJSON.get(RESUME_GRADUATION_DATE);
 				Majors major = Majors.valueOf((String)resumeJSON.get(RESUME_MAJOR));
@@ -85,7 +85,7 @@ public class DataLoader extends DataConstants{
 				Boolean visibility = (Boolean)jobJSON.get(JOB_VISIBILITY);
 				ArrayList<Account> applicants = (ArrayList<Account>)jobJSON.get(JOB_APPLICANTS);
 
-				jobs.add(new Job(name, description, postingEmployer, applicants, avalibility, visibility));
+				jobs.add(new Job(id, name, description, postingEmployer, applicants, avalibility, visibility));
 			}
 			return jobs;
 		} catch(Exception e) {

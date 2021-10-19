@@ -1,8 +1,9 @@
 package src;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Accounts {
-	static final Account WRITER_ACCOUNT = new Account("password","admin@email.sc.edu",AccountType.ACCOUNT_TYPE_ADMIN);
+	static final Account WRITER_ACCOUNT = new Account(UUID.randomUUID(),"password","admin@email.sc.edu",AccountType.ACCOUNT_TYPE_ADMIN);
 	private static Accounts accounts;
 	private ArrayList<Account> accountList;
 	
@@ -42,10 +43,10 @@ public class Accounts {
 		return accountList;
 	}
 	
-	public boolean addUser(String email, String password, AccountType accountType) {
+	public boolean addUser(UUID id, String email, String password, AccountType accountType) {
 		if(haveAccount(email))return false;
 		
-		accountList.add(new Account(email,password,accountType));
+		accountList.add(new Account(id, email, password, accountType));
 		return true;
 	}
 	

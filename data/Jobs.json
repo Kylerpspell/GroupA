@@ -1,5 +1,6 @@
 [
     {
+		"id": "e6e23452-c4c6-421d-bac5-e8a9e185b2cd",
         "JobID": "StockFinder",
         "Posting employer": "Ryan Stocks",
         "Applicants": ["BobbyBobinson", "Bill Gates"],
@@ -7,6 +8,7 @@
         "isVisible": "true"
     } , 
     {
+		"id": "e6c789bc-cb38-45c8-bd7c-ad09ed7794af",
         "JobID": "Apple",
         "Posting employer": "Steve Jobs",
         "Applicants": ["Bill Gates"],

@@ -1,9 +1,10 @@
-
+package src;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Resume {
-
+	private UUID id;
     private String name;
     private Date graduationDate;
     private Majors major;
@@ -66,5 +67,9 @@ public class Resume {
 		if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
 			this.major = major;
 		}
+	}
+
+	public UUID getId() {
+		return id;
 	}
 }

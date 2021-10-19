@@ -2,14 +2,13 @@ package src;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.security.auth.login.AccountNotFoundException;
+import java.util.UUID;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
-	static final Account WRITER_ACCOUNT = new Account("password","admin@email.sc.edu",AccountType.ACCOUNT_TYPE_ADMIN);
+	static final Account WRITER_ACCOUNT = new Account(UUID.randomUUID(), "password","admin@email.sc.edu", AccountType.ACCOUNT_TYPE_ADMIN);
 	public static void saveAccounts() {
 		Accounts accounts = Accounts.getInstance();
 		ArrayList<Account> accountList = accounts.getAccounts();
@@ -86,7 +85,6 @@ public class DataWriter extends DataConstants {
 		accountDetails.put(USER_PASSWORD, account.getPassword(WRITER_ACCOUNT));
 		if(account.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
 			//THESE ARE THE STUDENT FIELDS NEED STUDENT CLASS
-			//accountDetails.put(USER_SUBMITTED_APPLICATIONS, account.getSubmittedApplications());
 			//accountDetails.put(USER_RESUME_UUID, account.getResumeUUID());
 			//accountDetails.put(USER_EXTERNAL_DOCUMENTS, account.getExternalDocuments());
 		}
@@ -112,7 +110,7 @@ public class DataWriter extends DataConstants {
 
 	public static JSONObject getJobJSON(Job job) {
 		JSONObject jobDetails = new JSONObject();
-		//jobDetails.put(JOB_UUID, job.getUUID(WRITER_ACCOUNT));
+		jobDetails.put(JOB_UUID, job.getID(WRITER_ACCOUNT));
 		jobDetails.put(JOB_NAME, job.getJobTitle(WRITER_ACCOUNT));
 		jobDetails.put(JOB_DESCRIPTION, job.getJobDescription(WRITER_ACCOUNT));
 		jobDetails.put(JOB_AVAILIBILITY, job.checkAvailability(WRITER_ACCOUNT));

@@ -1,8 +1,9 @@
 package src;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Resumes {
-	static final Account WRITER_ACCOUNT = new Account("password","admin@email.sc.edu",AccountType.ACCOUNT_TYPE_ADMIN);
+	static final Account WRITER_ACCOUNT = new Account(UUID.randomUUID(), "password", "admin@email.sc.edu", AccountType.ACCOUNT_TYPE_ADMIN);
 	private static Resumes resumes;
 	private ArrayList<Resume> resumeList;
 	
