@@ -1,11 +1,18 @@
 
 public class InterfaceManager {
     
+    public static InterfaceManager interfaceManager;
     private DatabaseManager database;
     private Account currentUser;
 
     public InterfaceManager(DatabaseManager database) {
         this.database = database;
+    }
+    public static InterfaceManager getInstance(DatabaseManager database) {
+        if (interfaceManager == null) {
+            interfaceManager = new InterfaceManager(database);
+        }
+        return interfaceManager;
     }
     public void login(String email, String password) {
 
