@@ -1,0 +1,45 @@
+[
+    {
+        "Password": "P455Word",
+        "Email": "AdminMan@Internfinder.com",
+        "AccountType": "Admin",
+        "Name": "AdminMan"
+    } , 
+    {
+        "Password": "GottaMakeStocks",
+        "Email": "RyanTheStockGuy@gmail.com",
+        "AccountType": "Employer",
+        "Name": "Ryan Stocks",
+        "CompanyName": "StockFinder",
+        "CompanyWebsite": "www.StockFinder.com",
+        "CompanyDescription": "StockFinder is the leading company for finding the right stocks"
+    } ,
+    {
+        "Password": "556",
+        "Email": "BobbyB@email.sc.edu",
+        "AccountType": "Student",
+        "Name": "Bobby Bobinson",
+        "Resume": "resumeBobby",
+        "ExternalDocuments": [
+            "docID1",
+            "docID2"
+        ],
+        "SubmittedApplications":[
+            "JobStockFinder"
+        ]
+    },
+    {
+        "Password": "556",
+        "Email": "BGates@outlook.com",
+        "AccountType": "Student",
+        "Name": "Bill Gates",
+        "Resume": "resumeBill",
+        "ExternalDocuments": [
+            "docID1",
+            "docID2"
+        ],
+        "SubmittedApplications":[
+            "JobStockFinder"
+        ]
+    }
+]

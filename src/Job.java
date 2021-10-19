@@ -1,3 +1,4 @@
+package src;
 import java.util.ArrayList;
 
 public class Job {
@@ -8,13 +9,13 @@ public class Job {
 	private String JobTitle;
 	private String JobDescription;
 
-	public Job(Account PostingEmployeer, String JobTitle, String JobDescription) {
+	public Job(String JobTitle, String JobDescription,Account PostingEmployeer,ArrayList<Account> applicants, Boolean isAvailible, Boolean isVisible) {
 		this.PostingEmployeer = PostingEmployeer;
 		this.JobTitle = JobTitle;
 		this.JobDescription = JobDescription;
-		this.Applicants = new ArrayList<Account>();
-		this.isAvailible = true;
-		this.isVisible = true;
+		this.Applicants = applicants;
+		this.isAvailible = isAvailible;
+		this.isVisible = isVisible;
 	}
 
 	public ArrayList<Account> getApplicants(Account currentUser) {
@@ -24,11 +25,11 @@ public class Job {
 		return Applicants;
 	}
 
-	public Boolean checkAvailability() {
+	public Boolean checkAvailability(Account currentUser) {
 		return isAvailible;
 	}
 
-	public Boolean checkVisibility() {
+	public Boolean checkVisibility(Account currentUser) {
 		return isVisible;
 	}
 
@@ -48,15 +49,15 @@ public class Job {
 		Applicants.remove(applicant);
 	}
 
-	public Account getPostingEmployeer() {
+	public Account getPostingEmployer(Account currentUser) {
 		return PostingEmployeer;
 	}
 
-	public String getJobTitle() {
+	public String getJobTitle(Account currentUser) {
 		return JobTitle;
 	}
 
-	public String getJobDescription() {
+	public String getJobDescription(Account currentUser) {
 		return JobDescription;
 	}
 }

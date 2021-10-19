@@ -1,0 +1,16 @@
+[
+    {
+        "JobID": "StockFinder",
+        "Posting employer": "Ryan Stocks",
+        "Applicants": ["BobbyBobinson", "Bill Gates"],
+        "isAvailable": "true",
+        "isVisible": "true"
+    } , 
+    {
+        "JobID": "Apple",
+        "Posting employer": "Steve Jobs",
+        "Applicants": ["Bill Gates"],
+        "isAvailable": "false",
+        "isVisible": "true"
+    }
+]

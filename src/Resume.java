@@ -6,10 +6,19 @@ public class Resume {
 
     private String name;
     private Date graduationDate;
-    private String major;
+    private Majors major;
     private double GPA;
     private ArrayList<String> experiences;
     private ArrayList<String> skills;
+
+	public Resume(String name, Date graduationDate, Majors major, double GPA, ArrayList<String> experiences, ArrayList<String> skills) {
+		this.name = name;
+		this.graduationDate = graduationDate;
+		this.major = major;
+		this.GPA = GPA;
+		this.experiences = experiences;
+		this.skills = skills;
+	}
     
     public void setName(Account currentUser, String name) {
         this.name = name;
@@ -50,4 +59,12 @@ public class Resume {
     public void removeSkill(Account currentUser, String Skill) {
         this.skills.remove(Skill);
     }
+	public Majors getMajor(Account currentUser) {
+		return this.major;
+	}
+	public void setMajor(Account currentUser, Majors major) {
+		if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
+			this.major = major;
+		}
+	}
 }
