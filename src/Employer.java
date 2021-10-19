@@ -1,53 +1,35 @@
 package src;
+
 public class Employer {
-    Resume resume;
-    Job job;
-
-    Employer(){
-        this.resume = null;
-        this.job = null;
-    }
-
-    Employer(Resume resume, Job job){
-        this.resume = resume;
-        this.job = job;
-    }
-
-    public Resume getResume(){
-        return this.resume;
-    }
-
-    public Job getJob(){
-        return this.job;
-    }
-
-    public void logIn(Account currentUser){
+    String companyName;
+    String companyWebsite;
+    String companyDescription;
+    public Employer(String companyName, String companyWebsite, String companyDescription){
 
     }
-
-    public void createJob(Job job){
+    public String getName(Account currentUser){
+        return "null";
+    }
+    public String getCompanyName(Account currentUser){
+        return "null";
+    }
+    public String getCompanyDescription(Account currentUser){
+        return "null";
+    }
+    public String getCompanyWebsite(Account currentUser){
+        return "null";
+    }
+    public void setName(Account currentUser, String newName){
 
     }
+    public void setCompanyName(Account currentUser, String newCompanyName){
 
-    public void editJob(Job job){
-        Job setAvailability;
-        Job setVisibility;
-        Job setJobTitle;
-        Job setJobDescription;
-        Job setPostingEmployee;
     }
+    public void setCompanyWebsite(Account currentUser, String newCompanyWebsite){
 
-    public void removeJobListing(Job job){
+    }
+    public void setCompanyDescription(Account currentUser, String newCompanyDescription){
 
     }
 
-    public void acceptResume(Account currentUser, Resume resume, Student student){
-
-    }
-
-    public void denyResume(Account currentUser, Resume resume, Student student){
-
-    }
-
-    
 }
