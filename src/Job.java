@@ -1,7 +1,9 @@
 package src;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Job {
+	private UUID id;
 	private Account PostingEmployeer;
 	private ArrayList<Account> Applicants;
 	private Boolean isAvailible;
@@ -9,7 +11,8 @@ public class Job {
 	private String JobTitle;
 	private String JobDescription;
 
-	public Job(String JobTitle, String JobDescription,Account PostingEmployeer,ArrayList<Account> applicants, Boolean isAvailible, Boolean isVisible) {
+	public Job(UUID id, String JobTitle, String JobDescription,Account PostingEmployeer,ArrayList<Account> applicants, Boolean isAvailible, Boolean isVisible) {
+		this.id = id;
 		this.PostingEmployeer = PostingEmployeer;
 		this.JobTitle = JobTitle;
 		this.JobDescription = JobDescription;
@@ -59,5 +62,9 @@ public class Job {
 
 	public String getJobDescription(Account currentUser) {
 		return JobDescription;
+	}
+
+	public UUID getID(Account currentUser) {
+		return id;
 	}
 }

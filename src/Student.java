@@ -7,19 +7,30 @@ public class Student {
     private ArrayList<Job>  SubmittedApplications;
     private ArrayList<Integer> Ratings;
     public Student(String Name, Resume resume, ArrayList<String> externalDocuments){
-
+    /*
+    LINK METHOD TO CURRENT USER
+     */
     }
     public String getName(Account currentUser){
-        return "null";
+        if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
+            return this.name;
+        }
     }
-    public void/*change return type to Resume*/ getResume(Account currentUser){
-
+    public Resume getResume(Account currentUser) {
+        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
+            return this.Resume;
+        }
     }
     public void setResume(Account currentUser, Resume resume){
-
+        if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT){
+            this.Resume = resume;
+        }
     }
     public void setName(Account currentUser, String name){
+        if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT){
+            this.name=name;
 
+        }
     }
     public void addExternalDocument(Account currentUser, String document){
 

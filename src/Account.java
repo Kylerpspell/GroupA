@@ -1,15 +1,19 @@
 package src;
+import java.util.UUID;
 public class Account {
+	UUID id;
 	String password;
 	String email;
 	AccountType UserAccountType;
 
 	Account() {
+		this.id = UUID.randomUUID();
 		this.password = null;
 		this.email = null;
 		this.UserAccountType = null;
 	}
-	Account(String password, String email, AccountType AccountType) {
+	Account(UUID id, String password, String email, AccountType AccountType) {
+		this.id = id;
 		this.password = password;
 		this.email = email;
 		this.UserAccountType = AccountType;

@@ -1,9 +1,9 @@
 package src;
 public abstract class DataConstants {
 	// File Names
-	protected static final String JOBS_FILE_NAME = "data/jobs.json";
-	protected static final String ACCOUNTS_FILE_NAME = "data/accounts.json";
-	protected static final String RESUMES_FILE_NAME = "data/resumes.json";
+	protected static final String JOBS_FILE_NAME = "data/Jobs.json";
+	protected static final String ACCOUNTS_FILE_NAME = "data/Accounts.json";
+	protected static final String RESUMES_FILE_NAME = "data/Resumes.json";
 	// UUIDs
 	protected static final String JOB_UUID = "jobUUID";
 	protected static final String ACCOUNT_UUID = "accountUUID";
@@ -24,7 +24,6 @@ public abstract class DataConstants {
 	protected static final String USER_RESUME_UUID = "Resume UUID";
 	protected static final String USER_JOB_UUID = "Job UUID";
 	protected static final String USER_NAME = "Name";
-	protected static final String USER_SUBMITTED_APPLICATIONS = "Submitted Applications";
 	protected static final String USER_EXTERNAL_DOCUMENTS = "External Documents";
 
 	// Resume
