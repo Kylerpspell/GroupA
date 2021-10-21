@@ -1,13 +1,13 @@
 package src;
 import java.util.ArrayList;
-public class Student {
+public class Student extends Account{
     private String name;
     private Resume Resume;
     private ArrayList<String> ExternalDocuments;
     private ArrayList<Jobs>  SubmittedApplications;
     private ArrayList<Integer> Ratings;
-    public Student(String Name, Resume resume, ArrayList<String> externalDocuments){
-    
+    public Student(String Name){
+        this.setName(Name);
     }
     public String getName(Account currentUser ){
         if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT ) {
@@ -24,12 +24,11 @@ public class Student {
             this.Resume = resume;
         }
     }
-    public void setName(Account currentUser, String name){
-        if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT){
+    public void setName(String name){
             this.name = name;
 
         }
-    }
+
     public void addExternalDocument(Account currentUser, String document) {
         if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
             ExternalDocuments.add(document);
@@ -48,13 +47,14 @@ public class Student {
     }
 
     public ArrayList<Jobs> getSubmittedApplications(Account currentUser){
+        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT)
          return SubmittedApplications;
     }
 
-    public void addRating(int rating){
-
+    public void addRating(double rating, Employer employerAccount){
+           
     }
     public double getAvgRating(){
-        return
+         return
     }
 }

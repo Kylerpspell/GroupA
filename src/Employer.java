@@ -1,11 +1,14 @@
 package src;
 
-public class Employer {
+
+public class Employer extends Account {
     String companyName;
     String companyWebsite;
     String companyDescription;
     public Employer(String companyName, String companyWebsite, String companyDescription){
-
+        this.setCompanyName(companyName);
+        this.setCompanyWebsite(companyWebsite);
+        this.setCompanyDescription(companyDescription);
     }
     /*public String getName(Account currentUser){
 
@@ -26,17 +29,19 @@ public class Employer {
     /*public void setName(Account currentUser, String newName){
         this.companyName = newName;
     }*/
-    public void setCompanyName(Account currentUser, String newCompanyName){
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_EMPLOYER)
+    public void setCompanyName(String newCompanyName){
         this.companyName = newCompanyName;
     }
-    public void setCompanyWebsite(Account currentUser, String newCompanyWebsite){
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_EMPLOYER)
+    public void setCompanyWebsite(String newCompanyWebsite){
         this.companyWebsite = newCompanyWebsite;
     }
-    public void setCompanyDescription(Account currentUser, String newCompanyDescription){
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_EMPLOYER)
+    public void setCompanyDescription(String newCompanyDescription){
         this.companyDescription = newCompanyDescription;
+    }
+    public double giveStudentRating(Employer employerAccount, Student studentAccount, double Rating){
+        if( Rating >= 1 || Rating <= 5){
+
+        }
     }
 
 }
