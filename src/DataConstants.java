@@ -5,22 +5,22 @@ public abstract class DataConstants {
 	protected static final String ACCOUNTS_FILE_NAME = "data/Accounts.json";
 	protected static final String RESUMES_FILE_NAME = "data/Resumes.json";
 	// UUIDs
-	protected static final String JOB_UUID = "jobUUID";
-	protected static final String ACCOUNT_UUID = "accountUUID";
-	protected static final String RESUME_UUID = "resumeUUID";
+	protected static final String JOB_UUID = "id";
+	protected static final String ACCOUNT_UUID = "id";
+	protected static final String RESUME_UUID = "id";
 
 	// Job
-	protected static final String JOB_NAME = "Job Name";
+	protected static final String JOB_NAME = "JobID";
 	protected static final String JOB_DESCRIPTION = "Job Description";
-	protected static final String JOB_POSTING_EMPLOYER = "Posting Employer";
-	protected static final String JOB_AVAILIBILITY = "Availability";
-	protected static final String JOB_VISIBILITY = "Visibility";
+	protected static final String JOB_POSTING_EMPLOYER = "Posting employer";
+	protected static final String JOB_AVAILIBILITY = "isAvailible";
+	protected static final String JOB_VISIBILITY = "isVisible";
 	protected static final String JOB_APPLICANTS = "Applicants";
 
 	// Account
 	protected static final String USER_EMAIL = "Email";
 	protected static final String USER_PASSWORD = "Password";
-	protected static final String USER_ACCOUNT_TYPE = "Account Type";
+	protected static final String USER_ACCOUNT_TYPE = "AccountType";
 	protected static final String USER_RESUME_UUID = "Resume UUID";
 	protected static final String USER_JOB_UUID = "Job UUID";
 	protected static final String USER_NAME = "Name";

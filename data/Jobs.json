@@ -3,7 +3,10 @@
 		"id": "e6e23452-c4c6-421d-bac5-e8a9e185b2cd",
         "JobID": "StockFinder",
         "Posting employer": "Ryan Stocks",
-        "Applicants": ["BobbyBobinson", "Bill Gates"],
+        "Applicants": [
+			"BobbyBobinson",
+			"Bill Gates"
+		],
         "isAvailable": "true",
         "isVisible": "true"
     } , 
