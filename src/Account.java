@@ -41,4 +41,10 @@ public class Account {
 	public AccountType getAccountType() {
 		return UserAccountType;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", password=" + password + ", email=" + email + ", UserAccountType="
+				+ UserAccountType + "]";
+	}
 }

@@ -12,7 +12,7 @@ public class Resume {
     private ArrayList<String> experiences;
     private ArrayList<String> skills;
 
-	public Resume(String name, Date graduationDate, Majors major, double GPA, ArrayList<String> experiences, ArrayList<String> skills) {
+	public Resume(UUID id, String name, Date graduationDate, Majors major, double GPA, ArrayList<String> experiences, ArrayList<String> skills) {
 		this.name = name;
 		this.graduationDate = graduationDate;
 		this.major = major;

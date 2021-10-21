@@ -3,14 +3,14 @@
 		"id": "476eb24d-5599-4739-b1d7-ce52acf0add8",
         "Password": "P455Word",
         "Email": "AdminMan@Internfinder.com",
-        "AccountType": "Admin",
+        "AccountType": "ACCOUNT_TYPE_ADMIN",
         "Name": "AdminMan"
     } , 
     {
 		"id": "fc0f8f1d-7528-4908-8b63-5d5a8f01ad58",
         "Password": "GottaMakeStocks",
         "Email": "RyanTheStockGuy@gmail.com",
-        "AccountType": "Employer",
+        "AccountType": "ACCOUNT_TYPE_EMPLOYER",
         "Name": "Ryan Stocks",
         "CompanyName": "StockFinder",
         "CompanyWebsite": "www.StockFinder.com",
@@ -20,7 +20,7 @@
 		"id": "b7781df9-a42a-4cc4-a685-7a72bc90c9b5",
         "Password": "556",
         "Email": "BobbyB@email.sc.edu",
-        "AccountType": "Student",
+        "AccountType": "ACCOUNT_TYPE_STUDENT",
         "Name": "Bobby Bobinson",
         "Resume": "resumeBobby",
         "ExternalDocuments": [
@@ -35,7 +35,7 @@
 		"id": "7b4bbacd-7d22-44f3-9467-8a80515ac17e",
         "Password": "556",
         "Email": "BGates@outlook.com",
-        "AccountType": "Student",
+        "AccountType": "ACCOUNT_TYPE_STUDENT",
         "Name": "Bill Gates",
         "Resume": "resumeBill",
         "ExternalDocuments": [

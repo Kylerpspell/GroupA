@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;;
+import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants{
 
@@ -15,7 +15,6 @@ public class DataLoader extends DataConstants{
 		
 		try {
 			FileReader reader = new FileReader(ACCOUNTS_FILE_NAME);
-			JSONParser parser = new JSONParser();	
 			JSONArray accountsJSON = (JSONArray)new JSONParser().parse(reader);
 			
 			for(int i=0; i < accountsJSON.size(); i++) {
@@ -23,7 +22,6 @@ public class DataLoader extends DataConstants{
 				UUID id = UUID.fromString((String)accountJSON.get(ACCOUNT_UUID));
 				String email = (String)accountJSON.get(USER_EMAIL);
 				String password = (String)accountJSON.get(USER_PASSWORD);
-				UUID resumeUuid = UUID.fromString((String)accountJSON.get(USER_RESUME_UUID));
 				AccountType userAccountType = AccountType.valueOf((String)accountJSON.get(USER_ACCOUNT_TYPE));
 				
 				accounts.add(new Account(id, password, email, userAccountType));
@@ -57,7 +55,7 @@ public class DataLoader extends DataConstants{
 				ArrayList<String> experience = (ArrayList<String>)resumeJSON.get(RESUME_EXPERIENCE);
 
 
-				resumes.add(new Resume(name, graduationDate, major, gpa, experience, skills));
+				resumes.add(new Resume(id, name, graduationDate, major, gpa, experience, skills));
 			}
 			return resumes;
 
@@ -80,10 +78,10 @@ public class DataLoader extends DataConstants{
 				UUID id = UUID.fromString((String)jobJSON.get(JOB_UUID));
 				String name = (String)jobJSON.get(JOB_NAME);
 				String description = (String)jobJSON.get(JOB_DESCRIPTION);
-				Account postingEmployer = (Account)jobJSON.get(JOB_POSTING_EMPLOYER);
+				UUID postingEmployer = UUID.fromString((String)jobJSON.get(JOB_POSTING_EMPLOYER));
 				Boolean avalibility = (Boolean)jobJSON.get(JOB_AVAILIBILITY);
 				Boolean visibility = (Boolean)jobJSON.get(JOB_VISIBILITY);
-				ArrayList<Account> applicants = (ArrayList<Account>)jobJSON.get(JOB_APPLICANTS);
+				ArrayList<String> applicants = (ArrayList<String>)jobJSON.get(JOB_APPLICANTS);
 
 				jobs.add(new Job(id, name, description, postingEmployer, applicants, avalibility, visibility));
 			}

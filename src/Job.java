@@ -4,14 +4,14 @@ import java.util.UUID;
 
 public class Job {
 	private UUID id;
-	private Account PostingEmployeer;
-	private ArrayList<Account> Applicants;
+	private UUID PostingEmployeer;
+	private ArrayList<String> Applicants;
 	private Boolean isAvailible;
 	private Boolean isVisible;
 	private String JobTitle;
 	private String JobDescription;
 
-	public Job(UUID id, String JobTitle, String JobDescription,Account PostingEmployeer,ArrayList<Account> applicants, Boolean isAvailible, Boolean isVisible) {
+	public Job(UUID id, String JobTitle, String JobDescription, UUID PostingEmployeer,ArrayList<String> applicants, Boolean isAvailible, Boolean isVisible) {
 		this.id = id;
 		this.PostingEmployeer = PostingEmployeer;
 		this.JobTitle = JobTitle;
@@ -21,10 +21,7 @@ public class Job {
 		this.isVisible = isVisible;
 	}
 
-	public ArrayList<Account> getApplicants(Account currentUser) {
-		if(currentUser == PostingEmployeer || currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN) {
-			return Applicants;
-		}
+	public ArrayList<Account> getApplicants() {
 		return Applicants;
 	}
 
@@ -52,7 +49,7 @@ public class Job {
 		Applicants.remove(applicant);
 	}
 
-	public Account getPostingEmployer(Account currentUser) {
+	public UUID getPostingEmployer() {
 		return PostingEmployeer;
 	}
 
