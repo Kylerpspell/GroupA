@@ -11,8 +11,8 @@ public class Job {
 	private String JobTitle;
 	private String JobDescription;
 
-	public Job(UUID id, String JobTitle, String JobDescription, UUID PostingEmployeer,ArrayList<String> applicants, Boolean isAvailible, Boolean isVisible) {
-		this.id = id;
+	public Job(String JobTitle, String JobDescription, UUID PostingEmployeer,ArrayList<String> applicants, Boolean isAvailible, Boolean isVisible) {
+		this.id = UUID.randomUUID();
 		this.PostingEmployeer = PostingEmployeer;
 		this.JobTitle = JobTitle;
 		this.JobDescription = JobDescription;
