@@ -2,16 +2,18 @@ package src;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import src.Account;
+
 public class Job {
 	private UUID id;
-	private UUID PostingEmployeer;
+	private Account PostingEmployeer;
 	private ArrayList<String> Applicants;
 	private Boolean isAvailible;
 	private Boolean isVisible;
 	private String JobTitle;
 	private String JobDescription;
 
-	public Job(String JobTitle, String JobDescription, UUID PostingEmployeer,ArrayList<String> applicants, Boolean isAvailible, Boolean isVisible) {
+	public Job(String JobTitle, String JobDescription, Account PostingEmployeer,ArrayList<String> applicants, Boolean isAvailible, Boolean isVisible) {
 		this.id = UUID.randomUUID();
 		this.PostingEmployeer = PostingEmployeer;
 		this.JobTitle = JobTitle;
