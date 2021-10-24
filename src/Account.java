@@ -12,8 +12,8 @@ public class Account {
 		this.email = null;
 		this.UserAccountType = null;
 	}
-	Account(UUID id, String password, String email, AccountType AccountType) {
-		this.id = id;
+	Account(String password, String email, AccountType AccountType) {
+		this.id = UUID.randomUUID();
 		this.password = password;
 		this.email = email;
 		this.UserAccountType = AccountType;

@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import src.Account;
-import src.AccountType;
-
 public class InterfaceManager {
     
     public static InterfaceManager interfaceManager;
