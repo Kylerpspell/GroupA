@@ -5,19 +5,16 @@ public class Student extends Account{
     private Resume Resume;
     private ArrayList<String> ExternalDocuments;
     private ArrayList<Jobs>  SubmittedApplications;
-    private ArrayList<Integer> Ratings;
+    private ArrayList<Double> Ratings;
     public Student(String Name){
         this.setName(Name);
     }
     public String getName(Account currentUser ){
-        if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT ) {
-            return this.name;
-        }
+		return this.name;
     }
-    public Resume getResume(Account currentUser) {
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
-            return this.Resume;
-        }
+    public Resume getResume() {
+        return this.Resume;
+        
     }
     public void setResume(Account currentUser, Resume resume){
         if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT){
@@ -29,25 +26,20 @@ public class Student extends Account{
 
         }
 
-    public void addExternalDocument(Account currentUser, String document) {
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
-            ExternalDocuments.add(document);
-        }
+    public void addExternalDocument(String document) {
+        ExternalDocuments.add(document);
+        
     }
-    public void removeExternalDocument(Account currentUser, String document){
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
-            ExternalDocuments.remove(document);
-        }
-
+    public void removeExternalDocument(String document){
+        ExternalDocuments.remove(document);
     }
-    public ArrayList<String> getExternalDocuments(Account currentUser){
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
-            return ExternalDocuments;
-        }
+	
+    public ArrayList<String> getExternalDocuments(){
+        return ExternalDocuments;
+        
     }
 
-    public ArrayList<Jobs> getSubmittedApplications(Account currentUser){
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT)
+    public ArrayList<Jobs> getSubmittedApplications(){
          return SubmittedApplications;
     }
 
@@ -55,6 +47,34 @@ public class Student extends Account{
            
     }
     public double getAvgRating(){
-         return
-    }
+        int ratingSum = 0;
+				for(int i = 0; i < Ratings.size(); i++){
+			ratingSum += Ratings.get(i);
+		}
+		return ratingSum / Ratings.size();
+	}
+	public void addSubmittedApplication(Jobs job){
+		SubmittedApplications.add(job);
+	}
+	public void removeSubmittedApplication(Jobs job){
+		SubmittedApplications.remove(job);
+	}
+	public void removeRating(double rating, Employer employerAccount){
+		Ratings.remove(rating);
+	}
+	public void addRating(double rating){
+		Ratings.add(rating);
+	}
+	public void removeRating(double rating){
+		Ratings.remove(rating);
+	}
+	public void setSubmittedApplications(ArrayList<Jobs> submittedApplications){
+		SubmittedApplications = submittedApplications;
+	}
+	public void setRatings(ArrayList<Double> ratings){
+		Ratings = ratings;
+	}
+	public void setExternalDocuments(ArrayList<String> externalDocuments){
+		ExternalDocuments = externalDocuments;
+	}
 }

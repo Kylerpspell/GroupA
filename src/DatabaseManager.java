@@ -6,57 +6,82 @@ public class DatabaseManager {
     public static DatabaseManager databaseManager;
     private ArrayList<Account> accounts;
     private ArrayList<Job> jobs;
+	private ArrayList<Resume> resumes;
+	private Account currentAccount;
     
-    public DatabaseManager() {
-        this.accounts = new ArrayList<Account>();
-        this.jobs = new ArrayList<Job>();
+    private DatabaseManager() {
+        accounts = DataLoader.getAccounts();
+		jobs = DataLoader.getJobs();
+		resumes = DataLoader.getResumes();
     }
+
     public static DatabaseManager getInstance() {
         if (databaseManager == null) {
             databaseManager = new DatabaseManager();
         }
+
         return databaseManager;
     }
 
-    public ArrayList<Account> getAccounts(Account currentUser) {
-        return this.accounts;
+    public ArrayList<Account> getAccounts() {
+        if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN) {
+			return accounts;
+		}
+		else {
+			return null;
+		}
     }
 
-    public ArrayList<Job> getJobs(Account currentUser) {
-        return this.jobs;
+    public ArrayList<Job> getJobs() {
+		return this.jobs;
     }
 
-    public void addAccount(Account account, Account currentUser) {
+	public ArrayList<Resume> getResumes() {
+		return this.resumes;
+	}
+
+    public void addAccount(Account account) {
         this.accounts.add(account);
     }
 
-    public void addJob(Job job, Account currentUser) {
-        this.jobs.add(job);
+    public void addJob(Job job) {
+		this.jobs.add(job);
     }
 
-    public void removeAccount(Account account, Account currentUser) {
-        this.accounts.remove(account);
+    public void removeAccount(Account account) {
+        if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || currentAccount.getId() == account.getId()) {
+			this.accounts.remove(account);
+		}
     }
 
-    public void removeJob(Job job, Account currentUser) {
-        this.jobs.remove(job);
+    public void removeJob(Job job) {
+        if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || currentAccount.getId() == job.getPostingEmployer().getId()) {
+			this.jobs.remove(job);
+		}
     }
 
-    public void updateAvailability(Account currentUser, Job jobToChange, boolean availabiltiy) {
-
+    public void updateAvailability(Job jobToChange, boolean availabiltiy) {
+		jobToChange.setAvailability(availabiltiy);
     }
 
-    public void updateVisibility(Account currentUser, Job jobToChange, boolean availabiltiy) {
-
+    public void updateVisibility(Job jobToChange, boolean availabiltiy) {
+		jobToChange.setVisibility(availabiltiy);
     }
 
-    public void changePassword(Account currentUser, Account account, String newPassword) {
-
+    public void changePassword(Account account, String newPassword) {
+		if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || account.id == currentAccount.id) {
+			account.setPassword(newPassword);
+		}
     }
-    public void addExternalDocument(Account currentUser, String documents) {
-
+    public void addExternalDocument(Student studentAccount, String document) {
+		if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || studentAccount.id == currentAccount.id) {
+			studentAccount.addExternalDocument(document);
+		}
     }
-    public void removeExternalDocument(Account currentUser, String documents) {
 
-    }
+    public void removeExternalDocument(Student studentAccount, String document) {
+		if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || studentAccount.id == currentAccount.id) {
+			studentAccount.removeExternalDocument(document);
+    	}
+	}
 }

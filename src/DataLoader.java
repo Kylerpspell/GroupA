@@ -81,7 +81,7 @@ public class DataLoader extends DataConstants{
 				Boolean avalibility = (Boolean)jobJSON.get(JOB_AVAILIBILITY);
 				Boolean visibility = (Boolean)jobJSON.get(JOB_VISIBILITY);
 				
-				UUID postingEmployerUUID = UUID.fromString((String)jobJSON.get(JOB_POSTING_EMPLOYER)
+				UUID postingEmployerUUID = UUID.fromString((String)jobJSON.get(JOB_POSTING_EMPLOYER));
 				Account postingEmployer = null;
 				for(Account existingAccount : existingUsers) {
 					if(postingEmployerUUID == existingAccount.getId()){

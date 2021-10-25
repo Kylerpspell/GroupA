@@ -22,10 +22,9 @@ public class Account {
 	public String getPassword(Account CurrentUser) {
 		return password;
 	}
-	public void setPassword(String password, Account currentUser) {
-		if(currentUser.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || currentUser == this) {
+	
+	public void setPassword(String password) {
 			this.password = password;
-		}
 	}
 
 	public String getEmail(Account CurrentUser) {
