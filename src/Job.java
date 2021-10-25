@@ -7,13 +7,13 @@ import src.Account;
 public class Job {
 	private UUID id;
 	private Account PostingEmployeer;
-	private ArrayList<String> Applicants;
+	private ArrayList<Account> Applicants;
 	private Boolean isAvailible;
 	private Boolean isVisible;
 	private String JobTitle;
 	private String JobDescription;
 
-	public Job(String JobTitle, String JobDescription, Account PostingEmployeer,ArrayList<String> applicants, Boolean isAvailible, Boolean isVisible) {
+	public Job(String JobTitle, String JobDescription, Account PostingEmployeer,ArrayList<Account> applicants, Boolean isAvailible, Boolean isVisible) {
 		this.id = UUID.randomUUID();
 		this.PostingEmployeer = PostingEmployeer;
 		this.JobTitle = JobTitle;
@@ -51,7 +51,7 @@ public class Job {
 		Applicants.remove(applicant);
 	}
 
-	public UUID getPostingEmployer() {
+	public Account getPostingEmployer() {
 		return PostingEmployeer;
 	}
 
