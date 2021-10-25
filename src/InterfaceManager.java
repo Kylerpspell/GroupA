@@ -17,10 +17,30 @@ public class InterfaceManager {
         return interfaceManager;
     }
     public void login(String email, String password) {
+        Scanner key = new Scanner(System.in);
+        boolean login = true;
+        while(!login) {
+            System.out.println("Please enter the email for the account.");
+            if (email.equalsIgnoreCase(key.nextLine())) {
+                System.out.println("Please enter the Password for the account.");
+                if (email.equalsIgnoreCase(key.nextLine())) {
+                    login = true;
+                    System.out.println("Successful login");
+                }
+                else{
+                    System.out.println("Password incorrect. Please re-enter login information.");
+                    login = false;
+                }
+            }
+            else {
+                System.out.println("Email incorrect. Please re-enter login information.");
+                login = false;
+            }
+        }
 
     }
     public void logout() {
-
+        
     }
     public Account createAccount() {
         Scanner key = new Scanner(System.in);
@@ -28,13 +48,13 @@ public class InterfaceManager {
         System.out.println("What type of account would you like to create?  \nEnter the appropriate number for your selection. \n1. Student \n2. Employer \n3. Application Administrator");
         switch (key.nextInt()) {
             case 1: 
-                accountType = ACCOUNT_TYPE_STUDENT;
+                accountType = AccountType.ACCOUNT_TYPE_STUDENT;
                 break;
             case 2:
-                accountType = ACCOUNT_TYPE_EMPLOYER;
+                accountType = AccountType.ACCOUNT_TYPE_EMPLOYER;
                 break;
             case 3:
-                accountType = ACCOUNT_TYPE_ADMIN;
+                accountType = AccountType.ACCOUNT_TYPE_ADMIN;
                 break;
         }
         boolean validEmail = true;
@@ -77,7 +97,10 @@ public class InterfaceManager {
 
     }
     public void viewApplicants(Account currentUser, Job job) {
-
+        System.out.println("Applicants:");
+        for (Account applicant : job.getApplicants()) {
+            System.out.println(applicant.toString());
+        }
     }
     public void viewResume(Account currentUser, Account applicant) {
 
