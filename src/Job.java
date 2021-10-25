@@ -13,8 +13,8 @@ public class Job {
 	private String JobTitle;
 	private String JobDescription;
 
-	public Job(String JobTitle, String JobDescription, Account PostingEmployeer,ArrayList<Account> applicants, Boolean isAvailible, Boolean isVisible) {
-		this.id = UUID.randomUUID();
+	public Job(UUID id, String JobTitle, String JobDescription, Account PostingEmployeer,ArrayList<Account> applicants, Boolean isAvailible, Boolean isVisible) {
+		this.id = id;
 		this.PostingEmployeer = PostingEmployeer;
 		this.JobTitle = JobTitle;
 		this.JobDescription = JobDescription;

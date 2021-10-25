@@ -72,16 +72,32 @@ public class DataLoader extends DataConstants{
 			FileReader reader = new FileReader(JOBS_FILE_NAME);
 			JSONParser parser = new JSONParser();	
 			JSONArray jobsJSON = (JSONArray)new JSONParser().parse(reader);
-			
+			ArrayList<Account> existingUsers = getAccounts();
 			for(int i=0; i < jobsJSON.size(); i++) {
 				JSONObject jobJSON = (JSONObject)jobsJSON.get(i);
 				UUID id = UUID.fromString((String)jobJSON.get(JOB_UUID));
 				String name = (String)jobJSON.get(JOB_NAME);
 				String description = (String)jobJSON.get(JOB_DESCRIPTION);
-				UUID postingEmployer = UUID.fromString((String)jobJSON.get(JOB_POSTING_EMPLOYER));
 				Boolean avalibility = (Boolean)jobJSON.get(JOB_AVAILIBILITY);
 				Boolean visibility = (Boolean)jobJSON.get(JOB_VISIBILITY);
-				ArrayList<String> applicants = (ArrayList<String>)jobJSON.get(JOB_APPLICANTS);
+				
+				UUID postingEmployerUUID = UUID.fromString((String)jobJSON.get(JOB_POSTING_EMPLOYER)
+				Account postingEmployer = null;
+				for(Account existingAccount : existingUsers) {
+					if(postingEmployerUUID == existingAccount.getId()){
+						postingEmployer = existingAccount;
+					}
+				}
+				
+				ArrayList<String> applicantIDs = (ArrayList<String>)jobJSON.get(JOB_APPLICANTS);
+				ArrayList<Account> applicants = new ArrayList<Account>();
+				for(String applicantID : applicantIDs) {
+					for(Account account : existingUsers){
+						if(applicantID == account.getId().toString()){
+							applicants.add(account);
+						}
+					}
+				}
 
 				jobs.add(new Job(id, name, description, postingEmployer, applicants, avalibility, visibility));
 			}

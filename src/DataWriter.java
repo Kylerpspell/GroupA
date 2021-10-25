@@ -115,8 +115,13 @@ public class DataWriter extends DataConstants {
 		jobDetails.put(JOB_DESCRIPTION, job.getJobDescription(WRITER_ACCOUNT));
 		jobDetails.put(JOB_AVAILIBILITY, job.checkAvailability(WRITER_ACCOUNT));
 		jobDetails.put(JOB_VISIBILITY, job.checkVisibility(WRITER_ACCOUNT));
-		jobDetails.put(JOB_POSTING_EMPLOYER, job.getPostingEmployer(WRITER_ACCOUNT));
-		jobDetails.put(JOB_APPLICANTS, job.getApplicants(WRITER_ACCOUNT));
+		JSONArray applicantIDs = new JSONArray();
+		for(Account applicant : job.getApplicants()){
+			applicantIDs.add(applicant.getId().toString());
+		}
+		String peUUID = job.getPostingEmployer().toString();
+		jobDetails.put(JOB_POSTING_EMPLOYER, peUUID);
+		jobDetails.put(JOB_APPLICANTS, applicantIDs);
 		
 		return jobDetails;
 	}
