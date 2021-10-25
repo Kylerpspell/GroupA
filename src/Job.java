@@ -2,8 +2,6 @@ package src;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import src.Account;
-
 public class Job {
 	private UUID id;
 	private Account PostingEmployeer;

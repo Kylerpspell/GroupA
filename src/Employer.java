@@ -14,16 +14,13 @@ public class Employer extends Account {
 
     }*/
 
-    public String getCompanyName(Account currentUser){
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_EMPLOYER)
+    public String getCompanyName(){
         return this.companyName;
     }
-    public String getCompanyDescription(Account currentUser){
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_EMPLOYER)
+    public String getCompanyDescription(){
         return this.companyDescription;
     }
-    public String getCompanyWebsite(Account currentUser){
-        if (currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_EMPLOYER)
+    public String getCompanyWebsite(){
         return this.companyWebsite;
     }
     /*public void setName(Account currentUser, String newName){
@@ -38,10 +35,9 @@ public class Employer extends Account {
     public void setCompanyDescription(String newCompanyDescription){
         this.companyDescription = newCompanyDescription;
     }
-    public double giveStudentRating(Employer employerAccount, Student studentAccount, double Rating){
+    public void giveStudentRating(Employer employerAccount, Student studentAccount, double Rating){
         if( Rating >= 1 || Rating <= 5){
-
+			studentAccount.addRating(Rating);
         }
     }
-
 }

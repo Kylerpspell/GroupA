@@ -1,6 +1,7 @@
+package src;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.util.UUID;
 public class InterfaceManager {
     
     public static InterfaceManager interfaceManager;
@@ -70,8 +71,8 @@ public class InterfaceManager {
         } while (!validEmail);
         System.out.println("Please enter a password for the account");
         String password = key.nextLine();
-
-        return new Account(password, email, accountType);
+		UUID id = UUID.randomUUID();
+        return new Account(id, password, email, accountType);
     }
     public Job createJob(Account currentUser) {
         Scanner key = new Scanner(System.in);
@@ -91,7 +92,8 @@ public class InterfaceManager {
             key.nextLine();
             isVisible = true;
         }
-        return new Job(jobTitle, jobDescription, currentUser, new ArrayList<Account>(), isAvailable, isVisible);
+		UUID tempid = UUID.randomUUID();
+        return new Job(tempid, jobTitle, jobDescription, currentUser, new ArrayList<Account>(), isAvailable, isVisible);
     }
     public void viewJobs(Account currentUser) {
 
