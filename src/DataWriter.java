@@ -8,7 +8,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
-	static final Account WRITER_ACCOUNT = new Account(UUID.randomUUID(), "password","admin@email.sc.edu", AccountType.ACCOUNT_TYPE_ADMIN);
 	public static void saveAccounts() {
 		Accounts accounts = Accounts.getInstance();
 		ArrayList<Account> accountList = accounts.getAccounts();
@@ -81,8 +80,8 @@ public class DataWriter extends DataConstants {
 	public static JSONObject getAccountJSON(Account account) {	
 		JSONObject accountDetails = new JSONObject();
 		accountDetails.put(USER_ACCOUNT_TYPE, account.getAccountType());
-		accountDetails.put(USER_EMAIL, account.getEmail(WRITER_ACCOUNT));
-		accountDetails.put(USER_PASSWORD, account.getPassword(WRITER_ACCOUNT));
+		accountDetails.put(USER_EMAIL, account.getEmail());
+		accountDetails.put(USER_PASSWORD, account.getPassword());
 		if(account.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
 			//THESE ARE THE STUDENT FIELDS NEED STUDENT CLASS
 			//accountDetails.put(USER_RESUME_UUID, account.getResumeUUID());

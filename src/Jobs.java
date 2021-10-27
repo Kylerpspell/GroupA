@@ -49,6 +49,15 @@ public class Jobs {
 		return true;
 	}
 	
+	public boolean removeJob(UUID jobID) {
+		for(Job job : jobList) {
+			if(job.getID().equals(jobID)) {
+				jobList.remove(job);
+				return true;
+			}
+		}
+		return false;
+	}
 	public void saveJobs() {
 		DataWriter.saveJobs();
 	}

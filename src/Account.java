@@ -19,7 +19,7 @@ public class Account {
 		this.UserAccountType = AccountType;
 	}
 
-	public String getPassword(Account CurrentUser) {
+	public String getPassword() {
 		return password;
 	}
 	
@@ -27,14 +27,12 @@ public class Account {
 			this.password = password;
 	}
 
-	public String getEmail(Account CurrentUser) {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email, Account currentUser) {
-		if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || currentUser == this) {
+	public void setEmail(String email) {
 			this.email = email;
-		}
 	}
 
 	public AccountType getAccountType() {

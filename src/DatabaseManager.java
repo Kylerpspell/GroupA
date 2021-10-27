@@ -1,29 +1,30 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Currency;
 
 public class DatabaseManager {
     public static DatabaseManager databaseManager;
-    private ArrayList<Account> accounts;
-    private ArrayList<Job> jobs;
-	private ArrayList<Resume> resumes;
+	private Resumes resumes;
+	private Jobs jobs;
+	private Accounts accounts;
 	private Account currentAccount;
     
     private DatabaseManager() {
-        accounts = DataLoader.getAccounts();
-		jobs = DataLoader.getJobs();
-		resumes = DataLoader.getResumes();
+		resumes = Resumes.getInstance();
+		jobs = Jobs.getInstance();
+		accounts = Accounts.getInstance();
     }
 
-    public static DatabaseManager getInstance() {
+    public static DatabaseManager getInstance(Account user) {
         if (databaseManager == null) {
             databaseManager = new DatabaseManager();
         }
-
+		databaseManager.currentAccount = user;
         return databaseManager;
     }
 
-    public ArrayList<Account> getAccounts() {
+    public Accounts getAccounts() {
         if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN) {
 			return accounts;
 		}
@@ -32,31 +33,31 @@ public class DatabaseManager {
 		}
     }
 
-    public ArrayList<Job> getJobs() {
+    public Jobs getJobs() {
 		return this.jobs;
     }
 
-	public ArrayList<Resume> getResumes() {
+	public Resumes getResumes() {
 		return this.resumes;
 	}
 
-    public void addAccount(Account account) {
-        this.accounts.add(account);
+    public void addAccount(Account accountToAdd) {
+        accounts.addAccount(accountToAdd);
     }
 
     public void addJob(Job job) {
-		this.jobs.add(job);
+		this.jobs.addJob(job);
     }
 
     public void removeAccount(Account account) {
         if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || currentAccount.getId() == account.getId()) {
-			this.accounts.remove(account);
+			this.accounts.removeAccount(account.getId());
 		}
     }
 
     public void removeJob(Job job) {
         if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || currentAccount.getId() == job.getPostingEmployer().getId()) {
-			this.jobs.remove(job);
+			this.jobs.removeJob(job.getID());
 		}
     }
 
