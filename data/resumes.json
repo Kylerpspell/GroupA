@@ -1,26 +1,30 @@
 [
-  {
-    "Experience": null,
-    "Major": "BIOCHEMISTRY_AND_MOLECULAR_BIOLOGY",
-    "Skills": ["Money Management", "Stock Finding"],
-    "name": "Bobby Bobinson",
-    "GPA": 4.0,
-    "Graduation Date": null
-  },
-  {
-    "Experience": null,
-    "Major": "COMPUTER_SCIENCE_COMPUTER_ENGINEERING",
-    "Skills": ["Creating Operating Systems", "Making Companies"],
-    "name": "Bill Gates",
-    "GPA": 2.9,
-    "Graduation Date": null
-  },
-  {
-    "Experience": ["java", "c++", "c#"],
-    "Major": "COMPUTER_SCIENCE_COMPUTER_ENGINEERING",
-    "Skills": ["Played minecraft", "Played CSGO", "Played Rocket League"],
-    "name": "Kyler",
-    "GPA": 3.1,
-    "Graduation Date": "May 2023"
-  }
+    {
+        "id": "fe1e1262-b08c-4b23-9d95-8f8bcf0ac63d",
+        "name": "Bobby Bobinson",
+        "Major": "BIOCHEMISTRY_AND_MOLECULAR_BIOLOGY",
+        "GPA": 4.0,
+        "Experiences": [
+            "ExperienceStock",
+            "ExperienceMoney"
+        ],
+        "Skills": [
+            "Money Management",
+            "Stock Finding"
+        ]
+    } , 
+    {
+        "id": "985889e1-f023-4f6b-9ed0-ef07c09b510d",
+        "name": "Bill Gates",
+        "Major": "COMPUTER_SCIENCE_COMPUTER_ENGINEERING",
+        "GPA": 2.9,
+        "Experiences": [
+            "CreatedMicrosoft",
+            "MadeOperatingSystem"
+        ],
+        "Skills": [
+            "Creating Operating Systems",
+            "Making Companies"
+        ]
+    }
 ]

@@ -52,14 +52,14 @@ public class DataLoader extends DataConstants{
 				
 				ArrayList<String> skills = new ArrayList<String>();
 				JSONArray skillsJSON = (JSONArray)resumeJSON.get(RESUME_SKILLS);
-				for(int j = 0; i<skillsJSON.size(); j++) {
+				for(int j = 0; j<skillsJSON.size(); j++) {
 					skills.add((String)skillsJSON.get(j));
 				}
 				
 				ArrayList<String> experience = new ArrayList<String>();
 				JSONArray experienceJSON = (JSONArray)resumeJSON.get(RESUME_EXPERIENCE);
 
-				for(int j = 0; i<experienceJSON.size(); j++) {
+				for(int j = 0; j<experienceJSON.size(); j++) {
 					experience.add((String)experienceJSON.get(j));
 				}
 				
