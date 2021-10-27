@@ -25,11 +25,11 @@ public class Job {
 		return Applicants;
 	}
 
-	public Boolean checkAvailability(Account currentUser) {
+	public Boolean checkAvailability() {
 		return isAvailible;
 	}
 
-	public Boolean checkVisibility(Account currentUser) {
+	public Boolean checkVisibility() {
 		return isVisible;
 	}
 
@@ -53,15 +53,15 @@ public class Job {
 		return PostingEmployeer;
 	}
 
-	public String getJobTitle(Account currentUser) {
+	public String getJobTitle() {
 		return JobTitle;
 	}
 
-	public String getJobDescription(Account currentUser) {
+	public String getJobDescription() {
 		return JobDescription;
 	}
 
-	public UUID getID(Account currentUser) {
+	public UUID getID() {
 		return id;
 	}
 }

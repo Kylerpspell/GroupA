@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Jobs {
-	static final Account WRITER_ACCOUNT = new Account(UUID.randomUUID(), "password","admin@email.sc.edu",AccountType.ACCOUNT_TYPE_ADMIN);
 	private static Jobs jobs;
 	private ArrayList<Job> jobList;
 	
@@ -21,7 +20,7 @@ public class Jobs {
 
 	public boolean haveJob(String JobTitle) {
 		for(Job job : jobList) {
-			if(job.getJobTitle(WRITER_ACCOUNT).equals(JobTitle)) {
+			if(job.getJobTitle().equals(JobTitle)) {
 				return true;
 			}
 		}
@@ -31,7 +30,7 @@ public class Jobs {
 	
 	public Job getJob(String JobTitle) {
 		for(Job job : jobList) {
-			if(job.getJobTitle(WRITER_ACCOUNT).equals(JobTitle)) {
+			if(job.getJobTitle().equals(JobTitle)) {
 				return job;
 			}
 		}
@@ -43,7 +42,7 @@ public class Jobs {
 	}
 	
 	public boolean addJob(Job job) {
-		if(haveJob(job.getJobTitle(WRITER_ACCOUNT))){
+		if(haveJob(job.getJobTitle())){
 			return false;
 		}
 		jobList.add(job);

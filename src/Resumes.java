@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Resumes {
-	static final Account WRITER_ACCOUNT = new Account(UUID.randomUUID(), "password", "admin@email.sc.edu", AccountType.ACCOUNT_TYPE_ADMIN);
 	private static Resumes resumes;
 	private ArrayList<Resume> resumeList;
 	
@@ -19,9 +18,9 @@ public class Resumes {
 		return resumes;
 	}
 
-	public boolean haveResume(String resumeName) {
+	public boolean haveResume(UUID resIDU) {
 		for(Resume resume : resumeList) {
-			if(resume.getName(WRITER_ACCOUNT).equals(resumeName)) {
+			if(resume.getId().equals(resIDU)) {
 				return true;
 			}
 		}
@@ -30,7 +29,7 @@ public class Resumes {
 	
 	public Resume getResume(String resumeName) {
 		for(Resume resume : resumeList) {
-			if(resume.getName(WRITER_ACCOUNT).equals(resumeName)) {
+			if(resume.getName().equals(resumeName)) {
 				return resume;
 			}
 		}
@@ -42,7 +41,7 @@ public class Resumes {
 	}
 	
 	public boolean addResume(Resume resume) {
-		if(haveResume(resume.getName(WRITER_ACCOUNT))){
+		if(haveResume(resume.getId())){
 			return false;
 		}
 		resumeList.add(resume);

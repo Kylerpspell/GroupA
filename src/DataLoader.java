@@ -41,19 +41,17 @@ public class DataLoader extends DataConstants{
 		
 		try {
 			FileReader reader = new FileReader(RESUMES_FILE_NAME);
-			JSONParser parser = new JSONParser();	
 			JSONArray resumesJSON = (JSONArray)new JSONParser().parse(reader);
 			
 			for(int i=0; i < resumesJSON.size(); i++) {
 				JSONObject resumeJSON = (JSONObject)resumesJSON.get(i);
 				UUID id = UUID.fromString((String)resumeJSON.get(RESUME_UUID));
 				String name = (String)resumeJSON.get(RESUME_NAME);
-				Date graduationDate = (Date)resumeJSON.get(RESUME_GRADUATION_DATE);
+				String graduationDate = (String)resumeJSON.get(RESUME_GRADUATION_DATE);
 				Majors major = Majors.valueOf((String)resumeJSON.get(RESUME_MAJOR));
 				double gpa = (double)resumeJSON.get(RESUME_GPA);
 				ArrayList<String> skills = (ArrayList<String>)resumeJSON.get(RESUME_SKILLS);
 				ArrayList<String> experience = (ArrayList<String>)resumeJSON.get(RESUME_EXPERIENCE);
-
 
 				resumes.add(new Resume(id, name, graduationDate, major, gpa, experience, skills));
 			}
@@ -70,7 +68,6 @@ public class DataLoader extends DataConstants{
 		
 		try {
 			FileReader reader = new FileReader(JOBS_FILE_NAME);
-			JSONParser parser = new JSONParser();	
 			JSONArray jobsJSON = (JSONArray)new JSONParser().parse(reader);
 			ArrayList<Account> existingUsers = getAccounts();
 			for(int i=0; i < jobsJSON.size(); i++) {
@@ -79,7 +76,7 @@ public class DataLoader extends DataConstants{
 				String name = (String)jobJSON.get(JOB_NAME);
 				String description = (String)jobJSON.get(JOB_DESCRIPTION);
 				Boolean avalibility = (Boolean)jobJSON.get(JOB_AVAILIBILITY);
-				Boolean visibility = (Boolean)jobJSON.get(JOB_VISIBILITY);
+				Boolean visibility = Boolean.parseBoolean((String)jobJSON.get(JOB_VISIBILITY));
 				
 				UUID postingEmployerUUID = UUID.fromString((String)jobJSON.get(JOB_POSTING_EMPLOYER));
 				Account postingEmployer = null;

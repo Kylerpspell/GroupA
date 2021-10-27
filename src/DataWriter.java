@@ -98,23 +98,23 @@ public class DataWriter extends DataConstants {
 	public static JSONObject getResumeJSON(Resume resume) {
 		JSONObject resumeDetails = new JSONObject();
 		//resumeDetails.put(RESUME_UUID, resume.getUUID(WRITER_ACCOUNT));
-		resumeDetails.put(RESUME_NAME, resume.getName(WRITER_ACCOUNT));
-		resumeDetails.put(RESUME_GRADUATION_DATE, resume.getGraduationDate(WRITER_ACCOUNT));
-		resumeDetails.put(RESUME_MAJOR, resume.getMajor(WRITER_ACCOUNT));
-		resumeDetails.put(RESUME_GPA, resume.getGPA(WRITER_ACCOUNT));
-		resumeDetails.put(RESUME_EXPERIENCE, resume.getExperiences(WRITER_ACCOUNT));
-		resumeDetails.put(RESUME_SKILLS, resume.getSkills(WRITER_ACCOUNT));
+		resumeDetails.put(RESUME_NAME, resume.getName());
+		resumeDetails.put(RESUME_GRADUATION_DATE, resume.getGraduationDate());
+		resumeDetails.put(RESUME_MAJOR, resume.getMajor().toString());
+		resumeDetails.put(RESUME_GPA, resume.getGPA());
+		resumeDetails.put(RESUME_EXPERIENCE, resume.getExperiences());
+		resumeDetails.put(RESUME_SKILLS, resume.getSkills());
 		
 		return resumeDetails;
 	}
 
 	public static JSONObject getJobJSON(Job job) {
 		JSONObject jobDetails = new JSONObject();
-		jobDetails.put(JOB_UUID, job.getID(WRITER_ACCOUNT));
-		jobDetails.put(JOB_NAME, job.getJobTitle(WRITER_ACCOUNT));
-		jobDetails.put(JOB_DESCRIPTION, job.getJobDescription(WRITER_ACCOUNT));
-		jobDetails.put(JOB_AVAILIBILITY, job.checkAvailability(WRITER_ACCOUNT));
-		jobDetails.put(JOB_VISIBILITY, job.checkVisibility(WRITER_ACCOUNT));
+		jobDetails.put(JOB_UUID, job.getID());
+		jobDetails.put(JOB_NAME, job.getJobTitle());
+		jobDetails.put(JOB_DESCRIPTION, job.getJobDescription());
+		jobDetails.put(JOB_AVAILIBILITY, job.checkAvailability());
+		jobDetails.put(JOB_VISIBILITY, job.checkVisibility());
 		JSONArray applicantIDs = new JSONArray();
 		for(Account applicant : job.getApplicants()){
 			applicantIDs.add(applicant.getId().toString());

@@ -27,7 +27,7 @@ public abstract class DataConstants {
 	protected static final String USER_EXTERNAL_DOCUMENTS = "External Documents";
 
 	// Resume
-	protected static final String RESUME_NAME = "Resume Name";
+	protected static final String RESUME_NAME = "name";
 	protected static final String RESUME_GRADUATION_DATE = "Graduation Date";
 	protected static final String RESUME_MAJOR = "Major";
 	protected static final String RESUME_GPA = "GPA";
