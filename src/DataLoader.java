@@ -1,6 +1,5 @@
 package src;
 import java.io.FileReader;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -50,9 +49,20 @@ public class DataLoader extends DataConstants{
 				String graduationDate = (String)resumeJSON.get(RESUME_GRADUATION_DATE);
 				Majors major = Majors.valueOf((String)resumeJSON.get(RESUME_MAJOR));
 				double gpa = (double)resumeJSON.get(RESUME_GPA);
-				ArrayList<String> skills = (ArrayList<String>)resumeJSON.get(RESUME_SKILLS);
-				ArrayList<String> experience = (ArrayList<String>)resumeJSON.get(RESUME_EXPERIENCE);
+				
+				ArrayList<String> skills = new ArrayList<String>();
+				JSONArray skillsJSON = (JSONArray)resumeJSON.get(RESUME_SKILLS);
+				for(int j = 0; i<skillsJSON.size(); j++) {
+					skills.add((String)skillsJSON.get(j));
+				}
+				
+				ArrayList<String> experience = new ArrayList<String>();
+				JSONArray experienceJSON = (JSONArray)resumeJSON.get(RESUME_EXPERIENCE);
 
+				for(int j = 0; i<experienceJSON.size(); j++) {
+					experience.add((String)experienceJSON.get(j));
+				}
+				
 				resumes.add(new Resume(id, name, graduationDate, major, gpa, experience, skills));
 			}
 			return resumes;

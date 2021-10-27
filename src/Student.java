@@ -1,6 +1,5 @@
 package src;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Student extends Account{
     private String name;

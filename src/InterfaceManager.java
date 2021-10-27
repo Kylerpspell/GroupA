@@ -74,7 +74,7 @@ public class InterfaceManager {
 		UUID id = UUID.randomUUID();
         return new Account(id, password, email, accountType);
     }
-    public Job createJob(Account currentUser) {
+    public Job createJob() {
         Scanner key = new Scanner(System.in);
         System.out.println("Please enter a job title for this listing.");
         String jobTitle = key.nextLine();
@@ -95,22 +95,22 @@ public class InterfaceManager {
 		UUID tempid = UUID.randomUUID();
         return new Job(tempid, jobTitle, jobDescription, currentUser, new ArrayList<Account>(), isAvailable, isVisible);
     }
-    public void viewJobs(Account currentUser) {
+    public void viewJobs() {
 
     }
-    public void viewApplicants(Account currentUser, Job job) {
+    public void viewApplicants( Job job) {
         System.out.println("Applicants:");
         for (Account applicant : job.getApplicants()) {
             System.out.println(applicant.toString());
         }
     }
-    public void viewResume(Account currentUser, Account applicant) {
+    public void viewResume(Student applicant) {
+        System.out.println(applicant.getResume().toString());
+    }
+    public void sortJobs(Job job) {
 
     }
-    public void sortJobs(Account currentUser, Job job) {
-
-    }
-    public void sortApplicants(Account currentUser, Job job) {
+    public void sortApplicants( Job job) {
 
     }
  }

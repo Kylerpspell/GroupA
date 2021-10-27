@@ -1,5 +1,4 @@
 package src;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -22,7 +21,7 @@ public class Resume {
 		this.skills = skills;
 	}
     
-    public void setName( String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -49,26 +48,42 @@ public class Resume {
     public ArrayList<String> getSkills() {
         return skills;
     }
-    public void AddExperience( String Experience) {
+    public void AddExperience(String Experience) {
         this.experiences.add(Experience);
     }
-    public void removeExperience( String Experience) {
+    public void removeExperience(String Experience) {
         this.experiences.remove(Experience);
     }
-    public void AddSkill( String Skill) {
+    public void AddSkill(String Skill) {
         this.skills.add(Skill);
     }
-    public void removeSkill( String Skill) {
+    public void removeSkill(String Skill) {
         this.skills.remove(Skill);
     }
 	public Majors getMajor() {
 		return this.major;
 	}
-	public void setMajor( Majors major) {
+	public void setMajor(Majors major) {
 			this.major = major;
 	}
 
 	public UUID getId() {
 		return id;
 	}
+
+    public String formatString() {
+        String ret = "Name: " + this.name + "\n";
+        ret += "Graduation Date: " + this.graduationDate + "\n";
+        ret += "Major: " + this.major + "\n";
+        ret += "GPA: " + this.GPA + "\n";
+        ret += "Experiences: \n";
+        for (String experience : this.experiences) {
+            ret  += "\t -" + experience + "\n";
+        }
+        ret += "Skills: \n";
+        for (String skill : this.skills) {
+            ret += "\t -" + skill + "\n";
+        }
+        return ret;
+    }
 }
