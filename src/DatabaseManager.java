@@ -1,7 +1,6 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.Currency;
 
 public class DatabaseManager {
     public static DatabaseManager databaseManager;
@@ -25,7 +24,7 @@ public class DatabaseManager {
     }
 
     public Accounts getAccounts() {
-        if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN) {
+        if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN) {
 			return accounts;
 		}
 		else {
@@ -50,13 +49,13 @@ public class DatabaseManager {
     }
 
     public void removeAccount(Account account) {
-        if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || currentAccount.getId() == account.getId()) {
+        if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || currentAccount.getId() == account.getId()) {
 			this.accounts.removeAccount(account.getId());
 		}
     }
 
     public void removeJob(Job job) {
-        if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || currentAccount.getId() == job.getPostingEmployer().getId()) {
+        if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || currentAccount.getId() == job.getPostingEmployer().getId()) {
 			this.jobs.removeJob(job.getID());
 		}
     }
@@ -70,18 +69,18 @@ public class DatabaseManager {
     }
 
     public void changePassword(Account account, String newPassword) {
-		if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || account.id == currentAccount.id) {
+		if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || account.getId() == currentAccount.getId()) {
 			account.setPassword(newPassword);
 		}
     }
     public void addExternalDocument(Student studentAccount, String document) {
-		if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || studentAccount.id == currentAccount.id) {
+		if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || studentAccount.getId() == currentAccount.getId()) {
 			studentAccount.addExternalDocument(document);
 		}
     }
 
     public void removeExternalDocument(Student studentAccount, String document) {
-		if(currentAccount.UserAccountType == AccountType.ACCOUNT_TYPE_ADMIN || studentAccount.id == currentAccount.id) {
+		if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || studentAccount.getId() == currentAccount.getId()) {
 			studentAccount.removeExternalDocument(document);
     	}
 	}

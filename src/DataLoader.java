@@ -23,11 +23,47 @@ public class DataLoader extends DataConstants{
 				String password = (String)accountJSON.get(USER_PASSWORD);
 				AccountType userAccountType = AccountType.valueOf((String)accountJSON.get(USER_ACCOUNT_TYPE));
 				
-				accounts.add(new Account(id, password, email, userAccountType));
+				if(userAccountType == AccountType.ACCOUNT_TYPE_ADMIN) {
+					accounts.add(new Admin(id, email, password));
+					
+				} else if(userAccountType == AccountType.ACCOUNT_TYPE_STUDENT) {
+					String name = (String)accountJSON.get(USER_NAME);
+					UUID resumeID = UUID.fromString((String)accountJSON.get(RESUME_UUID));
+					
+					JSONArray externalDocs = (JSONArray)accountJSON.get(USER_EXTERNAL_DOCUMENTS);
+					ArrayList<String> externalDocuments = new ArrayList<String>();
+					for(int j=0; j < externalDocs.size(); j++) {
+						externalDocuments.add((String)externalDocs.get(j));
+					}
+
+					JSONArray Ratings = (JSONArray)accountJSON.get(STUDENT_RATINGS);
+					ArrayList<Double> ratings = new ArrayList<Double>();
+					for(int j=0; j < Ratings.size(); j++) {
+						ratings.add((Double)Ratings.get(j));
+					}
+					
+					ArrayList<Resume> resumes = getResumes();
+					for(Resume resume : resumes) {
+						if(resume.getId().equals(resumeID)) {
+							accounts.add(new Student(id, email, password, name, resume, externalDocuments, ratings));
+						}
+						else {
+							throw new Exception("Resume ID not found");
+						}
+					}
+				} else if(userAccountType == AccountType.ACCOUNT_TYPE_EMPLOYER) {
+					String companyName = (String)accountJSON.get(COMPANY_NAME);
+					String companyWebsite = (String)accountJSON.get(COMPANY_WEBSITE);
+					String companyDescription = (String)accountJSON.get(COMPANY_DESCRIPTION);
+
+					accounts.add(new Employer(email, password, id, companyName, companyWebsite, companyDescription));
+				
+				}
+				else {
+					throw new Exception("Invalid account type");
+				}
 			}
-			
 			return accounts;
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

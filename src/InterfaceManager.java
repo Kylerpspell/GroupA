@@ -45,35 +45,67 @@ public class InterfaceManager {
     }
     public Account createAccount() {
         Scanner key = new Scanner(System.in);
-        AccountType accountType = null;
         System.out.println("What type of account would you like to create?  \nEnter the appropriate number for your selection. \n1. Student \n2. Employer \n3. Application Administrator");
-        switch (key.nextInt()) {
+        Account account = null;
+		switch (key.nextInt()) {
             case 1: 
-                accountType = AccountType.ACCOUNT_TYPE_STUDENT;
+				account = createStudent(key);
                 break;
             case 2:
-                accountType = AccountType.ACCOUNT_TYPE_EMPLOYER;
+				account = createEmployer(key);
                 break;
             case 3:
-                accountType = AccountType.ACCOUNT_TYPE_ADMIN;
+				account = createAdmin(key);
                 break;
-        }
-        boolean validEmail = true;
-        String email = "";
-        do {
-        System.out.println("Please enter a valid email for the account");
-        email = key.nextLine();
-        int sub = email.length() - "sc.edu".length();
-        if (!email.substring(sub).equalsIgnoreCase("sc.edu")) {
-            System.out.println("Invalid email, please re-enter.");
-            validEmail = false;
-        }
-        } while (!validEmail);
-        System.out.println("Please enter a password for the account");
-        String password = key.nextLine();
-		UUID id = UUID.randomUUID();
-        return new Account(id, password, email, accountType);
+		}
+		return account;
     }
+
+	public Student createStudent(Scanner key) {
+		System.out.println("Please enter your name.");
+		String name = key.nextLine();
+		System.out.println("Please enter your email.");
+		//TODO Email checks
+		String email = key.nextLine();
+		//TODO Password checks
+		System.out.println("Please enter your password.");
+		String password = key.nextLine();
+		Resume newResume = createResume();
+		ArrayList<String> documents = new ArrayList<String>();
+		ArrayList<Double> ratings = new ArrayList<Double>();
+		
+		return new Student(UUID.randomUUID(), name, password, email, newResume, documents, ratings);
+	}
+
+	public Employer createEmployer(Scanner key) {
+		System.out.println("Please enter your company name.");
+		String name = key.nextLine();
+		System.out.println("Please enter your email.");
+		//TODO Email checks
+		String email = key.nextLine();
+		//TODO Password checks
+		System.out.println("Please enter your password.");
+		String password = key.nextLine();
+		System.out.println("Please enter your company website.");
+		//TODO Website checks
+		String website = key.nextLine();
+		System.out.println("Please enter your company description.");
+		String description = key.nextLine();
+
+		return new Employer(email, password, UUID.randomUUID(), name, website, description);
+	}
+
+	public Admin createAdmin(Scanner key) {
+		System.out.println("Please enter your email.");
+		//TODO Email checks
+		String email = key.nextLine();
+		//TODO Password checks
+		System.out.println("Please enter your password.");
+		String password = key.nextLine();
+
+		return new Admin(UUID.randomUUID(), email, password);
+	}
+
     public Job createJob() {
         Scanner key = new Scanner(System.in);
         System.out.println("Please enter a job title for this listing.");
@@ -113,4 +145,17 @@ public class InterfaceManager {
     public void sortApplicants( Job job) {
 
     }
+
+	public Resume createResume() {
+		//TODO create user interface for this
+		UUID tempid = UUID.randomUUID();
+		String name = "";
+		String graduationDate = "";
+		Majors major = null;
+		double GPA = 0;
+		ArrayList<String> skills = new ArrayList<String>();
+		ArrayList<String> experience = new ArrayList<String>();
+
+		return new Resume(tempid, name, graduationDate, major, GPA, skills, experience);
+	}
  }

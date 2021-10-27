@@ -1,32 +1,47 @@
 package src;
-public class Admin {
 
-    public void createAccount(Account currentUser){
+import java.util.UUID;
 
-    }
+public class Admin implements Account{
+	private String email;
+	private String password;
+	private UUID id;
 
-    public void editAccount(Account currentUser){
+	Admin(UUID id, String email, String password) {
+		this.email = email;
+		this.password = password;
+		this.id = id;
+	}
 
-    }
 
-    public void removeAccount(Account currentUser){
+	public String getPassword(){
+		return password;
+	}
+	
+	public void setPassword(String password){
+		//TODO check if password is valid
+		this.password = password;
+	}
 
-    }
+	public String getEmail(){
+		return email;
+	}
 
-    public void editResume(Resume resume){
+	public void setEmail(String email){
+		//TODO check if email is valid
+		this.email = email;
+	}
 
-    }
+	public AccountType getAccountType(){
+		return AccountType.ACCOUNT_TYPE_ADMIN;
+	}
 
-    public void removeResume(Resume resume){
+	public UUID getId(){
+		return id;
+	}
 
-    }
-
-    public void editJob(Job job){
-        Employer editJob;
-    }
-
-    public void removeJobListing(Job job){
-        Employer removeJobListing;
-    }
-
+	@Override
+	public String toString(){
+		return "Admin: " + email;
+	}
 }

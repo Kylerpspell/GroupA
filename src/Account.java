@@ -1,51 +1,19 @@
 package src;
 import java.util.UUID;
-public class Account {
-	UUID id;
-	String password;
-	String email;
-	AccountType UserAccountType;
+public interface Account {
 
-	Account() {
-		this.id = UUID.randomUUID();
-		this.password = null;
-		this.email = null;
-		this.UserAccountType = null;
-	}
-	Account(UUID id, String password, String email, AccountType AccountType) {
-		this.id = id;
-		this.password = password;
-		this.email = email;
-		this.UserAccountType = AccountType;
-	}
-
-	public String getPassword() {
-		return password;
-	}
+	public String getPassword();
 	
-	public void setPassword(String password) {
-			this.password = password;
-	}
+	public void setPassword(String password);
 
-	public String getEmail() {
-		return email;
-	}
+	public String getEmail();
 
-	public void setEmail(String email) {
-			this.email = email;
-	}
+	public void setEmail(String email);
 
-	public AccountType getAccountType() {
-		return UserAccountType;
-	}
+	public AccountType getAccountType();
 
-	public UUID getId() {
-		return id;
-	}
+	public UUID getId();
 
 	@Override
-	public String toString() {
-		return "Account [id=" + id + ", password=" + password + ", email=" + email + ", UserAccountType="
-				+ UserAccountType + "]";
-	}
+	public String toString();
 }

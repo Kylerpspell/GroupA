@@ -22,14 +22,16 @@
         "Email": "BobbyB@email.sc.edu",
         "AccountType": "ACCOUNT_TYPE_STUDENT",
         "Name": "Bobby Bobinson",
-        "Resume": "resumeBobby",
+        "Resume": "fe1e1262-b08c-4b23-9d95-8f8bcf0ac63d",
         "ExternalDocuments": [
             "docID1",
             "docID2"
         ],
-        "SubmittedApplications":[
-            "JobStockFinder"
-        ]
+		"Ratings": [
+			4.1,
+			4.3,
+			2.1
+		]
     },
     {
 		"id": "7b4bbacd-7d22-44f3-9467-8a80515ac17e",
@@ -37,13 +39,15 @@
         "Email": "BGates@outlook.com",
         "AccountType": "ACCOUNT_TYPE_STUDENT",
         "Name": "Bill Gates",
-        "Resume": "resumeBill",
+        "Resume": "985889e1-f023-4f6b-9ed0-ef07c09b510d",
         "ExternalDocuments": [
             "docID1",
             "docID2"
         ],
-        "SubmittedApplications":[
-            "JobStockFinder"
-        ]
+		"Ratings": [
+			4.1,
+			4.3,
+			2.1
+		]
     }
 ]

@@ -1,15 +1,39 @@
 package src;
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class Student extends Account{
-    private String name;
+public class Student implements Account{
+	private UUID id;
+	private String password;
+	private String email;
+	private AccountType UserAccountType;
+	private String name;
     private Resume Resume;
     private ArrayList<String> ExternalDocuments;
-    private ArrayList<Job>  SubmittedApplications;
     private ArrayList<Double> Ratings;
-    public Student(String Name){
-        this.setName(Name);
+    
+	public Student(){
+		this.id = UUID.randomUUID();
+		this.password = null;
+		this.email = null;
+		this.UserAccountType = AccountType.ACCOUNT_TYPE_STUDENT;
+		this.name = null;
+		this.Resume = null;
+		this.ExternalDocuments = null;
+		this.Ratings = null;
+	}
+	
+	public Student(UUID id, String name, String password, String email, Resume resume, ArrayList<String> externalDocuments, ArrayList<Double> ratings) {
+        this.id = UUID.randomUUID();
+		this.password = null;
+		this.email = null;
+		this.UserAccountType = AccountType.ACCOUNT_TYPE_STUDENT;
+		this.name = name;
+		this.Resume = resume;
+		this.ExternalDocuments = externalDocuments;
+		this.Ratings = ratings;
     }
+
     public String getName(Account currentUser ){
 		return this.name;
     }
@@ -58,16 +82,12 @@ public class Student extends Account{
     }
 
     public ArrayList<Job> getSubmittedApplications(){
-        ArrayList<Job> temp = new ArrayList<Job>();
-        for(int i=0; i < SubmittedApplications.size();i++){
-             temp.add(SubmittedApplications.get(i));
-             /*
-        returns full list of submitted applications
-         */
-        }
-        //TEMP
-        return temp;
-
+        ArrayList<Job> submittedApplications = new ArrayList<Job>();
+		/*
+		//TODO - implement this method
+		returns list of jobs that the student has submitted an application to
+		 */
+		return submittedApplications;
     }
 
     public void addRating(double rating, Employer employerAccount){
@@ -80,18 +100,7 @@ public class Student extends Account{
 		}
 		return ratingSum / Ratings.size();
 	}
-	public void addSubmittedApplication(Job job){
-		SubmittedApplications.add(job);
-		/*
-		adds job to array list of submitted applications
-		 */
-	}
-	public void removeSubmittedApplication(Job job){
-		SubmittedApplications.remove(job);
-		/*
-		removes job from array list of submitted applications
-		 */
-	}
+
 	public void removeRating(double rating, Employer employerAccount){
 		Ratings.remove(rating);
 		/*
@@ -104,15 +113,7 @@ public class Student extends Account{
 		adds rating to list
 		 */
 	}
-	public void setSubmittedApplications(ArrayList<Job> submittedApplications) {
-        for (int i = 0; i < submittedApplications.size(); i++) {
 
-            SubmittedApplications.set(i, submittedApplications.get(i));
-		/*
-		sets the list of submitted applications in parameter to current list of submitted applications
-		 */
-        }
-    }
 	public void setRatings(ArrayList<Double> ratings){
         for (int i = 0; i < ratings.size(); i++) {
 
@@ -131,6 +132,37 @@ public class Student extends Account{
 		sets the list of external documents in parameter to current list of external documents
 		 */
         }
-    }
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+			this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+			this.email = email;
+	}
+
+	public AccountType getAccountType() {
+		return UserAccountType;
+	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", password=" + password + ", email=" + email + ", UserAccountType="
+				+ UserAccountType + "]";
+	}
+
+}
 

@@ -1,18 +1,32 @@
 package src;
+import java.util.UUID;
 
-
-public class Employer extends Account {
+public class Employer implements Account {
     String companyName;
     String companyWebsite;
     String companyDescription;
-    public Employer(String companyName, String companyWebsite, String companyDescription){
-        this.setCompanyName(companyName);
+	String password;
+	String email;
+	UUID id;
+
+	//TODO we need to change this to match other constructors or vis versa
+    public Employer(String Email, String password, UUID id, String companyName, String companyWebsite, String companyDescription){
+		this.setEmail(Email);
+		this.setPassword(password);
+		this.id = id;
+		this.setCompanyName(companyName);
         this.setCompanyWebsite(companyWebsite);
         this.setCompanyDescription(companyDescription);
     }
-    /*public String getName(Account currentUser){
 
-    }*/
+	public Employer(){
+		this.setEmail("");
+		this.setPassword("");
+		this.id = UUID.randomUUID();
+		this.setCompanyName("");
+		this.setCompanyWebsite("");
+		this.setCompanyDescription("");
+	}
 
     public String getCompanyName(){
         return this.companyName;
@@ -61,5 +75,42 @@ public class Employer extends Account {
     /*
         takes student account in parameter to locate the student and adds specified rating to student account
      */
+
+	public String getPassword() {
+		return this.password;
+	}
+	
+	public void setPassword(String password){
+		//TODO implement basic password check
+		if(password.length() >= 8){
+			this.password = password;
+		}
+	}
+
+	public String getEmail(){
+		return this.email;
+	}
+
+	public void setEmail(String email){
+		//TODO implement basic email check
+		this.email = email;
+	}
+
+	public AccountType getAccountType(){
+		return AccountType.ACCOUNT_TYPE_EMPLOYER;
+	}
+
+	public UUID getId(){
+		return this.id;
+	}
+
+	@Override
+	public String toString(){
+		String ret = "Company Name: " + this.companyName + "\n";
+		ret += "Company Website: " + this.companyWebsite + "\n";
+		ret += "Company Description: " + this.companyDescription + "\n";
+		return ret;
+	}
+
 }
 

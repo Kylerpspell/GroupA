@@ -25,6 +25,10 @@ public abstract class DataConstants {
 	protected static final String USER_JOB_UUID = "Job UUID";
 	protected static final String USER_NAME = "Name";
 	protected static final String USER_EXTERNAL_DOCUMENTS = "External Documents";
+	protected static final String COMPANY_NAME = "CompanyName";
+	protected static final String COMPANY_WEBSITE = "CompanyWebsite";
+	protected static final String COMPANY_DESCRIPTION = "CompanyDescription";
+	protected static final String STUDENT_RATINGS = "Ratings";
 
 	// Resume
 	protected static final String RESUME_NAME = "name";
