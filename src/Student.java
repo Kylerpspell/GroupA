@@ -6,7 +6,7 @@ public class Student extends Account{
     private String name;
     private Resume Resume;
     private ArrayList<String> ExternalDocuments;
-    private ArrayList<Jobs>  SubmittedApplications;
+    private ArrayList<Job>  SubmittedApplications;
     private ArrayList<Double> Ratings;
     public Student(String Name){
         this.setName(Name);
@@ -54,15 +54,20 @@ public class Student extends Account{
         returns full list of external documents
          */
 
+        //TEMP
+        return "";
     }
 
-    public Jobs getSubmittedApplications(){
+    public ArrayList<Job> getSubmittedApplications(){
+        ArrayList<Job> temp = new ArrayList<Job>();
         for(int i=0; i < SubmittedApplications.size();i++){
-            return SubmittedApplications.get(i);
+             temp.add(SubmittedApplications.get(i));
              /*
         returns full list of submitted applications
          */
         }
+        //TEMP
+        return temp;
 
     }
 
@@ -76,13 +81,13 @@ public class Student extends Account{
 		}
 		return ratingSum / Ratings.size();
 	}
-	public void addSubmittedApplication(Jobs job){
+	public void addSubmittedApplication(Job job){
 		SubmittedApplications.add(job);
 		/*
 		adds job to array list of submitted applications
 		 */
 	}
-	public void removeSubmittedApplication(Jobs job){
+	public void removeSubmittedApplication(Job job){
 		SubmittedApplications.remove(job);
 		/*
 		removes job from array list of submitted applications
@@ -100,7 +105,7 @@ public class Student extends Account{
 		adds rating to list
 		 */
 	}
-	public void setSubmittedApplications(ArrayList<Jobs> submittedApplications) {
+	public void setSubmittedApplications(ArrayList<Job> submittedApplications) {
         for (int i = 0; i < submittedApplications.size(); i++) {
 
             SubmittedApplications.set(i, submittedApplications.get(i));
