@@ -29,6 +29,7 @@ public abstract class DataConstants {
 	protected static final String COMPANY_WEBSITE = "CompanyWebsite";
 	protected static final String COMPANY_DESCRIPTION = "CompanyDescription";
 	protected static final String STUDENT_RATINGS = "Ratings";
+	protected static final String EMPLOYER_RATINGS = "Ratings";
 
 	// Resume
 	protected static final String RESUME_NAME = "name";

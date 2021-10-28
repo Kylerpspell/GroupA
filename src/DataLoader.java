@@ -55,8 +55,12 @@ public class DataLoader extends DataConstants{
 					String companyName = (String)accountJSON.get(COMPANY_NAME);
 					String companyWebsite = (String)accountJSON.get(COMPANY_WEBSITE);
 					String companyDescription = (String)accountJSON.get(COMPANY_DESCRIPTION);
-
-					accounts.add(new Employer(email, password, id, companyName, companyWebsite, companyDescription));
+					JSONArray compnayRatings = (JSONArray)accountJSON.get(EMPLOYER_RATINGS);
+					ArrayList<Double> ratings = new ArrayList<Double>();
+					for(int j=0; j < compnayRatings.size(); j++) {
+						ratings.add((Double)compnayRatings.get(j));
+					}
+					accounts.add(new Employer(email, password, id, companyName, companyWebsite, companyDescription,ratings));
 				
 				}
 				else {

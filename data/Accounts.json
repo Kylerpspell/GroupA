@@ -14,7 +14,12 @@
         "Name": "Ryan Stocks",
         "CompanyName": "StockFinder",
         "CompanyWebsite": "www.StockFinder.com",
-        "CompanyDescription": "StockFinder is the leading company for finding the right stocks"
+        "CompanyDescription": "StockFinder is the leading company for finding the right stocks",
+		"Ratings": [
+			2.2,
+			1.0,
+			4.1
+		]
     } ,
     {
 		"id": "b7781df9-a42a-4cc4-a685-7a72bc90c9b5",
