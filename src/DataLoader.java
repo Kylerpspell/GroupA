@@ -120,6 +120,19 @@ public class DataLoader extends DataConstants{
 			FileReader reader = new FileReader(JOBS_FILE_NAME);
 			JSONArray jobsJSON = (JSONArray)new JSONParser().parse(reader);
 			ArrayList<Account> existingUsers = getAccounts();
+			ArrayList<Student> existingStudents = new ArrayList<Student>();
+			for(Account account : existingUsers) {
+				if(account.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
+					existingStudents.add((Student)account);
+				}
+			}
+			ArrayList<Employer> existingEmployers = new ArrayList<Employer>();
+			for(Account account : existingUsers) {
+				if(account.getAccountType() == AccountType.ACCOUNT_TYPE_EMPLOYER) {
+					existingEmployers.add((Employer)account);
+				}
+			}
+
 			for(int i=0; i < jobsJSON.size(); i++) {
 				JSONObject jobJSON = (JSONObject)jobsJSON.get(i);
 				UUID id = UUID.fromString((String)jobJSON.get(JOB_UUID));
@@ -130,18 +143,18 @@ public class DataLoader extends DataConstants{
 				
 				UUID postingEmployerUUID = UUID.fromString((String)jobJSON.get(JOB_POSTING_EMPLOYER));
 				Account postingEmployer = null;
-				for(Account existingAccount : existingUsers) {
-					if(postingEmployerUUID == existingAccount.getId()){
-						postingEmployer = existingAccount;
+				for(Employer employer : existingEmployers) {
+					if(employer.getId().equals(postingEmployerUUID)) {
+						postingEmployer = employer;
 					}
 				}
 				
 				ArrayList<String> applicantIDs = (ArrayList<String>)jobJSON.get(JOB_APPLICANTS);
-				ArrayList<Account> applicants = new ArrayList<Account>();
+				ArrayList<Student> applicants = new ArrayList<Student>();
 				for(String applicantID : applicantIDs) {
-					for(Account account : existingUsers){
-						if(applicantID == account.getId().toString()){
-							applicants.add(account);
+					for(Student student : existingStudents){
+						if(student.getId().equals(UUID.fromString(applicantID))) {
+							applicants.add(student);
 						}
 					}
 				}

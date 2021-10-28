@@ -29,7 +29,6 @@ public class InterfaceManager {
         login(email, password);
     }
     public void login(String email, String password) {
-<<<<<<< HEAD
         boolean login = true;
         while(!login) {
             System.out.println("Please enter the email for the account.");
@@ -42,7 +41,6 @@ public class InterfaceManager {
                 else{
                     System.out.println("Password incorrect. Please re-enter login information.");
                     login = false;
-=======
         Scanner key = new Scanner(System.in);
         boolean foundAccount = false;
         for (Account account : DataLoader.getAccounts()) {
@@ -50,7 +48,6 @@ public class InterfaceManager {
                 if(password.equalsIgnoreCase(account.getPassword())) {
                     this.currentUser = account;
                     foundAccount = true;
->>>>>>> 9e45c6cfbef6ccae73a062cd6ad913e8e6b54794
                 }
             }
         }
@@ -68,6 +65,7 @@ public class InterfaceManager {
         //TODO call save method from dataWriter
         this.currentUser = null;
     }
+
     public Account createAccount() {
         System.out.println("What type of account would you like to create?  \nEnter the appropriate number for your selection. \n1. Student \n2. Employer \n3. Application Administrator");
         Account account = null;
@@ -212,7 +210,8 @@ public class InterfaceManager {
             isVisible = true;
         }
 		UUID tempid = UUID.randomUUID();
-        return new Job(tempid, jobTitle, jobDescription, currentUser, new ArrayList<Account>(), isAvailable, isVisible);
+		ArrayList<Double> ratings = new ArrayList<Double>();
+        return new Job(tempid, jobTitle, jobDescription, currentUser, new ArrayList<Student>(), isAvailable, isVisible);
     }
     public void viewJobs() {
         for (Job job : DataLoader.getJobs()) {
