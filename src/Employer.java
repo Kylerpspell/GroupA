@@ -43,6 +43,7 @@ public class Employer implements Account {
     returns description of company
      */
     }
+
     public String getCompanyWebsite(){
         return this.companyWebsite;
         /*

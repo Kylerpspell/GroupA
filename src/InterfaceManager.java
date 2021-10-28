@@ -7,6 +7,7 @@ public class InterfaceManager {
     public static InterfaceManager interfaceManager;
     private DatabaseManager database;
     private Account currentUser;
+	private Scanner keyboard;
 
     public InterfaceManager(DatabaseManager database) {
         this.database = database;
@@ -18,13 +19,12 @@ public class InterfaceManager {
         return interfaceManager;
     }
     public void login(String email, String password) {
-        Scanner key = new Scanner(System.in);
         boolean login = true;
         while(!login) {
             System.out.println("Please enter the email for the account.");
-            if (email.equalsIgnoreCase(key.nextLine())) {
+            if (email.equalsIgnoreCase(keyboard.nextLine())) {
                 System.out.println("Please enter the Password for the account.");
-                if (email.equalsIgnoreCase(key.nextLine())) {
+                if (email.equalsIgnoreCase(keyboard.nextLine())) {
                     login = true;
                     System.out.println("Successful login");
                 }
@@ -44,30 +44,29 @@ public class InterfaceManager {
         
     }
     public Account createAccount() {
-        Scanner key = new Scanner(System.in);
         System.out.println("What type of account would you like to create?  \nEnter the appropriate number for your selection. \n1. Student \n2. Employer \n3. Application Administrator");
         Account account = null;
-		switch (key.nextInt()) {
+		switch (keyboard.nextInt()) {
             case 1: 
-				account = createStudent(key);
+				account = createStudent();
                 break;
             case 2:
-				account = createEmployer(key);
+				account = createEmployer();
                 break;
             case 3:
-				account = createAdmin(key);
+				account = createAdmin();
                 break;
 		}
 		return account;
     }
 
-	public Student createStudent(Scanner key) {
+	public Student createStudent() {
 		System.out.println("Please enter your name.");
-		String name = key.nextLine();
+		String name = keyboard.nextLine();
 		System.out.println("Please enter your email.");
 		String email;
 		while(true) {
-			email = key.nextLine();
+			email = keyboard.nextLine();
 			if(DatabaseManager.validEmail(email)) {
 				break;
 			}
@@ -79,7 +78,7 @@ public class InterfaceManager {
 		System.out.println("Please enter your password.");
 		String password;
 		while(true) {
-			password = key.nextLine();
+			password = keyboard.nextLine();
 			if(DatabaseManager.validPassword(password)) {
 				break;
 			}
@@ -95,14 +94,14 @@ public class InterfaceManager {
 		return new Student(UUID.randomUUID(), name, password, email, newResume, documents, ratings);
 	}
 
-	public Employer createEmployer(Scanner key) {
+	public Employer createEmployer() {
 		System.out.println("Please enter your company name.");
-		String name = key.nextLine();
+		String name = keyboard.nextLine();
 		System.out.println("Please enter your email.");
 		
 		String email;
 		while(true) {
-			email = key.nextLine();
+			email = keyboard.nextLine();
 			if(DatabaseManager.validEmail(email)) {
 				break;
 			}
@@ -114,7 +113,7 @@ public class InterfaceManager {
 		System.out.println("Please enter your password.");
 		String password;
 		while(true) {
-			password = key.nextLine();
+			password = keyboard.nextLine();
 			if(DatabaseManager.validPassword(password)) {
 				break;
 			}
@@ -126,7 +125,7 @@ public class InterfaceManager {
 		System.out.println("Please enter your company website.");
 		String website;
 		while(true) {
-			website = key.nextLine();
+			website = keyboard.nextLine();
 			if(!website.contains(".")) {
 				System.out.println("Please enter a valid website.");
 			}
@@ -136,16 +135,16 @@ public class InterfaceManager {
 		}
 		
 		System.out.println("Please enter your company description.");
-		String description = key.nextLine();
+		String description = keyboard.nextLine();
 		ArrayList<Double> ratings = new ArrayList<Double>();
 		return new Employer(email, password, UUID.randomUUID(), name, website, description,ratings);
 	}
 
-	public Admin createAdmin(Scanner key) {
+	public Admin createAdmin() {
 		System.out.println("Please enter your email.");
 		String email;
 		while(true) {
-			email = key.nextLine();
+			email = keyboard.nextLine();
 			if(DatabaseManager.validEmail(email)) {
 				break;
 			}
@@ -157,7 +156,7 @@ public class InterfaceManager {
 		System.out.println("Please enter your password.");
 		String password;
 		while(true) {
-			password = key.nextLine();
+			password = keyboard.nextLine();
 			if(DatabaseManager.validPassword(password)) {
 				break;
 			}
@@ -171,21 +170,20 @@ public class InterfaceManager {
 	}
 
     public Job createJob() {
-        Scanner key = new Scanner(System.in);
         System.out.println("Please enter a job title for this listing.");
-        String jobTitle = key.nextLine();
+        String jobTitle = keyboard.nextLine();
         System.out.println("Please enter a job description for this listing.");
-        String jobDescription = key.nextLine();
+        String jobDescription = keyboard.nextLine();
         System.out.println("Would you like this listing to be available for application?. \nEnter the appropriate number for your selection. \n1. Yes \n2. No");
         boolean isAvailable = false;
-        if (key.nextInt() == 1) {
-            key.nextLine();
+        if (keyboard.nextInt() == 1) {
+            keyboard.nextLine();
             isAvailable = true;
         }
         System.out.println("Would you like this listing to be available for viewing?. \nEnter the appropriate number for your selection. \n1. Yes \n2. No");
         boolean isVisible= false;
-        if (key.nextInt() == 1) {
-            key.nextLine();
+        if (keyboard.nextInt() == 1) {
+            keyboard.nextLine();
             isVisible = true;
         }
 		UUID tempid = UUID.randomUUID();
@@ -213,13 +211,70 @@ public class InterfaceManager {
 	public Resume createResume() {
 		//TODO create user interface for this
 		UUID tempid = UUID.randomUUID();
-		String name = "";
-		String graduationDate = "";
-		Majors major = null;
-		double GPA = 0;
+		System.out.println("Please enter your name.");
+		String name = keyboard.nextLine();
+		System.out.println("Please enter your graduation date (MM/YYYY)");
+		String graduationDate = keyboard.nextLine();
+		
+		Majors studentMajor = null;
+		while(true){
+			ArrayList<Majors> majors = new ArrayList<Majors>();
+			System.out.println("Please Search for your major.");
+			String major = keyboard.nextLine();
+			for(Majors m : Majors.values()) {
+				if(m.toString().contains(major)){
+					majors.add(m);
+				}
+			}
+			for(int i = 0; i<majors.size(); i++) {
+				System.out.println(i+1 + ": " + majors.get(i).toString());
+			}
+			System.out.println("Please enter the number of your selection. Or press zero to search again");
+			int selection = keyboard.nextInt();
+			if(selection > 0 && selection <= majors.size()) {
+				studentMajor = majors.get(selection-1);
+				break;
+			} else if(selection == 0) {
+				continue;
+			} else {
+				System.out.println("Please enter a valid selection.");
+			}
+		}
+		
+		System.out.println("Please enter your GPA. x/4.0");
+		double GPA = keyboard.nextDouble();
+		keyboard.nextLine();
+		
+		int i = 0;
 		ArrayList<String> skills = new ArrayList<String>();
+		while(true){
+			System.out.println("Now we will enter your skills");
+			System.out.println("Please enter your skill " + i + ".");
+			String skill = keyboard.nextLine();
+			skills.add(skill);
+			i++;
+			System.out.println("Would you like to enter another skill?. \nEnter the appropriate number for your selection. \n1. Yes \n2. No");
+			if (keyboard.nextInt() == 2) {
+				keyboard.nextLine();
+				break;
+			}
+		}
+		
 		ArrayList<String> experience = new ArrayList<String>();
-
-		return new Resume(tempid, name, graduationDate, major, GPA, skills, experience);
+		int j = 0;
+		while(true){
+			System.out.println("Now we will enter your experience");
+			System.out.println("Please enter your experience " + j + ".");
+			String exp = keyboard.nextLine();
+			experience.add(exp);
+			j++;
+			System.out.println("Would you like to enter another experience?. \nEnter the appropriate number for your selection. \n1. Yes \n2. No");
+			if (keyboard.nextInt() == 2) {
+				keyboard.nextLine();
+				break;
+			}
+		}
+		return new Resume(tempid, name, graduationDate, studentMajor, GPA, skills, experience);
 	}
+
  }
