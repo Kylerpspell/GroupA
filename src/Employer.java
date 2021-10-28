@@ -10,6 +10,7 @@ public class Employer implements Account {
 	String email;
 	UUID id;
 	ArrayList<Double> ratings;
+	ArrayList<Job> postedJobs;
 
 	//TODO we need to change this to match other constructors or vis versa
     public Employer(String Email, String password, UUID id, String companyName, String companyWebsite, String companyDescription,ArrayList<Double> ratings) {
@@ -20,6 +21,7 @@ public class Employer implements Account {
 		this.setCompanyName(companyName);
         this.setCompanyWebsite(companyWebsite);
         this.setCompanyDescription(companyDescription);
+		this.postedJobs = getPostedJobs();
     }
 
 	public Employer(){
@@ -29,6 +31,7 @@ public class Employer implements Account {
 		this.setCompanyName("");
 		this.setCompanyWebsite("");
 		this.setCompanyDescription("");
+		this.postedJobs = getPostedJobs();
 	}
 
     public String getCompanyName(){
@@ -124,5 +127,14 @@ public class Employer implements Account {
 		return ret;
 	}
 
+	private ArrayList<Job> getPostedJobs(){
+		ArrayList<Job> allJobs = DataLoader.getJobs();
+		for(Job j : allJobs){
+			if(j.getPostingEmployer().getId().equals(this.id)){
+				this.postedJobs.add(j);
+			}
+		}
+		return allJobs;
+	}
 }
 
