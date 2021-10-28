@@ -6,13 +6,20 @@ public class DatabaseManager {
 	private Jobs jobs;
 	private Accounts accounts;
 	private Account currentAccount;
-	
+
+	/**
+	 * @return creates and gets instances of required variables to complete database
+	 */
 	private DatabaseManager() {
 		resumes = Resumes.getInstance();
 		jobs = Jobs.getInstance();
 		accounts = Accounts.getInstance();
 	}
 
+	/**
+	 * @param user specificed name of account
+	 * @return  takes user parameter to set the account of database instance
+	 */
 	public static DatabaseManager getInstance(Account user) {
 		if (databaseManager == null) {
 			databaseManager = new DatabaseManager();
@@ -20,6 +27,11 @@ public class DatabaseManager {
 		databaseManager.currentAccount = user;
 		return databaseManager;
 	}
+
+	/**
+	 *
+	 * @return  validates if current account is admin and if so, shows accounts
+	 */
 
 	public Accounts getAccounts() {
 		if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN) {
@@ -33,6 +45,7 @@ public class DatabaseManager {
 	public Jobs getJobs() {
 		return this.jobs;
 	}
+
 
 	public Resumes getResumes() {
 		return this.resumes;

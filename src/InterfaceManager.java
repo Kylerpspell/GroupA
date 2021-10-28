@@ -63,6 +63,9 @@ public class InterfaceManager {
     }
     public void logout() {
         //TODO call save method from dataWriter
+		DataWriter.saveAccounts();
+		DataWriter.saveJobs();
+		DataWriter.saveResumes();
         this.currentUser = null;
     }
 
