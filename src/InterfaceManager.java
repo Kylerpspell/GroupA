@@ -74,11 +74,29 @@ public class InterfaceManager {
 		System.out.println("Please enter your name.");
 		String name = key.nextLine();
 		System.out.println("Please enter your email.");
-		//TODO Email checks
-		String email = key.nextLine();
-		//TODO Password checks
+		String email;
+		while(true) {
+			email = key.nextLine();
+			if(DatabaseManager.validEmail(email)) {
+				break;
+			}
+			else {
+				System.out.println("Please enter a valid email.");
+			}
+		}
+
 		System.out.println("Please enter your password.");
-		String password = key.nextLine();
+		String password;
+		while(true) {
+			password = key.nextLine();
+			if(DatabaseManager.validPassword(password)) {
+				break;
+			}
+			else {
+				System.out.println("Please enter a valid password.");
+			}
+		}
+
 		Resume newResume = createResume();
 		ArrayList<String> documents = new ArrayList<String>();
 		ArrayList<Double> ratings = new ArrayList<Double>();
@@ -90,27 +108,73 @@ public class InterfaceManager {
 		System.out.println("Please enter your company name.");
 		String name = key.nextLine();
 		System.out.println("Please enter your email.");
-		//TODO Email checks
-		String email = key.nextLine();
-		//TODO Password checks
+		
+		String email;
+		while(true) {
+			email = key.nextLine();
+			if(DatabaseManager.validEmail(email)) {
+				break;
+			}
+			else {
+				System.out.println("Please enter a valid email.");
+			}
+		}
+
 		System.out.println("Please enter your password.");
-		String password = key.nextLine();
+		String password;
+		while(true) {
+			password = key.nextLine();
+			if(DatabaseManager.validPassword(password)) {
+				break;
+			}
+			else {
+				System.out.println("Please enter a valid password.");
+			}
+		}
+		
 		System.out.println("Please enter your company website.");
-		//TODO Website checks
-		String website = key.nextLine();
+		String website;
+		while(true) {
+			website = key.nextLine();
+			if(!website.contains(".")) {
+				System.out.println("Please enter a valid website.");
+			}
+			else {
+				break;
+			}
+		}
+		
 		System.out.println("Please enter your company description.");
 		String description = key.nextLine();
-
-		return new Employer(email, password, UUID.randomUUID(), name, website, description);
+		ArrayList<Double> ratings = new ArrayList<Double>();
+		return new Employer(email, password, UUID.randomUUID(), name, website, description,ratings);
 	}
 
 	public Admin createAdmin(Scanner key) {
 		System.out.println("Please enter your email.");
-		//TODO Email checks
-		String email = key.nextLine();
-		//TODO Password checks
+		String email;
+		while(true) {
+			email = key.nextLine();
+			if(DatabaseManager.validEmail(email)) {
+				break;
+			}
+			else {
+				System.out.println("Please enter a valid email.");
+			}
+		}
+
 		System.out.println("Please enter your password.");
-		String password = key.nextLine();
+		String password;
+		while(true) {
+			password = key.nextLine();
+			if(DatabaseManager.validPassword(password)) {
+				break;
+			}
+			else {
+				System.out.println("Please enter a valid password.");
+			}
+		}
+
 
 		return new Admin(UUID.randomUUID(), email, password);
 	}

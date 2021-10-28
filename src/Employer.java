@@ -1,5 +1,6 @@
 package src;
 import java.util.UUID;
+import java.util.ArrayList;
 
 public class Employer implements Account {
     String companyName;
@@ -8,9 +9,11 @@ public class Employer implements Account {
 	String password;
 	String email;
 	UUID id;
+	ArrayList<Double> ratings;
 
 	//TODO we need to change this to match other constructors or vis versa
-    public Employer(String Email, String password, UUID id, String companyName, String companyWebsite, String companyDescription){
+    public Employer(String Email, String password, UUID id, String companyName, String companyWebsite, String companyDescription,ArrayList<Double> ratings) {
+		this.ratings = ratings;
 		this.setEmail(Email);
 		this.setPassword(password);
 		this.id = id;
@@ -72,19 +75,25 @@ public class Employer implements Account {
 			studentAccount.addRating(Rating);
         }
     }
-    /*
-        takes student account in parameter to locate the student and adds specified rating to student account
+	/*
+    takes student account in parameter to locate the student and adds specified rating to student account
      */
+
+	public void addRating(double rating) {
+		if(rating > 0 && rating <=5) {
+			this.ratings.add(rating);
+		}
+	}
 
 	public String getPassword() {
 		return this.password;
 	}
 	
 	public void setPassword(String password){
-		//TODO implement basic password check
-		if(password.length() >= 8){
+		if(DatabaseManager.validPassword(password)){
 			this.password = password;
 		}
+		System.out.println("Invalid Password");
 	}
 
 	public String getEmail(){
@@ -92,8 +101,10 @@ public class Employer implements Account {
 	}
 
 	public void setEmail(String email){
-		//TODO implement basic email check
-		this.email = email;
+		if(DatabaseManager.validEmail(email)){
+			this.email = email;
+		}
+		System.out.println("Invalid Email");
 	}
 
 	public AccountType getAccountType(){

@@ -34,7 +34,7 @@ public class Student implements Account{
 		this.Ratings = ratings;
     }
 
-    public String getName(Account currentUser ){
+    public String getName(Account currentUser){
 		return this.name;
     }
     public Resume getResume() {
@@ -42,57 +42,51 @@ public class Student implements Account{
         
     }
     public void setResume(Account currentUser, Resume resume){
-        if(currentUser.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT){
             this.Resume = resume;
-            /*
-            takes given resume in parameter and sets it to current resume
-             */
-        }
     }
+
     public void setName(String name){
             this.name = name;
-                        /*
-            takes given name in parameter and sets it to current name
-             */
-        }
+    }
 
     public void addExternalDocument(String document) {
-        ExternalDocuments.add(document);
-        /*
-        takes in document and adds it to array list of external documents
-         */
-    }
+        if(document.startsWith("data/Documents/")){
+			this.ExternalDocuments.add(document);
+		}
+	}
+			
     public void removeExternalDocument(String document){
-        ExternalDocuments.remove(document);
-                /*
-        takes in document and removes it from array list of external documents
-         */
+        for(int i = 0; i < this.ExternalDocuments.size(); i++){
+			if(this.ExternalDocuments.get(i).equals(document)){
+				this.ExternalDocuments.remove(i);
+			}
+		}
     }
 	
-    public String getExternalDocuments(){
-        for(int i=0; i < ExternalDocuments.size();i++){
-            return ExternalDocuments.get(i);
-        }
-        /*
-        returns full list of external documents
-         */
-
-        //TEMP
-        return "";
+    public ArrayList<String> getExternalDocuments(){
+		ArrayList<String> exportExternalDocuments = this.ExternalDocuments;
+		return exportExternalDocuments;
     }
 
     public ArrayList<Job> getSubmittedApplications(){
         ArrayList<Job> submittedApplications = new ArrayList<Job>();
-		/*
-		//TODO - implement this method
-		returns list of jobs that the student has submitted an application to
-		 */
+		
+		ArrayList<Job> allJobs = DataLoader.getJobs();
+		for(Job job : allJobs){
+			if(job.getApplicants().contains(this)){
+				submittedApplications.add(job);
+			}
+		}
+
 		return submittedApplications;
     }
 
     public void addRating(double rating, Employer employerAccount){
-
+		if(rating > 0 && rating <= 5){
+			employerAccount.addRating(rating);
+		}
     }
+
     public double getAvgRating(){
         int ratingSum = 0;
 				for(int i = 0; i < Ratings.size(); i++){

@@ -2,12 +2,18 @@ package src;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
+	
+	public static void writeAll() {
+		saveAccounts();
+		saveJobs();
+		saveResumes();
+	}
+	
 	public static void saveAccounts() {
 		Accounts accounts = Accounts.getInstance();
 		ArrayList<Account> accountList = accounts.getAccounts();

@@ -19,8 +19,10 @@ public class Admin implements Account{
 	}
 	
 	public void setPassword(String password){
-		//TODO check if password is valid
-		this.password = password;
+		if(DatabaseManager.validPassword(password)) {
+			this.password = password;
+		}
+		System.out.println("Invalid password");
 	}
 
 	public String getEmail(){
@@ -28,8 +30,10 @@ public class Admin implements Account{
 	}
 
 	public void setEmail(String email){
-		//TODO check if email is valid
-		this.email = email;
+		if(DatabaseManager.validEmail(email)) {
+			this.email = email;
+		}
+		System.out.println("Invalid email");
 	}
 
 	public AccountType getAccountType(){
