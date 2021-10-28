@@ -17,31 +17,40 @@ public class InterfaceManager {
         }
         return interfaceManager;
     }
+
+    public void promptLogin() {
+        Scanner key = new Scanner(System.in);
+        System.out.println("Please enter the email for the account.");
+        String email = key.nextLine();
+        System.out.println("Please enter the Password for the account.");
+        String password = key.nextLine();
+
+        login(email, password);
+    }
     public void login(String email, String password) {
         Scanner key = new Scanner(System.in);
-        boolean login = true;
-        while(!login) {
-            System.out.println("Please enter the email for the account.");
-            if (email.equalsIgnoreCase(key.nextLine())) {
-                System.out.println("Please enter the Password for the account.");
-                if (email.equalsIgnoreCase(key.nextLine())) {
-                    login = true;
-                    System.out.println("Successful login");
+        boolean foundAccount = false;
+        for (Account account : DataLoader.getAccounts()) {
+            if(email.equalsIgnoreCase(account.getEmail())) {
+                if(password.equalsIgnoreCase(account.getPassword())) {
+                    this.currentUser = account;
+                    foundAccount = true;
                 }
-                else{
-                    System.out.println("Password incorrect. Please re-enter login information.");
-                    login = false;
-                }
-            }
-            else {
-                System.out.println("Email incorrect. Please re-enter login information.");
-                login = false;
             }
         }
-
+        if (foundAccount == false) {
+            System.out.println("Email or Password incorrect.\nEnter the appropriate number for your selection.\n1.Re-enter login information.\n2.Exit to main Screen.");
+            if(key.nextInt() == 1) {
+                promptLogin();
+            }
+            else {
+                //TODO call driver method
+            }
+        }
     }
     public void logout() {
-        
+        //TODO call save method from dataWriter
+        this.currentUser = null;
     }
     public Account createAccount() {
         Scanner key = new Scanner(System.in);
@@ -128,9 +137,13 @@ public class InterfaceManager {
         return new Job(tempid, jobTitle, jobDescription, currentUser, new ArrayList<Account>(), isAvailable, isVisible);
     }
     public void viewJobs() {
-
+        for (Job job : DataLoader.getJobs()) {
+            if (job.checkVisibility() == true) {
+                job.toString();
+            }
+        }
     }
-    public void viewApplicants( Job job) {
+    public void viewApplicants(Job job) {
         System.out.println("Applicants:");
         for (Account applicant : job.getApplicants()) {
             System.out.println(applicant.toString());
@@ -139,10 +152,19 @@ public class InterfaceManager {
     public void viewResume(Student applicant) {
         System.out.println(applicant.getResume().toString());
     }
-    public void sortJobs(Job job) {
-
+    public void sortJobs(String word) {
+        for (Job job : DataLoader.getJobs()) {
+            if (job.containsWord(word) && job.checkVisibility() == true) {
+                job.toString();
+            }
+        }
     }
-    public void sortApplicants( Job job) {
+    public void sortApplicants(Job job, int searchNum) {
+        for (Student applicant : job.getApplicants()) {
+            if (applicant.getAvgRating() >= searchNum) {
+                applicant.toString();
+            }
+        }
 
     }
 
