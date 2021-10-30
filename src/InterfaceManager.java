@@ -19,6 +19,65 @@ public class InterfaceManager {
         return interfaceManager;
     }
 
+	public void mainInterface() {
+		Scanner key = new Scanner(System.in);
+		System.out.println("Hello, welcome to the Internship Finder");
+		System.out.println("Would you like to: \n1. Login \n2.Create Account \nPlease enter the appropriate number of your selection.");
+		int response = key.nextInt();
+		key.nextLine();
+		if (response == 1) {
+			promptLogin();
+		}
+		else if(response == 2) {
+			currentUser = createAccount();
+		}
+		else {
+			System.out.println("Invalid entry. Please enter \"1\" or \"2\".");
+			mainInterface();
+		}
+
+		while(currentUser != null) {
+			switch (currentUser.getAccountType()) {
+				case ACCOUNT_TYPE_STUDENT:
+					System.out.println("Would you like to: \n1. Create resume. \n2. View Jobs. \n3. Search Jobs. \n4. View your Resume. \n5. Logout. \nPlease enter the appropriate number of your selection.");
+					response = key.nextInt();
+					key.nextLine();
+					switch (response) {
+						case 1:
+							viewJobs();
+							break;
+						case 2:
+							createResume();
+							break;
+						case 3:
+							System.out.println("Please enter a key-word for search.");
+							String word = key.nextLine();
+							sortJobs(word);
+							break;
+						case 4:
+							viewResume(currentUser);
+							break;
+						case 5:
+							logout();
+							break;
+					}
+					break;
+				case ACCOUNT_TYPE_ADMIN:
+					System.out.println("Would you like to: \n1. Login \n2.Create Account \nPlease enter the appropriate number of your selection.");
+					break;
+				case ACCOUNT_TYPE_EMPLOYER:
+					System.out.println("Would you like to: \n1. Login \n2.Create Account \nPlease enter the appropriate number of your selection.");
+					break;
+				case account_type_invalid:
+					System.out.println("Trouble with system. Please try again.");
+					mainInterface();
+					break;
+			}
+		}
+
+
+	}
+
     public void promptLogin() {
         Scanner key = new Scanner(System.in);
         System.out.println("Please enter the email for the account.");
@@ -29,18 +88,6 @@ public class InterfaceManager {
         login(email, password);
     }
     public void login(String email, String password) {
-        boolean login = true;
-        while(!login) {
-            System.out.println("Please enter the email for the account.");
-            if (email.equalsIgnoreCase(keyboard.nextLine())) {
-                System.out.println("Please enter the Password for the account.");
-                if (email.equalsIgnoreCase(keyboard.nextLine())) {
-                    login = true;
-                    System.out.println("Successful login");
-                }
-                else{
-                    System.out.println("Password incorrect. Please re-enter login information.");
-                    login = false;
         Scanner key = new Scanner(System.in);
         boolean foundAccount = false;
         for (Account account : DataLoader.getAccounts()) {
