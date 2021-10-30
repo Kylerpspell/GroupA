@@ -63,11 +63,32 @@ public class InterfaceManager {
 					}
 					break;
 				case ACCOUNT_TYPE_ADMIN:
-					System.out.println("Would you like to: \n1. Login \n2.Create Account \nPlease enter the appropriate number of your selection.");
+					System.out.println("");
 					break;
 				case ACCOUNT_TYPE_EMPLOYER:
-					System.out.println("Would you like to: \n1. Login \n2.Create Account \nPlease enter the appropriate number of your selection.");
-					break;
+				System.out.println("Would you like to: \n1. Create job. \n2. View applicants to a job posting. \n3. View a student's resume. \n4. Sort applicants by GPA or Rating. \n5. Logout. \nPlease enter the appropriate number of your selection.");
+				response = key.nextInt();
+				key.nextLine();
+				switch (response) {
+					case 1:
+						createJob();
+						break;
+					case 2:
+						createResume();
+						break;
+					case 3:
+						System.out.println("Please enter a key-word for search.");
+						String word = key.nextLine();
+						sortJobs(word);
+						break;
+					case 4:
+						System.out.println("Would you like to sory by 1. GPA \n2. Rating \nPlease enter the appropriate number of your selection.");
+						break;
+					case 5:
+						logout();
+						break;
+				}
+				break;
 				case account_type_invalid:
 					System.out.println("Trouble with system. Please try again.");
 					mainInterface();
@@ -104,7 +125,7 @@ public class InterfaceManager {
                 promptLogin();
             }
             else {
-                //TODO call driver method
+                mainInterface();
             }
         }
     }
