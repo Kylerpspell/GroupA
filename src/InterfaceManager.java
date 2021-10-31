@@ -18,7 +18,9 @@ public class InterfaceManager {
         }
         return interfaceManager;
     }
-
+	/**
+	 * Main interface method to interact with user
+	 */
 	public void mainInterface() {
 		Scanner key = new Scanner(System.in);
 		System.out.println("Hello, welcome to the Internship Finder");
@@ -98,7 +100,9 @@ public class InterfaceManager {
 
 
 	}
-
+	/**
+	 * prompts user for login info, password/email and passes it through login method
+	 */
     public void promptLogin() {
         Scanner key = new Scanner(System.in);
         System.out.println("Please enter the email for the account.");
@@ -108,6 +112,11 @@ public class InterfaceManager {
 
         login(email, password);
     }
+	/**
+	 * compares user inputs against accouunts information. Assigns current user if login information is correct
+	 * @param email user's email to be compared
+	 * @param password user's password to be compared
+	 */
     public void login(String email, String password) {
         Scanner key = new Scanner(System.in);
         boolean foundAccount = false;
@@ -129,6 +138,9 @@ public class InterfaceManager {
             }
         }
     }
+	/**
+	 * logout method saves the changes the user has made and sets the current user to null
+	 */
     public void logout() {
         //TODO call save method from dataWriter
 		DataWriter.saveAccounts();
@@ -136,7 +148,11 @@ public class InterfaceManager {
 		DataWriter.saveResumes();
         this.currentUser = null;
     }
-
+	
+	/**
+	 * Creates a new account for the user
+	 * @return the account that was created
+	 */
     public Account createAccount() {
         System.out.println("What type of account would you like to create?  \nEnter the appropriate number for your selection. \n1. Student \n2. Employer \n3. Application Administrator");
         Account account = null;
@@ -154,6 +170,10 @@ public class InterfaceManager {
 		return account;
     }
 
+	/**
+	 * Creates a new student account by gathering all the information from user
+	 * @return Student created
+	 */
 	public Student createStudent() {
 		System.out.println("Please enter your name.");
 		String name = keyboard.nextLine();
@@ -188,6 +208,11 @@ public class InterfaceManager {
 		return new Student(UUID.randomUUID(), name, password, email, newResume, documents, ratings);
 	}
 
+
+	/**
+	 * Creates a new employer account by gathering all the information from user
+	 * @return employer created
+	 */
 	public Employer createEmployer() {
 		System.out.println("Please enter your company name.");
 		String name = keyboard.nextLine();
@@ -234,6 +259,10 @@ public class InterfaceManager {
 		return new Employer(email, password, UUID.randomUUID(), name, website, description,ratings);
 	}
 
+	/**
+	 * Creates a new admin account by gathering all the information from user
+	 * @return Admin created
+	 */
 	public Admin createAdmin() {
 		System.out.println("Please enter your email.");
 		String email;
@@ -263,6 +292,10 @@ public class InterfaceManager {
 		return new Admin(UUID.randomUUID(), email, password);
 	}
 
+	/**
+	 * Creates a new job posting by gathering all the information from user
+	 * @return the Job created 
+	 */
     public Job createJob() {
         System.out.println("Please enter a job title for this listing.");
         String jobTitle = keyboard.nextLine();
@@ -284,6 +317,9 @@ public class InterfaceManager {
 		ArrayList<Double> ratings = new ArrayList<Double>();
         return new Job(tempid, jobTitle, jobDescription, currentUser, new ArrayList<Student>(), isAvailable, isVisible);
     }
+	/**
+	 * Prints all visible jobs to the console
+	 */
     public void viewJobs() {
         for (Job job : DataLoader.getJobs()) {
             if (job.checkVisibility() == true) {
@@ -291,15 +327,27 @@ public class InterfaceManager {
             }
         }
     }
+	/**
+	 * Prints all applicants of a specific job to the console
+	 * @param job job to see applicants of 
+	 */
     public void viewApplicants(Job job) {
         System.out.println("Applicants:");
         for (Account applicant : job.getApplicants()) {
             System.out.println(applicant.toString());
         }
     }
+	/**
+	 * Shows the resume of a given applicant
+	 * @param applicant student for who's resume is viewed 
+	 */
     public void viewResume(Student applicant) {
         System.out.println(applicant.getResume().toString());
     }
+	/**
+	 * Shows jobs that contain a given word in their job title or description
+	 * @param word word that is searched for 
+	 */
     public void sortJobs(String word) {
         for (Job job : DataLoader.getJobs()) {
             if (job.containsWord(word) && job.checkVisibility() == true) {
@@ -307,6 +355,11 @@ public class InterfaceManager {
             }
         }
     }
+	/**
+	 * Shows applicants to a specific job that have a GPA or rating greater than or equal to a user input
+	 * @param job Job to view applicants for 
+	 * @param searchNum minimum GPA or rating to be shown
+	 */
     public void sortApplicants(Job job, int searchNum) {
         for (Student applicant : job.getApplicants()) {
             if (applicant.getAvgRating() >= searchNum) {
@@ -316,6 +369,10 @@ public class InterfaceManager {
 
     }
 
+	/**
+	 * Creates a new resume for a Student by gathering the appropriate information from the user
+	 * @return Resume that is created
+	 */
 	public Resume createResume() {
 		//TODO create user interface for this
 		UUID tempid = UUID.randomUUID();
