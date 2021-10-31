@@ -24,6 +24,10 @@ public class Employer implements Account {
 		this.postedJobs = getPostedJobs();
     }
 
+	/**
+	 *constructs employer and initializes instance variables to defualt values
+	 */
+
 	public Employer(){
 		this.setEmail("");
 		this.setPassword("");
@@ -101,16 +105,31 @@ public class Employer implements Account {
     }
 
 
+	/**
+	 *	if rating is valid, which means between 0 and 5, then rating will be added to the list of ratings
+	 * @param rating the rating (number value) to be added to list
+	 */
+
 	public void addRating(double rating) {
 		if(rating > 0 && rating <=5) {
 			this.ratings.add(rating);
 		}
 	}
 
+	/**
+	 * retrieves password
+	 * @return returns the password string
+	 */
+
 	public String getPassword() {
 		return this.password;
 	}
-	
+
+	/**
+	 * sets value of password to parameter if it is deemed valid
+	 * @param password the specified password
+	 */
+
 	public void setPassword(String password){
 		if(DatabaseManager.validPassword(password)){
 			this.password = password;
@@ -118,9 +137,19 @@ public class Employer implements Account {
 		System.out.println("Invalid Password");
 	}
 
+	/**
+	 * retrieves email string
+	 * @return email string
+	 */
+
 	public String getEmail(){
 		return this.email;
 	}
+
+	/**
+	 * sets value of email to parameter if deemed valid
+	 * @param email email string
+	 */
 
 	public void setEmail(String email){
 		if(DatabaseManager.validEmail(email)){
@@ -129,13 +158,28 @@ public class Employer implements Account {
 		System.out.println("Invalid Email");
 	}
 
+	/**
+	 * shows the account type
+	 * @return returns employer account type
+	 */
+
 	public AccountType getAccountType(){
 		return AccountType.ACCOUNT_TYPE_EMPLOYER;
 	}
 
+	/**
+	 *retrieves id number
+	 * @return the id number
+	 */
+
 	public UUID getId(){
 		return this.id;
 	}
+
+	/**
+	 * Appends company variables to create string representation
+	 * @return returns ret variable which is string representation of company
+	 */
 
 	@Override
 	public String toString(){
@@ -145,6 +189,11 @@ public class Employer implements Account {
 		return ret;
 	}
 
+	/**
+	 * looks through list of all jobs to check which one has been posted and adds it to list of posted jobs to return
+	 * @return list of posted jobs
+	 */
+
 	private ArrayList<Job> getPostedJobs(){
 		ArrayList<Job> allJobs = DataLoader.getJobs();
 		for(Job j : allJobs){
@@ -152,7 +201,9 @@ public class Employer implements Account {
 				this.postedJobs.add(j);
 			}
 		}
-		return allJobs;
+		//TODO//return allJobs; ODarrius- allJobs was original return but I wasnt sure if that was correct since the
+		// method wants the posted jobs. Can change back if wrong
+		return postedJobs;
 	}
 }
 
