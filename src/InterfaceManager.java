@@ -57,7 +57,7 @@ public class InterfaceManager {
 							sortJobs(word);
 							break;
 						case 4:
-							viewResume(currentUser);
+							viewResume(currentUser.getStudent());
 							break;
 						case 5:
 							logout();
@@ -76,15 +76,39 @@ public class InterfaceManager {
 						createJob();
 						break;
 					case 2:
-						createResume();
-						break;
+						System.out.println("Please select the number of the job for which you'd like to search its applicants.");
+						for (Job job : currentUser.getEmployer().getPostedJobs()) {
+							int i = 1;
+							System.out.println(i+".");
+							System.out.println(job.toString()); 
+						}
+						Job job = currentUser.getPostedJobs.get(key.nextInt() -1);
+						key.nextLine();
+						viewApplicants(job);
 					case 3:
-						System.out.println("Please enter a key-word for search.");
-						String word = key.nextLine();
-						sortJobs(word);
 						break;
 					case 4:
+						int searchNum;
+						System.out.println("Please select the number of the job for which you'd like to search its applicants.");
+						for (Job job1 : currentUser.getEmployer().getPostedJobs()) {
+							int i = 1;
+							System.out.println(i+".");
+							System.out.println(job1.toString()); 
+						}
+						job = currentUser.getPostedJobs.get(key.nextInt() -1);
+						key.nextLine();
 						System.out.println("Would you like to sory by 1. GPA \n2. Rating \nPlease enter the appropriate number of your selection.");
+						if (key.nextInt() == 1) {
+							key.nextLine();
+							System.out.println("Please enter the minimum GPA for applicants you'd like to review.");
+							searchNum = key.nextInt();
+						}
+						else {
+							key.nextLine();
+							System.out.println("Please enter the minimum Rating for applicants you'd like to review.");
+							searchNum = key.nextInt();
+						}
+						sortApplicants(job, searchNum);
 						break;
 					case 5:
 						logout();
@@ -337,23 +361,21 @@ public class InterfaceManager {
             System.out.println(applicant.toString());
         }
     }
+
 	/**
 	 * Shows the resume of a given applicant
 	 * @param applicant student for who's resume is viewed 
 	 */
     public void viewResume(Student applicant) {
-        System.out.println(applicant.getResume().toString());
-    }
-	/**
-	 * Shows jobs that contain a given word in their job title or description
-	 * @param word word that is searched for 
-	 */
-    public void sortJobs(String word) {
-        for (Job job : DataLoader.getJobs()) {
-            if (job.containsWord(word) && job.checkVisibility() == true) {
-                job.toString();
-            }
-        }
+    	System.out.println(applicant.getResume().toString());
+	}
+           
+	public void sortJobs(String word) {
+		for (Job job : DataLoader.getJobs()) {
+			if (job.containsWord(word) && job.checkVisibility() == true) {
+				job.toString();
+			}
+		}
     }
 	/**
 	 * Shows applicants to a specific job that have a GPA or rating greater than or equal to a user input
@@ -374,7 +396,6 @@ public class InterfaceManager {
 	 * @return Resume that is created
 	 */
 	public Resume createResume() {
-		//TODO create user interface for this
 		UUID tempid = UUID.randomUUID();
 		System.out.println("Please enter your name.");
 		String name = keyboard.nextLine();

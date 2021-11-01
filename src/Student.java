@@ -275,5 +275,19 @@ public class Student implements Account{
 				+ UserAccountType + "]";
 	}
 
+	@Override
+	public Employer getEmployer() {
+		return null;
+	}
+
+	@Override
+	public Student getStudent() {
+		return this;
+	}
+
+	@Override
+	public Admin getAdmin() {
+		return null;
+	}
 }
 
