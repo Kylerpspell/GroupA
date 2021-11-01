@@ -158,9 +158,11 @@ public class InterfaceManager {
         if (foundAccount == false) {
             System.out.println("Email or Password incorrect.\nEnter the appropriate number for your selection.\n1.Re-enter login information.\n2.Exit to main Screen.");
             if(keyboard.nextInt() == 1) {
+				keyboard.nextLine();
                 promptLogin();
             }
             else {
+				keyboard.nextLine();
                 mainInterface();
             }
         }
