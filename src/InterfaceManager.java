@@ -25,25 +25,28 @@ public class InterfaceManager {
 	public void mainInterface() {
 		System.out.println("Hello, welcome to the Internship Finder");
 		System.out.println("Would you like to: \n1. Login \n2.Create Account \nPlease enter the appropriate number of your selection.");
-		int response = keyboard.nextInt();
-		keyboard.nextLine();
-		if (response == 1) {
-			promptLogin();
-		}
-		else if(response == 2) {
-			currentUser = createAccount();
-		}
-		else {
-			//This is something she told us specifically not to do because its recursive. Refactor with while loop.
-			System.out.println("Invalid entry. Please enter \"1\" or \"2\".");
-			mainInterface();
-		}
+		boolean validResponse = false;
+		while (!validResponse) {
+			int response = keyboard.nextInt();
+			keyboard.nextLine();
+			if (response == 1) {
+				validResponse = true;
+				promptLogin();
+			}
+			else if(response == 2) {
+				validResponse = true;
+				currentUser = createAccount();
+			}
+			else {
+				System.out.println("Invalid entry. Please enter \"1\" or \"2\".");
+			}
+		}	
 
 		while(currentUser != null) {
 			switch (currentUser.getAccountType()) {
 				case ACCOUNT_TYPE_STUDENT:
 					System.out.println("Would you like to: \n1. Create resume. \n2. View Jobs. \n3. Search Jobs. \n4. View your Resume. \n5. Logout. \nPlease enter the appropriate number of your selection.");
-					response = keyboard.nextInt();
+					int response = keyboard.nextInt();
 					keyboard.nextLine();
 					switch (response) {
 						case 1:
@@ -83,23 +86,21 @@ public class InterfaceManager {
 							System.out.println(i+".");
 							System.out.println(job.toString()); 
 						}
-						Job job = currentUser.getEmployer().getPostedJobs().get(keyboard.nextInt() -1);
+						int jobPick = (keyboard.nextInt());
 						keyboard.nextLine();
-						viewApplicants(job);
+						if (currentUser.getEmployer().getPostedJobs().size() >= jobPick) {
+							Job job = currentUser.getEmployer().getPostedJobs().get(jobPick - 1);
+							viewApplicants(job);
+						}
+						else {
+							System.out.println("Invalid input or no posted jobs available for this account.");
+						}
+						break;
 					case 3:
 						break;
 					case 4:
 						int searchNum;
-						System.out.println("Please select the number of the job for which you'd like to search its applicants.");
-						int i = 1;
-						for (Job job1 : currentUser.getEmployer().getPostedJobs()) {
-							System.out.println(i+".");
-							System.out.println(job1.toString()); 
-							i++;
-						}
-						job = currentUser.getEmployer().getPostedJobs().get(keyboard.nextInt() -1);
-						keyboard.nextLine();
-						System.out.println("Would you like to sory by 1. GPA \n2. Rating \nPlease enter the appropriate number of your selection.");
+						System.out.println("Would you like to sort by 1. GPA \n2. Rating \nPlease enter the appropriate number of your selection.");
 						if (keyboard.nextInt() == 1) {
 							keyboard.nextLine();
 							System.out.println("Please enter the minimum GPA for applicants you'd like to review.");
@@ -110,7 +111,22 @@ public class InterfaceManager {
 							System.out.println("Please enter the minimum Rating for applicants you'd like to review.");
 							searchNum = keyboard.nextInt();
 						}
-						sortApplicants(job, searchNum);
+						System.out.println("Please select the number of the job for which you'd like to search its applicants.");
+						for (Job job : currentUser.getEmployer().getPostedJobs()) {
+							int i = 1;
+							System.out.println(i+".");
+							System.out.println(job.toString()); 
+						}
+						int jobPick1 = (keyboard.nextInt());
+						keyboard.nextLine();
+						if (currentUser.getEmployer().getPostedJobs().size() >= jobPick1) {
+							Job job = currentUser.getEmployer().getPostedJobs().get(jobPick1 - 1);
+							sortApplicants(job, searchNum);
+						}
+						else {
+							System.out.println("Invalid input or no posted jobs available for this account.");
+							continue;
+						}
 						break;
 					case 5:
 						logout();
