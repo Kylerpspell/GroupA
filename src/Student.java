@@ -268,9 +268,10 @@ public class Student implements Account{
 	 * @return the compiled string 
 	 */
 
+	//TODO Format this better
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", password=" + password + ", email=" + email + ", UserAccountType="
+		return "Student [id=" + id + ", password=" + password + ", email=" + email + ", UserAccountType="
 				+ UserAccountType + "]";
 	}
 

@@ -14,6 +14,9 @@ public class Employer implements Account {
 
 	//TODO we need to change this to match other constructors or vis versa
     public Employer(String Email, String password, UUID id, String companyName, String companyWebsite, String companyDescription,ArrayList<Double> ratings) {
+		this.companyName = companyName;
+		this.companyWebsite = companyWebsite;
+		this.companyDescription = companyDescription;
 		this.ratings = ratings;
 		this.setEmail(Email);
 		this.setPassword(password);
@@ -21,7 +24,6 @@ public class Employer implements Account {
 		this.setCompanyName(companyName);
         this.setCompanyWebsite(companyWebsite);
         this.setCompanyDescription(companyDescription);
-		this.postedJobs = getPostedJobs();
     }
 
 	/**
@@ -35,7 +37,7 @@ public class Employer implements Account {
 		this.setCompanyName("");
 		this.setCompanyWebsite("");
 		this.setCompanyDescription("");
-		this.postedJobs = updatePostedJobs();
+		this.postedJobs = new ArrayList<Job>();
 	}
 
 	/**
@@ -198,16 +200,6 @@ public class Employer implements Account {
 	 * looks through list of all jobs to check which one has been posted and adds it to list of posted jobs to return
 	 * @return list of posted jobs
 	 */
-
-	public ArrayList<Job> updatePostedJobs(){
-		ArrayList<Job> allJobs = DataLoader.getJobs();
-		for(Job j : allJobs){
-			if(j.getPostingEmployer().getId().equals(this.id)){
-				this.postedJobs.add(j);
-			}
-		}
-		return postedJobs;
-	}
 
 	@Override
 	public Employer getEmployer() {

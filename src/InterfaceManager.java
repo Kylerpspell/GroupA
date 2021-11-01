@@ -349,9 +349,9 @@ public class InterfaceManager {
 	 * Prints all visible jobs to the console
 	 */
     public void viewJobs() {
-        for (Job job : DataLoader.getJobs()) {
+        for (Job job : database.getJobs().getJobList()) {
             if (job.checkVisibility() == true) {
-                job.toString();
+                System.out.println(job.toString());
             }
         }
     }
@@ -361,7 +361,7 @@ public class InterfaceManager {
 	 */
     public void viewApplicants(Job job) {
         System.out.println("Applicants:");
-        for (Account applicant : job.getApplicants()) {
+        for (Student applicant : job.getApplicants()) {
             System.out.println(applicant.toString());
         }
     }
@@ -375,9 +375,9 @@ public class InterfaceManager {
 	}
            
 	public void sortJobs(String word) {
-		for (Job job : DataLoader.getJobs()) {
+		for (Job job : database.getJobs().getJobList()) {
 			if (job.containsWord(word) && job.checkVisibility() == true) {
-				job.toString();
+				System.out.println(job.toString());
 			}
 		}
     }
@@ -389,7 +389,7 @@ public class InterfaceManager {
     public void sortApplicants(Job job, int searchNum) {
         for (Student applicant : job.getApplicants()) {
             if (applicant.getAvgRating() >= searchNum) {
-                applicant.toString();
+                System.out.println(applicant.toString());
             }
         }
 
