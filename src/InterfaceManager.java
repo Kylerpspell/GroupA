@@ -76,22 +76,26 @@ public class InterfaceManager {
 						createJob();
 						break;
 					case 2:
-						createResume();
-						break;
-					case 3:
-						System.out.println("Please enter a key-word for search.");
-						String word = key.nextLine();
-						sortJobs(word);
-						break;
-					case 4:
-						int searchNum;
 						System.out.println("Please select the number of the job for which you'd like to search its applicants.");
-						for (Job job : currentUser.getPostedJobs()) {
+						for (Job job : currentUser.getEmployer().getPostedJobs()) {
 							int i = 1;
 							System.out.println(i+".");
 							System.out.println(job.toString()); 
 						}
 						Job job = currentUser.getPostedJobs.get(key.nextInt() -1);
+						key.nextLine();
+						viewApplicants(job);
+					case 3:
+						break;
+					case 4:
+						int searchNum;
+						System.out.println("Please select the number of the job for which you'd like to search its applicants.");
+						for (Job job1 : currentUser.getEmployer().getPostedJobs()) {
+							int i = 1;
+							System.out.println(i+".");
+							System.out.println(job1.toString()); 
+						}
+						job = currentUser.getPostedJobs.get(key.nextInt() -1);
 						key.nextLine();
 						System.out.println("Would you like to sory by 1. GPA \n2. Rating \nPlease enter the appropriate number of your selection.");
 						if (key.nextInt() == 1) {
