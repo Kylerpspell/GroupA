@@ -57,7 +57,7 @@ public class InterfaceManager {
 							sortJobs(word);
 							break;
 						case 4:
-							viewResume(currentUser);
+							viewResume(currentUser.getStudent());
 							break;
 						case 5:
 							logout();
@@ -337,23 +337,21 @@ public class InterfaceManager {
             System.out.println(applicant.toString());
         }
     }
+
 	/**
 	 * Shows the resume of a given applicant
 	 * @param applicant student for who's resume is viewed 
 	 */
     public void viewResume(Student applicant) {
-        System.out.println(applicant.getResume().toString());
-    }
-	/**
-	 * Shows jobs that contain a given word in their job title or description
-	 * @param word word that is searched for 
-	 */
-    public void sortJobs(String word) {
-        for (Job job : DataLoader.getJobs()) {
-            if (job.containsWord(word) && job.checkVisibility() == true) {
-                job.toString();
-            }
-        }
+    	System.out.println(applicant.getResume().toString());
+	}
+           
+	public void sortJobs(String word) {
+		for (Job job : DataLoader.getJobs()) {
+			if (job.containsWord(word) && job.checkVisibility() == true) {
+				job.toString();
+			}
+		}
     }
 	/**
 	 * Shows applicants to a specific job that have a GPA or rating greater than or equal to a user input
@@ -374,7 +372,6 @@ public class InterfaceManager {
 	 * @return Resume that is created
 	 */
 	public Resume createResume() {
-		//TODO create user interface for this
 		UUID tempid = UUID.randomUUID();
 		System.out.println("Please enter your name.");
 		String name = keyboard.nextLine();

@@ -14,6 +14,12 @@ public interface Account {
 
 	public UUID getId();
 
+	public Student getStudent();
+
+	public Employer getEmployer();
+
+	public Admin getAdmin();
+
 	@Override
 	public String toString();
 }

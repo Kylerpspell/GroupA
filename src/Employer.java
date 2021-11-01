@@ -205,5 +205,20 @@ public class Employer implements Account {
 		// method wants the posted jobs. Can change back if wrong
 		return postedJobs;
 	}
+
+	@Override
+	public Employer getEmployer() {
+		return this;
+	}
+
+	@Override
+	public Student getStudent() {
+		return null;
+	}
+
+	@Override
+	public Admin getAdmin() {
+		return null;
+	}
 }
 

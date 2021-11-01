@@ -82,4 +82,20 @@ public class Admin implements Account{
 	public String toString(){
 		return "Admin: " + email;
 	}
+
+	@Override
+	public Employer getEmployer() {
+		return null;
+	}
+
+	@Override
+	public Student getStudent() {
+		return null;
+	}
+
+	@Override
+	public Admin getAdmin() {
+		return this;
+	}
+
 }
