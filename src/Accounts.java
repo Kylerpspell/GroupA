@@ -12,6 +12,10 @@ public class Accounts {
 	private Accounts() {
 		accountList = DataLoader.getAccounts();
 	}
+
+	public ArrayList<Account> getAccountList() {
+		return accountList;
+	}
 	
 	/**
 	 * gets an instance of the Accounts class if accounts is null, makes accounts a singleton 
@@ -38,6 +42,7 @@ public class Accounts {
 		
 		return false;
 	}
+
 	
 	/**
 	 * gets an account based on the email linked to it

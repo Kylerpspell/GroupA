@@ -28,7 +28,7 @@ public class DataLoader extends DataConstants{
 					
 				} else if(userAccountType == AccountType.ACCOUNT_TYPE_STUDENT) {
 					String name = (String)accountJSON.get(USER_NAME);
-					UUID resumeID = UUID.fromString((String)accountJSON.get(RESUME_UUID));
+					UUID resumeID = UUID.fromString((String)accountJSON.get(USER_RESUME_UUID));
 					
 					JSONArray externalDocs = (JSONArray)accountJSON.get(USER_EXTERNAL_DOCUMENTS);
 					ArrayList<String> externalDocuments = new ArrayList<String>();
@@ -47,9 +47,6 @@ public class DataLoader extends DataConstants{
 						if(resume.getId().equals(resumeID)) {
 							accounts.add(new Student(id, email, password, name, resume, externalDocuments, ratings));
 						}
-						else {
-							throw new Exception("Resume ID not found");
-						}
 					}
 				} else if(userAccountType == AccountType.ACCOUNT_TYPE_EMPLOYER) {
 					String companyName = (String)accountJSON.get(COMPANY_NAME);
@@ -60,7 +57,7 @@ public class DataLoader extends DataConstants{
 					for(int j=0; j < compnayRatings.size(); j++) {
 						ratings.add((Double)compnayRatings.get(j));
 					}
-					accounts.add(new Employer(email, password, id, companyName, companyWebsite, companyDescription,ratings));
+					accounts.add(new Employer(email, password, id, companyName, companyWebsite, companyDescription, ratings));
 				
 				}
 				else {

@@ -11,6 +11,7 @@ public class InterfaceManager {
 
     public InterfaceManager(DatabaseManager database) {
         this.database = database;
+		keyboard = new Scanner(System.in);
     }
     public static InterfaceManager getInstance(DatabaseManager database) {
         if (interfaceManager == null) {
@@ -22,11 +23,10 @@ public class InterfaceManager {
 	 * Main interface method to interact with user
 	 */
 	public void mainInterface() {
-		Scanner key = new Scanner(System.in);
 		System.out.println("Hello, welcome to the Internship Finder");
 		System.out.println("Would you like to: \n1. Login \n2.Create Account \nPlease enter the appropriate number of your selection.");
-		int response = key.nextInt();
-		key.nextLine();
+		int response = keyboard.nextInt();
+		keyboard.nextLine();
 		if (response == 1) {
 			promptLogin();
 		}
@@ -42,8 +42,8 @@ public class InterfaceManager {
 			switch (currentUser.getAccountType()) {
 				case ACCOUNT_TYPE_STUDENT:
 					System.out.println("Would you like to: \n1. Create resume. \n2. View Jobs. \n3. Search Jobs. \n4. View your Resume. \n5. Logout. \nPlease enter the appropriate number of your selection.");
-					response = key.nextInt();
-					key.nextLine();
+					response = keyboard.nextInt();
+					keyboard.nextLine();
 					switch (response) {
 						case 1:
 							viewJobs();
@@ -53,7 +53,7 @@ public class InterfaceManager {
 							break;
 						case 3:
 							System.out.println("Please enter a key-word for search.");
-							String word = key.nextLine();
+							String word = keyboard.nextLine();
 							sortJobs(word);
 							break;
 						case 4:
@@ -69,8 +69,8 @@ public class InterfaceManager {
 					break;
 				case ACCOUNT_TYPE_EMPLOYER:
 				System.out.println("Would you like to: \n1. Create job. \n2. View applicants to a job posting. \n3. View a student's resume. \n4. Sort applicants by GPA or Rating. \n5. Logout. \nPlease enter the appropriate number of your selection.");
-				response = key.nextInt();
-				key.nextLine();
+				response = keyboard.nextInt();
+				keyboard.nextLine();
 				switch (response) {
 					case 1:
 						createJob();
@@ -82,31 +82,32 @@ public class InterfaceManager {
 							System.out.println(i+".");
 							System.out.println(job.toString()); 
 						}
-						Job job = currentUser.getPostedJobs.get(key.nextInt() -1);
-						key.nextLine();
+						Job job = currentUser.getEmployer().getPostedJobs().get(keyboard.nextInt() -1);
+						keyboard.nextLine();
 						viewApplicants(job);
 					case 3:
 						break;
 					case 4:
 						int searchNum;
 						System.out.println("Please select the number of the job for which you'd like to search its applicants.");
+						int i = 1;
 						for (Job job1 : currentUser.getEmployer().getPostedJobs()) {
-							int i = 1;
 							System.out.println(i+".");
 							System.out.println(job1.toString()); 
+							i++;
 						}
-						job = currentUser.getPostedJobs.get(key.nextInt() -1);
-						key.nextLine();
+						job = currentUser.getEmployer().getPostedJobs().get(keyboard.nextInt() -1);
+						keyboard.nextLine();
 						System.out.println("Would you like to sory by 1. GPA \n2. Rating \nPlease enter the appropriate number of your selection.");
-						if (key.nextInt() == 1) {
-							key.nextLine();
+						if (keyboard.nextInt() == 1) {
+							keyboard.nextLine();
 							System.out.println("Please enter the minimum GPA for applicants you'd like to review.");
-							searchNum = key.nextInt();
+							searchNum = keyboard.nextInt();
 						}
 						else {
-							key.nextLine();
+							keyboard.nextLine();
 							System.out.println("Please enter the minimum Rating for applicants you'd like to review.");
-							searchNum = key.nextInt();
+							searchNum = keyboard.nextInt();
 						}
 						sortApplicants(job, searchNum);
 						break;
@@ -124,27 +125,27 @@ public class InterfaceManager {
 
 
 	}
+
 	/**
 	 * prompts user for login info, password/email and passes it through login method
 	 */
     public void promptLogin() {
-        Scanner key = new Scanner(System.in);
         System.out.println("Please enter the email for the account.");
-        String email = key.nextLine();
+        String email = keyboard.nextLine();
         System.out.println("Please enter the Password for the account.");
-        String password = key.nextLine();
+        String password = keyboard.nextLine();
 
         login(email, password);
     }
+
 	/**
 	 * compares user inputs against accouunts information. Assigns current user if login information is correct
 	 * @param email user's email to be compared
 	 * @param password user's password to be compared
 	 */
     public void login(String email, String password) {
-        Scanner key = new Scanner(System.in);
         boolean foundAccount = false;
-        for (Account account : DataLoader.getAccounts()) {
+        for (Account account : database.getAccounts().getAccountList()) {
             if(email.equalsIgnoreCase(account.getEmail())) {
                 if(password.equalsIgnoreCase(account.getPassword())) {
                     this.currentUser = account;
@@ -154,7 +155,7 @@ public class InterfaceManager {
         }
         if (foundAccount == false) {
             System.out.println("Email or Password incorrect.\nEnter the appropriate number for your selection.\n1.Re-enter login information.\n2.Exit to main Screen.");
-            if(key.nextInt() == 1) {
+            if(keyboard.nextInt() == 1) {
                 promptLogin();
             }
             else {
@@ -166,7 +167,6 @@ public class InterfaceManager {
 	 * logout method saves the changes the user has made and sets the current user to null
 	 */
     public void logout() {
-        //TODO call save method from dataWriter
 		DataWriter.saveAccounts();
 		DataWriter.saveJobs();
 		DataWriter.saveResumes();

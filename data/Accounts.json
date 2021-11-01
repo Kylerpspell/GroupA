@@ -1,20 +1,20 @@
 [
     {
 		"id": "476eb24d-5599-4739-b1d7-ce52acf0add8",
-        "Password": "P455Word",
-        "Email": "AdminMan@Internfinder.com",
-        "AccountType": "ACCOUNT_TYPE_ADMIN",
-        "Name": "AdminMan"
+    "Password": "P455Word",
+    "Email": "AdminMan@Internfinder.com",
+    "AccountType": "ACCOUNT_TYPE_ADMIN",
+    "Name": "AdminMan"
     } , 
     {
 		"id": "fc0f8f1d-7528-4908-8b63-5d5a8f01ad58",
-        "Password": "GottaMakeStocks",
-        "Email": "RyanTheStockGuy@gmail.com",
-        "AccountType": "ACCOUNT_TYPE_EMPLOYER",
-        "Name": "Ryan Stocks",
-        "CompanyName": "StockFinder",
-        "CompanyWebsite": "www.StockFinder.com",
-        "CompanyDescription": "StockFinder is the leading company for finding the right stocks",
+    "Password": "GottaMakeStocks",
+    "Email": "RyanTheStockGuy@gmail.com",
+    "AccountType": "ACCOUNT_TYPE_EMPLOYER",
+    "Name": "Ryan Stocks",
+    "CompanyName": "StockFinder",
+    "CompanyWebsite": "www.StockFinder.com",
+    "CompanyDescription": "StockFinder is the leading company for finding the right stocks",
 		"Ratings": [
 			2.2,
 			1.0,
@@ -23,15 +23,15 @@
     } ,
     {
 		"id": "b7781df9-a42a-4cc4-a685-7a72bc90c9b5",
-        "Password": "556",
-        "Email": "BobbyB@email.sc.edu",
-        "AccountType": "ACCOUNT_TYPE_STUDENT",
-        "Name": "Bobby Bobinson",
-        "Resume": "fe1e1262-b08c-4b23-9d95-8f8bcf0ac63d",
-        "ExternalDocuments": [
-            "docID1",
-            "docID2"
-        ],
+    "Password": "556plussome",
+    "Email": "BobbyB@email.sc.edu",
+    "AccountType": "ACCOUNT_TYPE_STUDENT",
+    "Name": "Bobby Bobinson",
+    "Resume": "fe1e1262-b08c-4b23-9d95-8f8bcf0ac63d",
+    "ExternalDocuments": [
+        "docID1",
+        "docID2"
+    ],
 		"Ratings": [
 			4.1,
 			4.3,
@@ -40,15 +40,15 @@
     },
     {
 		"id": "7b4bbacd-7d22-44f3-9467-8a80515ac17e",
-        "Password": "556",
-        "Email": "BGates@outlook.com",
-        "AccountType": "ACCOUNT_TYPE_STUDENT",
-        "Name": "Bill Gates",
-        "Resume": "985889e1-f023-4f6b-9ed0-ef07c09b510d",
-        "ExternalDocuments": [
-            "docID1",
-            "docID2"
-        ],
+    "Password": "Needs556",
+    "Email": "BGates@outlook.com",
+    "AccountType": "ACCOUNT_TYPE_STUDENT",
+    "Name": "Bill Gates",
+    "Resume": "985889e1-f023-4f6b-9ed0-ef07c09b510d",
+    "ExternalDocuments": [
+        "docID1",
+        "docID2"
+    ],
 		"Ratings": [
 			4.1,
 			4.3,

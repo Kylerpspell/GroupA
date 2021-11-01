@@ -27,6 +27,10 @@ public class Resumes {
 		return resumes;
 	}
 
+	public ArrayList<Resume> getResumeList() {
+		return resumeList;
+	}
+
 	/**
 	 * checks to verify the user's id is assoicated with a resume
 	 * @param resIDU the number id for user's account
@@ -78,6 +82,7 @@ public class Resumes {
 		resumeList.add(resume);
 		return true;
 	}
+	
 
 	/**
 	 * access datawriter to save resume

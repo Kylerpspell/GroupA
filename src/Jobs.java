@@ -28,6 +28,10 @@ public class Jobs {
 		return false;
 	}
 	
+	public ArrayList<Job> getJobList() {
+		return jobList;
+	}
+
 	public Job getJob(String JobTitle) {
 		for(Job job : jobList) {
 			if(job.getJobTitle().equals(JobTitle)) {

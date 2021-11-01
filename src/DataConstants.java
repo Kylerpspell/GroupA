@@ -21,10 +21,10 @@ public abstract class DataConstants {
 	protected static final String USER_EMAIL = "Email";
 	protected static final String USER_PASSWORD = "Password";
 	protected static final String USER_ACCOUNT_TYPE = "AccountType";
-	protected static final String USER_RESUME_UUID = "Resume UUID";
+	protected static final String USER_RESUME_UUID = "Resume";
 	protected static final String USER_JOB_UUID = "Job UUID";
 	protected static final String USER_NAME = "Name";
-	protected static final String USER_EXTERNAL_DOCUMENTS = "External Documents";
+	protected static final String USER_EXTERNAL_DOCUMENTS = "ExternalDocuments";
 	protected static final String COMPANY_NAME = "CompanyName";
 	protected static final String COMPANY_WEBSITE = "CompanyWebsite";
 	protected static final String COMPANY_DESCRIPTION = "CompanyDescription";

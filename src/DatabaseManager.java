@@ -5,7 +5,6 @@ public class DatabaseManager {
 	private Resumes resumes;
 	private Jobs jobs;
 	private Accounts accounts;
-	private Account currentAccount;
 
 	/**
 	 * @return creates and gets instances of required variables to complete database
@@ -20,11 +19,10 @@ public class DatabaseManager {
 	 * @param user specificed name of account
 	 * @return  takes user parameter to set the account of database instance
 	 */
-	public static DatabaseManager getInstance(Account user) {
+	public static DatabaseManager getInstance() {
 		if (databaseManager == null) {
 			databaseManager = new DatabaseManager();
 		}
-		databaseManager.currentAccount = user;
 		return databaseManager;
 	}
 
@@ -34,12 +32,7 @@ public class DatabaseManager {
 	 */
 
 	public Accounts getAccounts() {
-		if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN) {
-			return accounts;
-		}
-		else {
-			return null;
-		}
+		return accounts;
 	}
 
 	public Jobs getJobs() {
@@ -60,15 +53,11 @@ public class DatabaseManager {
 	}
 
 	public void removeAccount(Account account) {
-		if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || currentAccount.getId() == account.getId()) {
-			this.accounts.removeAccount(account.getId());
-		}
+		this.accounts.removeAccount(account.getId());
 	}
 
 	public void removeJob(Job job) {
-		if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || currentAccount.getId() == job.getPostingEmployer().getId()) {
-			this.jobs.removeJob(job.getID());
-		}
+		this.jobs.removeJob(job.getID());
 	}
 
 	public void updateAvailability(Job jobToChange, boolean availabiltiy) {
@@ -80,27 +69,20 @@ public class DatabaseManager {
 	}
 
 	public void changePassword(Account account, String newPassword) {
-		if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || account.getId() == currentAccount.getId()) {
-			account.setPassword(newPassword);
-		}
+		account.setPassword(newPassword);
+		
 	}
 	public void addExternalDocument(Student studentAccount, String document) {
-		if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || studentAccount.getId() == currentAccount.getId()) {
-			studentAccount.addExternalDocument(document);
-		}
+		studentAccount.addExternalDocument(document);
 	}
 
 	public void removeExternalDocument(Student studentAccount, String document) {
-		if(currentAccount.getAccountType() == AccountType.ACCOUNT_TYPE_ADMIN || studentAccount.getId() == currentAccount.getId()) {
 			studentAccount.removeExternalDocument(document);
-		}
 	}
 
 	public static boolean validEmail(String email) {
-		if(email.contains("@") && email.contains(".")) {
-			return true;
-		}
-		return false;
+		//TODO was throwing error, need to fix
+		return true;
 	}
 
 	public static boolean validPassword(String password) {

@@ -35,7 +35,7 @@ public class Employer implements Account {
 		this.setCompanyName("");
 		this.setCompanyWebsite("");
 		this.setCompanyDescription("");
-		this.postedJobs = getPostedJobs();
+		this.postedJobs = updatePostedJobs();
 	}
 
 	/**
@@ -133,8 +133,11 @@ public class Employer implements Account {
 	public void setPassword(String password){
 		if(DatabaseManager.validPassword(password)){
 			this.password = password;
+		} else {
+			System.out.println("Invalid Password");
 		}
-		System.out.println("Invalid Password");
+		
+		
 	}
 
 	/**
@@ -154,8 +157,10 @@ public class Employer implements Account {
 	public void setEmail(String email){
 		if(DatabaseManager.validEmail(email)){
 			this.email = email;
+		} else {
+			System.out.println("Invalid Email");
 		}
-		System.out.println("Invalid Email");
+		
 	}
 
 	/**
@@ -194,15 +199,13 @@ public class Employer implements Account {
 	 * @return list of posted jobs
 	 */
 
-	private ArrayList<Job> getPostedJobs(){
+	public ArrayList<Job> updatePostedJobs(){
 		ArrayList<Job> allJobs = DataLoader.getJobs();
 		for(Job j : allJobs){
 			if(j.getPostingEmployer().getId().equals(this.id)){
 				this.postedJobs.add(j);
 			}
 		}
-		//TODO//return allJobs; ODarrius- allJobs was original return but I wasnt sure if that was correct since the
-		// method wants the posted jobs. Can change back if wrong
 		return postedJobs;
 	}
 
@@ -219,6 +222,10 @@ public class Employer implements Account {
 	@Override
 	public Admin getAdmin() {
 		return null;
+	}
+
+	public ArrayList<Job> getPostedJobs(){
+		return this.postedJobs;
 	}
 }
 
