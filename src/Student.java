@@ -208,30 +208,66 @@ public class Student implements Account{
             ExternalDocuments.set(i, externalDocuments.get(i));
         }
 	}
-	
+
+	/**
+	 * retrieves password string
+	 * @return returns password string
+	 */
+
 	public String getPassword() {
 		return password;
 	}
-	
+
+
+	/**
+	 * sets password to parameter
+	 * @param password specified password to be set
+	 */
+
 	public void setPassword(String password) {
 			this.password = password;
 	}
+
+	/**
+	 * retrieves email
+	 * @return string email
+	 */
 
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * sets email to parameter
+	 * @param email email to be set
+	 */
+
 	public void setEmail(String email) {
 			this.email = email;
 	}
+
+	/**
+	 * retrieves account type
+	 * @return returns the account type of current user
+	 */
 
 	public AccountType getAccountType() {
 		return UserAccountType;
 	}
 
+	/**
+	 * retrieves id
+	 * @return identification number
+	 */
+
 	public UUID getId() {
 		return id;
 	}
+
+	/**
+	 * Appends student info to make string representation of student
+	 * @return the compiled string 
+	 */
 
 	@Override
 	public String toString() {
