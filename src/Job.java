@@ -136,6 +136,6 @@ public class Job {
 	 * @return String with above information
 	 */
 	public String toString() {
-		return "Job Title: " + this.getJobTitle() + "\nJob Description: " + this.getJobDescription() + "\nAvailable: " + this.checkAvailability();
+		return "Job Title: " + this.getJobTitle() + "\nJob Description: " + this.getJobDescription() + "\nAvailable: " + this.checkAvailability()+"\n\n";
 	}
 }

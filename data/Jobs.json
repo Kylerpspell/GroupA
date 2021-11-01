@@ -2,20 +2,22 @@
     {
 		"id": "e6e23452-c4c6-421d-bac5-e8a9e185b2cd",
         "JobID": "StockFinder",
+		"Job Description": "This is a stock finding job, good luck with it!",
         "Posting employer": "fc0f8f1d-7528-4908-8b63-5d5a8f01ad58",
         "Applicants": [
 			"b7781df9-a42a-4cc4-a685-7a72bc90c9b5",
 			"7b4bbacd-7d22-44f3-9467-8a80515ac17e"
 		],
-        "isAvailable": "true",
+        "isAvailible": "true",
         "isVisible": "true"
     } , 
     {
 		"id": "e6c789bc-cb38-45c8-bd7c-ad09ed7794af",
         "JobID": "Apple",
+		"Job Description": "We make iphones and stuff",
         "Posting employer": "fc0f8f1d-7528-4908-8b63-5d5a8f01ad58",
         "Applicants": ["7b4bbacd-7d22-44f3-9467-8a80515ac17e"],
-        "isAvailable": "false",
+        "isAvailible": "false",
         "isVisible": "true"
     }
 ]
