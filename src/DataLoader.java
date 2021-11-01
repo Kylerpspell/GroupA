@@ -45,7 +45,7 @@ public class DataLoader extends DataConstants{
 					ArrayList<Resume> resumes = getResumes();
 					for(Resume resume : resumes) {
 						if(resume.getId().equals(resumeID)) {
-							accounts.add(new Student(id, email, password, name, resume, externalDocuments, ratings));
+							accounts.add(new Student(id, name, email, password, resume, externalDocuments, ratings));
 						}
 					}
 				} else if(userAccountType == AccountType.ACCOUNT_TYPE_EMPLOYER) {

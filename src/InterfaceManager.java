@@ -34,6 +34,7 @@ public class InterfaceManager {
 			currentUser = createAccount();
 		}
 		else {
+			//This is something she told us specifically not to do because its recursive. Refactor with while loop.
 			System.out.println("Invalid entry. Please enter \"1\" or \"2\".");
 			mainInterface();
 		}
@@ -46,10 +47,10 @@ public class InterfaceManager {
 					keyboard.nextLine();
 					switch (response) {
 						case 1:
-							viewJobs();
+							createResume();
 							break;
 						case 2:
-							createResume();
+							viewJobs();
 							break;
 						case 3:
 							System.out.println("Please enter a key-word for search.");
@@ -153,6 +154,7 @@ public class InterfaceManager {
                 }
             }
         }
+		//TODO refactor for recursive call
         if (foundAccount == false) {
             System.out.println("Email or Password incorrect.\nEnter the appropriate number for your selection.\n1.Re-enter login information.\n2.Exit to main Screen.");
             if(keyboard.nextInt() == 1) {
@@ -367,7 +369,7 @@ public class InterfaceManager {
 	 * @param applicant student for who's resume is viewed 
 	 */
     public void viewResume(Student applicant) {
-    	System.out.println(applicant.getResume().toString());
+    	System.out.println(applicant.getResume().formatString());
 	}
            
 	public void sortJobs(String word) {
