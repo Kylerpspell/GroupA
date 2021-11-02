@@ -84,7 +84,41 @@ public class InterfaceManager {
 				break;
 			case ACCOUNT_TYPE_ADMIN:
 				System.out.println(
-						"Would you like to: \n1. Edit job Visibility. \n2. View applicants to a job posting. \n3. Logout.");
+					"Would you like to: \n1. Edit job Visibility. \n2. View applicants to a job posting. \n3. Logout.");
+					response = keyboard.nextInt();
+					keyboard.nextLine();
+					switch (response) {
+						case 1:
+							if (database.getJobs().getJobList() != null) {
+								System.out.println(
+										"Please select the number of the job for which you'd like to change its visibility");
+								for (Job job : database.getJobs().getJobList()) {
+									int i = 1;
+									System.out.println(i + ".   ");
+									System.out.println(job.toString());
+								}
+								int jobPick = (keyboard.nextInt());
+								keyboard.nextLine();
+								if (database.getJobs().getJobList().size() >= jobPick) {
+									Job job = database.getJobs().getJobList().get(jobPick - 1);
+									if (job.checkVisibility() == true) {
+										job.setVisibility(false);
+										System.out.println("Job has been changed from visible to invisible.");
+									} else {
+										job.setVisibility(true);
+										System.out.println("Job has been changed from invisible to visible.");
+									}
+								} else {
+									System.out.println("Invalid input or no posted jobs available for this account.");
+								}
+							}
+							break;
+						case 2:
+							break;
+						case 3:
+							logout();
+							break;
+					}
 				break;
 			case ACCOUNT_TYPE_EMPLOYER:
 				Boolean continueLoop = true;
