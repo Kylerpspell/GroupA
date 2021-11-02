@@ -197,14 +197,5 @@ public class DataWriter extends DataConstants {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		// append mode
-		try (FileWriter fw = new FileWriter(file, true);
-			BufferedWriter bw = new BufferedWriter(fw)) {
-			bw.write(content);
-			bw.newLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-}
+	}
 }
