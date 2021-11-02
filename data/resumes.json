@@ -4,6 +4,7 @@
         "name": "Bobby Bobinson",
         "Major": "BIOCHEMISTRY_AND_MOLECULAR_BIOLOGY",
         "GPA": 4.0,
+		"Graduation Date": "2019-01-01",
         "Experiences": [
             "ExperienceStock",
             "ExperienceMoney"
@@ -17,6 +18,7 @@
         "id": "985889e1-f023-4f6b-9ed0-ef07c09b510d",
         "name": "Bill Gates",
         "Major": "COMPUTER_SCIENCE_COMPUTER_ENGINEERING",
+		"Graduation Date": "2019-01-01",
         "GPA": 2.9,
         "Experiences": [
             "CreatedMicrosoft",

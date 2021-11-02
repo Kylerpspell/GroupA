@@ -9,6 +9,10 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants{
 
+	/**
+	 * Method that loads accounts from JSON file
+	 * @return Array List of Accounts present on JSON file
+	 */
 	public static ArrayList<Account> getAccounts() {
 		ArrayList<Account> accounts = new ArrayList<Account>();
 		
@@ -57,6 +61,7 @@ public class DataLoader extends DataConstants{
 					for(int j=0; j < compnayRatings.size(); j++) {
 						ratings.add((Double)compnayRatings.get(j));
 					}
+					
 					accounts.add(new Employer(email, password, id, companyName, companyWebsite, companyDescription, ratings));
 				
 				}
@@ -72,6 +77,10 @@ public class DataLoader extends DataConstants{
 		return null;
 	}
 
+	/**
+	 * Method that loads resumes from JSON file
+	 * @return Array List of resumes present on JSON file
+	 */
 	public static ArrayList<Resume> getResumes() {
 		ArrayList<Resume> resumes = new ArrayList<Resume>();
 		
@@ -109,7 +118,10 @@ public class DataLoader extends DataConstants{
 		}
 		return null;
 	}
-
+	/**
+	 * Method that loads jobs from JSON file
+	 * @return Array List of jobs present on JSON file
+	 */
 	public static ArrayList<Job> getJobs() {
 		ArrayList<Job> jobs = new ArrayList<Job>();
 		
@@ -135,7 +147,7 @@ public class DataLoader extends DataConstants{
 				UUID id = UUID.fromString((String)jobJSON.get(JOB_UUID));
 				String name = (String)jobJSON.get(JOB_NAME);
 				String description = (String)jobJSON.get(JOB_DESCRIPTION);
-				Boolean avalibility = (Boolean)jobJSON.get(JOB_AVAILIBILITY);
+				Boolean avalibility = Boolean.parseBoolean((String)jobJSON.get(JOB_AVAILIBILITY));
 				Boolean visibility = Boolean.parseBoolean((String)jobJSON.get(JOB_VISIBILITY));
 				
 				UUID postingEmployerUUID = UUID.fromString((String)jobJSON.get(JOB_POSTING_EMPLOYER));

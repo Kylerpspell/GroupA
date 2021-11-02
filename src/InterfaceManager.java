@@ -25,25 +25,28 @@ public class InterfaceManager {
 	public void mainInterface() {
 		System.out.println("Hello, welcome to the Internship Finder");
 		System.out.println("Would you like to: \n1. Login \n2.Create Account \nPlease enter the appropriate number of your selection.");
-		int response = keyboard.nextInt();
-		keyboard.nextLine();
-		if (response == 1) {
-			promptLogin();
-		}
-		else if(response == 2) {
-			currentUser = createAccount();
-		}
-		else {
-			//This is something she told us specifically not to do because its recursive. Refactor with while loop.
-			System.out.println("Invalid entry. Please enter \"1\" or \"2\".");
-			mainInterface();
-		}
+		boolean validResponse = false;
+		while (!validResponse) {
+			int response = keyboard.nextInt();
+			keyboard.nextLine();
+			if (response == 1) {
+				validResponse = true;
+				promptLogin();
+			}
+			else if(response == 2) {
+				validResponse = true;
+				currentUser = createAccount();
+			}
+			else {
+				System.out.println("Invalid entry. Please enter \"1\" or \"2\".");
+			}
+		}	
 
 		while(currentUser != null) {
 			switch (currentUser.getAccountType()) {
 				case ACCOUNT_TYPE_STUDENT:
 					System.out.println("Would you like to: \n1. Create resume. \n2. View Jobs. \n3. Search Jobs. \n4. View your Resume. \n5. Logout. \nPlease enter the appropriate number of your selection.");
-					response = keyboard.nextInt();
+					int response = keyboard.nextInt();
 					keyboard.nextLine();
 					switch (response) {
 						case 1:
@@ -77,40 +80,62 @@ public class InterfaceManager {
 						createJob();
 						break;
 					case 2:
+					if (currentUser.getEmployer().getPostedJobs() != null) {
 						System.out.println("Please select the number of the job for which you'd like to search its applicants.");
 						for (Job job : currentUser.getEmployer().getPostedJobs()) {
 							int i = 1;
 							System.out.println(i+".");
 							System.out.println(job.toString()); 
 						}
-						Job job = currentUser.getEmployer().getPostedJobs().get(keyboard.nextInt() -1);
+						int jobPick = (keyboard.nextInt());
 						keyboard.nextLine();
-						viewApplicants(job);
+						if (currentUser.getEmployer().getPostedJobs().size() >= jobPick) {
+							Job job = currentUser.getEmployer().getPostedJobs().get(jobPick - 1);
+							viewApplicants(job);
+						}
+						else {
+							System.out.println("Invalid input or no posted jobs available for this account.");
+						}
+					}
+					else {
+						System.out.println("Invalid input or no posted jobs available for this account.");	
+					}
+						break;
 					case 3:
 						break;
 					case 4:
-						int searchNum;
-						System.out.println("Please select the number of the job for which you'd like to search its applicants.");
-						int i = 1;
-						for (Job job1 : currentUser.getEmployer().getPostedJobs()) {
-							System.out.println(i+".");
-							System.out.println(job1.toString()); 
-							i++;
-						}
-						job = currentUser.getEmployer().getPostedJobs().get(keyboard.nextInt() -1);
-						keyboard.nextLine();
-						System.out.println("Would you like to sory by 1. GPA \n2. Rating \nPlease enter the appropriate number of your selection.");
+						double searchNum;
+						System.out.println("Would you like to sort by \n1. GPA \n2. Rating \nPlease enter the appropriate number of your selection.");
 						if (keyboard.nextInt() == 1) {
 							keyboard.nextLine();
 							System.out.println("Please enter the minimum GPA for applicants you'd like to review.");
-							searchNum = keyboard.nextInt();
+							searchNum = keyboard.nextDouble();
 						}
 						else {
 							keyboard.nextLine();
 							System.out.println("Please enter the minimum Rating for applicants you'd like to review.");
-							searchNum = keyboard.nextInt();
+							searchNum = keyboard.nextDouble();
 						}
-						sortApplicants(job, searchNum);
+						if (currentUser.getEmployer().getPostedJobs() != null) {
+							System.out.println("Please select the number of the job for which you'd like to search its applicants.");
+							for (Job job : currentUser.getEmployer().getPostedJobs()) {
+								int i = 1;
+								System.out.println(i+".");
+								System.out.println(job.toString()); 
+							}
+							int jobPick1 = (keyboard.nextInt());
+							keyboard.nextLine();
+							if (currentUser.getEmployer().getPostedJobs().size() >= jobPick1) {
+								Job job = currentUser.getEmployer().getPostedJobs().get(jobPick1 - 1);
+								sortApplicants(job, searchNum);
+							}
+							else {
+								System.out.println("Invalid input or no posted jobs available for this account.");
+							}
+						}
+						else {
+							System.out.println("Invalid input or no posted jobs available for this account.");	
+						}
 						break;
 					case 5:
 						logout();
@@ -158,9 +183,11 @@ public class InterfaceManager {
         if (foundAccount == false) {
             System.out.println("Email or Password incorrect.\nEnter the appropriate number for your selection.\n1.Re-enter login information.\n2.Exit to main Screen.");
             if(keyboard.nextInt() == 1) {
+				keyboard.nextLine();
                 promptLogin();
             }
             else {
+				keyboard.nextLine();
                 mainInterface();
             }
         }
@@ -347,9 +374,9 @@ public class InterfaceManager {
 	 * Prints all visible jobs to the console
 	 */
     public void viewJobs() {
-        for (Job job : DataLoader.getJobs()) {
+        for (Job job : database.getJobs().getJobList()) {
             if (job.checkVisibility() == true) {
-                job.toString();
+                System.out.println(job.toString());
             }
         }
     }
@@ -359,7 +386,7 @@ public class InterfaceManager {
 	 */
     public void viewApplicants(Job job) {
         System.out.println("Applicants:");
-        for (Account applicant : job.getApplicants()) {
+        for (Student applicant : job.getApplicants()) {
             System.out.println(applicant.toString());
         }
     }
@@ -373,9 +400,9 @@ public class InterfaceManager {
 	}
            
 	public void sortJobs(String word) {
-		for (Job job : DataLoader.getJobs()) {
+		for (Job job : database.getJobs().getJobList()) {
 			if (job.containsWord(word) && job.checkVisibility() == true) {
-				job.toString();
+				System.out.println(job.toString());
 			}
 		}
     }
@@ -384,10 +411,10 @@ public class InterfaceManager {
 	 * @param job Job to view applicants for 
 	 * @param searchNum minimum GPA or rating to be shown
 	 */
-    public void sortApplicants(Job job, int searchNum) {
+    public void sortApplicants(Job job, double searchNum) {
         for (Student applicant : job.getApplicants()) {
             if (applicant.getAvgRating() >= searchNum) {
-                applicant.toString();
+                System.out.println(applicant.toString());
             }
         }
 
