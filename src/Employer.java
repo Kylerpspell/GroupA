@@ -67,6 +67,10 @@ public class Employer implements Account {
         return this.companyWebsite;
     }
 
+	public ArrayList<Double> getRatings(){
+		return this.ratings;
+	}
+	
 	/**
 	 *
 	 * @param newCompanyName takes in company name in parameter and sets it to current variable of company name

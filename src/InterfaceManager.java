@@ -77,7 +77,7 @@ public class InterfaceManager {
 				keyboard.nextLine();
 				switch (response) {
 					case 1:
-						createJob();
+						database.addJob(createJob());
 						break;
 					case 2:
 					if (currentUser.getEmployer().getPostedJobs() != null) {
@@ -209,7 +209,9 @@ public class InterfaceManager {
     public Account createAccount() {
         System.out.println("What type of account would you like to create?  \nEnter the appropriate number for your selection. \n1. Student \n2. Employer \n3. Application Administrator");
         Account account = null;
-		switch (keyboard.nextInt()) {
+		int switchCase = keyboard.nextInt();
+		keyboard.nextLine();
+		switch (switchCase) {
             case 1: 
 				account = createStudent();
                 break;
@@ -255,6 +257,7 @@ public class InterfaceManager {
 		}
 
 		Resume newResume = createResume();
+		database.getResumes().addResume(newResume);
 		ArrayList<String> documents = new ArrayList<String>();
 		ArrayList<Double> ratings = new ArrayList<Double>();
 		
@@ -309,7 +312,8 @@ public class InterfaceManager {
 		System.out.println("Please enter your company description.");
 		String description = keyboard.nextLine();
 		ArrayList<Double> ratings = new ArrayList<Double>();
-		return new Employer(email, password, UUID.randomUUID(), name, website, description,ratings);
+		Employer newEmployer = new Employer(email, password, UUID.randomUUID(), name, website, description,ratings);
+		return newEmployer;
 	}
 
 	/**
@@ -473,6 +477,8 @@ public class InterfaceManager {
 				keyboard.nextLine();
 				break;
 			}
+			keyboard.nextLine();
+		
 		}
 		
 		ArrayList<String> experience = new ArrayList<String>();

@@ -30,7 +30,6 @@ public class DatabaseManager {
 	 *
 	 * @return  validates if current account is admin and if so, shows accounts
 	 */
-
 	public Accounts getAccounts() {
 		return accounts;
 	}
