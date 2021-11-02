@@ -69,10 +69,10 @@ public class InterfaceManager {
 					}
 					break;
 				case ACCOUNT_TYPE_ADMIN:
-					System.out.println("");
+					System.out.println("Would you like to: \n1. Edit job Visibility. \n2. View applicants to a job posting. \n3. Logout.");
 					break;
 				case ACCOUNT_TYPE_EMPLOYER:
-				System.out.println("Would you like to: \n1. Create job. \n2. View applicants to a job posting. \n3. View a student's resume. \n4. Sort applicants by GPA or Rating. \n5. Logout. \nPlease enter the appropriate number of your selection.");
+				System.out.println("Would you like to: \n1. Create job. \n2. View applicants to a job posting. \n3. View a student's resume. \n4. Sort applicants by GPA or Rating. \n5. Edit Job Visibility. \n6. Edit job Availability. \n7.Logout. \nPlease enter the appropriate number of your selection.");
 				response = keyboard.nextInt();
 				keyboard.nextLine();
 				switch (response) {
@@ -84,7 +84,7 @@ public class InterfaceManager {
 						System.out.println("Please select the number of the job for which you'd like to search its applicants.");
 						for (Job job : currentUser.getEmployer().getPostedJobs()) {
 							int i = 1;
-							System.out.println(i+".");
+							System.out.println(i+".   ");
 							System.out.println(job.toString()); 
 						}
 						int jobPick = (keyboard.nextInt());
@@ -106,7 +106,7 @@ public class InterfaceManager {
 							System.out.println("Please select the number of the job for which you'd like to search its applicants.");
 							for (Job job : currentUser.getEmployer().getPostedJobs()) {
 								int i = 1;
-								System.out.println(i+".");
+								System.out.println(i+".   ");
 								System.out.println(job.toString()); 
 							}
 							int jobPick = (keyboard.nextInt());
@@ -117,7 +117,7 @@ public class InterfaceManager {
 								System.out.println("Please select the number of the Student who's resume you'd like to view.");
 								for (Student student : job.getApplicants()) {
 									int i = 1;
-									System.out.println(i+".");
+									System.out.println(i+".   ");
 									System.out.println(student.toString()); 
 								}
 								int studentPick = (keyboard.nextInt());
@@ -173,6 +173,64 @@ public class InterfaceManager {
 						}
 						break;
 					case 5:
+						if (currentUser.getEmployer().getPostedJobs() != null) {
+							System.out.println("Please select the number of the job for which you'd like to change its visibility");
+							for (Job job : currentUser.getEmployer().getPostedJobs()) {
+								int i = 1;
+								System.out.println(i+".   ");
+								System.out.println(job.toString()); 
+							}
+							int jobPick = (keyboard.nextInt());
+							keyboard.nextLine();
+							if (currentUser.getEmployer().getPostedJobs().size() >= jobPick) {
+								Job job = currentUser.getEmployer().getPostedJobs().get(jobPick - 1);
+								if (job.checkVisibility() == true) {
+									job.setVisibility(false);
+									System.out.println("Job has been changed from visible to invisible.");
+								}
+								else {
+									job.setVisibility(true);
+									System.out.println("Job has been changed from invisible to visible.");
+								}
+							}
+							else {
+								System.out.println("Invalid input or no posted jobs available for this account.");
+							}
+						}
+						else {
+							System.out.println("Invalid input or no posted jobs available for this account.");	
+						}
+						break;
+					case 6:
+						if (currentUser.getEmployer().getPostedJobs() != null) {
+							System.out.println("Please select the number of the job for which you'd like to change its availability");
+							for (Job job : currentUser.getEmployer().getPostedJobs()) {
+								int i = 1;
+								System.out.println(i+".   ");
+								System.out.println(job.toString()); 
+							}
+							int jobPick = (keyboard.nextInt());
+							keyboard.nextLine();
+							if (currentUser.getEmployer().getPostedJobs().size() >= jobPick) {
+								Job job = currentUser.getEmployer().getPostedJobs().get(jobPick - 1);
+								if (job.checkAvailability() == true) {
+									job.setAvailability(false);
+									System.out.println("Job has been changed from available to unavailable");
+								}
+								else {
+									job.setAvailability(true);
+									System.out.println("Job has been changed from unavailable to available");
+								}
+							}
+							else {
+								System.out.println("Invalid input or no posted jobs available for this account.");
+							}
+						}
+						else {
+							System.out.println("Invalid input or no posted jobs available for this account.");	
+						}
+					break;
+					case 7:
 						logout();
 						break;
 				}
@@ -529,6 +587,7 @@ public class InterfaceManager {
 				keyboard.nextLine();
 				break;
 			}
+			keyboard.nextLine();
 		}
 		return new Resume(tempid, name, graduationDate, studentMajor, GPA, skills, experience);
 	}
