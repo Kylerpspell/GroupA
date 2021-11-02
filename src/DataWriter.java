@@ -16,7 +16,7 @@ public class DataWriter extends DataConstants {
 	
 	public static void saveAccounts() {
 		Accounts accounts = Accounts.getInstance();
-		ArrayList<Account> accountList = accounts.getAccounts();
+		ArrayList<Account> accountList = accounts.getAccountList();
 
 		JSONArray jsonAccounts = new JSONArray();
 		
@@ -24,7 +24,6 @@ public class DataWriter extends DataConstants {
 		for(int i=0; i< accountList.size(); i++) {
 			jsonAccounts.add(getAccountJSON(accountList.get(i)));
 		}
-
 		
 		//Write JSON file
         try (FileWriter file = new FileWriter(ACCOUNTS_FILE_NAME)) {
@@ -85,17 +84,39 @@ public class DataWriter extends DataConstants {
 	
 	public static JSONObject getAccountJSON(Account account) {	
 		JSONObject accountDetails = new JSONObject();
-		accountDetails.put(USER_ACCOUNT_TYPE, account.getAccountType());
+		accountDetails.put(USER_ACCOUNT_TYPE, account.getAccountType().toString());
 		accountDetails.put(USER_EMAIL, account.getEmail());
 		accountDetails.put(USER_PASSWORD, account.getPassword());
+		accountDetails.put(ACCOUNT_UUID, account.getId().toString());
 		if(account.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
-			//THESE ARE THE STUDENT FIELDS NEED STUDENT CLASS
-			//accountDetails.put(USER_RESUME_UUID, account.getResumeUUID());
-			//accountDetails.put(USER_EXTERNAL_DOCUMENTS, account.getExternalDocuments());
+			Student accountStudent = account.getStudent();
+			accountDetails.put(USER_RESUME_UUID, accountStudent.getResume().getId().toString());
+			
+			JSONArray jsonRatings = new JSONArray();
+			for(int i=0; i<accountStudent.getRatings().size(); i++) {
+				jsonRatings.add(accountStudent.getRatings().get(i));
+			}
+			accountDetails.put(STUDENT_RATINGS, jsonRatings);
+
+			accountDetails.put(USER_NAME, accountStudent.getResume().getName());
+			
+			JSONArray jsonExternalDocs = new JSONArray();
+			for(int i=0; i<accountStudent.getExternalDocuments().size(); i++) {
+				jsonExternalDocs.add(accountStudent.getExternalDocuments().get(i));
+			}
+			accountDetails.put(USER_EXTERNAL_DOCUMENTS, jsonExternalDocs);
 		}
 		if(account.getAccountType() == AccountType.ACCOUNT_TYPE_EMPLOYER) {
-			//THESE ARE THE EMPLOYER FIELDS NEED EMPLOYER CLASS
-			//accountDetails.put(USER_JOB_UUID, account.getJobUUID());
+			Employer accountEmployer = account.getEmployer();
+			accountDetails.put(COMPANY_NAME, accountEmployer.getCompanyName());
+			accountDetails.put(COMPANY_DESCRIPTION, accountEmployer.getCompanyDescription());
+			accountDetails.put(COMPANY_WEBSITE, accountEmployer.getCompanyWebsite());
+
+			JSONArray ratings = new JSONArray();
+			for(int i=0; i<accountEmployer.getRatings().size(); i++) {
+				ratings.add(accountEmployer.getRatings().get(i));
+			}
+			accountDetails.put(EMPLOYER_RATINGS, ratings);
 		}
         return accountDetails;
 	}
@@ -109,22 +130,23 @@ public class DataWriter extends DataConstants {
 		resumeDetails.put(RESUME_GPA, resume.getGPA());
 		resumeDetails.put(RESUME_EXPERIENCE, resume.getExperiences());
 		resumeDetails.put(RESUME_SKILLS, resume.getSkills());
+		resumeDetails.put(RESUME_UUID, resume.getId().toString());
 		
 		return resumeDetails;
 	}
 
 	public static JSONObject getJobJSON(Job job) {
 		JSONObject jobDetails = new JSONObject();
-		jobDetails.put(JOB_UUID, job.getID());
+		jobDetails.put(JOB_UUID, job.getID().toString());
 		jobDetails.put(JOB_NAME, job.getJobTitle());
 		jobDetails.put(JOB_DESCRIPTION, job.getJobDescription());
-		jobDetails.put(JOB_AVAILIBILITY, job.checkAvailability());
-		jobDetails.put(JOB_VISIBILITY, job.checkVisibility());
+		jobDetails.put(JOB_AVAILIBILITY, Boolean.toString(job.checkAvailability()));
+		jobDetails.put(JOB_VISIBILITY, Boolean.toString(job.checkVisibility()));
 		JSONArray applicantIDs = new JSONArray();
 		for(Account applicant : job.getApplicants()){
 			applicantIDs.add(applicant.getId().toString());
 		}
-		String peUUID = job.getPostingEmployer().toString();
+		String peUUID = job.getPostingEmployer().getId().toString();
 		jobDetails.put(JOB_POSTING_EMPLOYER, peUUID);
 		jobDetails.put(JOB_APPLICANTS, applicantIDs);
 		

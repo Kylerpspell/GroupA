@@ -183,6 +183,10 @@ public class Student implements Account{
 	public void addRating(double rating){
 		Ratings.add(rating);
 	}
+	//TODO javadoc
+	public ArrayList<Double> getRatings(){
+		return this.Ratings;
+	}
 
 	/**
 	 * sets the list of ratings in parameter to current list of ratings
