@@ -7,13 +7,21 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
-	
+
+	/**
+	 * saves accounts, jobs and resumes
+	 */
+
 	public static void writeAll() {
 		saveAccounts();
 		saveJobs();
 		saveResumes();
 	}
-	
+
+	/**
+	 * Retrieves current instance of accounts and saves them by writing them to json array
+	 */
+
 	public static void saveAccounts() {
 		Accounts accounts = Accounts.getInstance();
 		ArrayList<Account> accountList = accounts.getAccountList();
@@ -35,6 +43,10 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
 	}
+
+	/**
+	 * Retrieves current instance of jobs and saves them by writing them to json array
+	 */
 
 	public static void saveJobs() {
 		Jobs jobs = Jobs.getInstance();
@@ -59,6 +71,10 @@ public class DataWriter extends DataConstants {
 		}
 	}
 
+	/**
+	 * Retrieves current instance of resumes and saves them by writing them to json array
+	 */
+
 	public static void saveResumes(){
 		Resumes resumes = Resumes.getInstance();
 		ArrayList<Resume> resumeList = resumes.getResumes();
@@ -81,7 +97,13 @@ public class DataWriter extends DataConstants {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Creates and saves account portfolio based on several attributes
+	 * @param account the account to be used
+	 * @return returns json account and its info
+	 */
+
 	public static JSONObject getAccountJSON(Account account) {	
 		JSONObject accountDetails = new JSONObject();
 		accountDetails.put(USER_ACCOUNT_TYPE, account.getAccountType().toString());
@@ -121,6 +143,12 @@ public class DataWriter extends DataConstants {
         return accountDetails;
 	}
 
+	/**
+	 * Creates and saves resume portfolio based on several attributes
+	 * @param resume the resume to be used
+	 * @return returns json resume and its info
+	 */
+
 	public static JSONObject getResumeJSON(Resume resume) {
 		JSONObject resumeDetails = new JSONObject();
 		//resumeDetails.put(RESUME_UUID, resume.getUUID(WRITER_ACCOUNT));
@@ -135,6 +163,11 @@ public class DataWriter extends DataConstants {
 		return resumeDetails;
 	}
 
+	/**
+	 * Creates and saves job based on several attributes
+	 * @param job the job to be used
+	 * @return returns json job and its info
+	 */
 	public static JSONObject getJobJSON(Job job) {
 		JSONObject jobDetails = new JSONObject();
 		jobDetails.put(JOB_UUID, job.getID().toString());
