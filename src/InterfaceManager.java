@@ -122,7 +122,7 @@ public class InterfaceManager {
 								}
 								int studentPick = (keyboard.nextInt());
 								keyboard.nextLine();
-								if (currentUser.getEmployer().getPostedJobs().size() >= jobPick) {
+								if (job.getApplicants().size() >= studentPick) {
 									Student student = job.getApplicants().get(studentPick - 1);
 									viewResume(student);;
 								}
