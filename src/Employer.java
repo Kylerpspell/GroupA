@@ -220,8 +220,14 @@ public class Employer implements Account {
 		return null;
 	}
 
-	public ArrayList<Job> getPostedJobs(){
-		return this.postedJobs;
+	public ArrayList<Job> getPostedJobs(DatabaseManager db){
+		ArrayList<Job> postedJobs = new ArrayList<Job>();
+		for(Job job : db.getJobs().getJobList()){
+			if(job.getPostingEmployer().getId().equals(this.id)){
+				postedJobs.add(job);
+			}
+		}
+		return postedJobs;
 	}
 }
 
