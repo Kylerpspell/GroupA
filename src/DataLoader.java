@@ -49,7 +49,7 @@ public class DataLoader extends DataConstants{
 					ArrayList<Resume> resumes = getResumes();
 					for(Resume resume : resumes) {
 						if(resume.getId().equals(resumeID)) {
-							accounts.add(new Student(id, name, email, password, resume, externalDocuments, ratings));
+							accounts.add(new Student(id, name, password, email, resume, externalDocuments, ratings));
 						}
 					}
 				} else if(userAccountType == AccountType.ACCOUNT_TYPE_EMPLOYER) {
@@ -108,8 +108,11 @@ public class DataLoader extends DataConstants{
 				for(int j = 0; j<experienceJSON.size(); j++) {
 					experience.add((String)experienceJSON.get(j));
 				}
+
+				String education = (String)resumeJSON.get(RESUME_EDUCATION);
+
 				
-				resumes.add(new Resume(id, name, graduationDate, major, gpa, experience, skills));
+				resumes.add(new Resume(id, name, graduationDate, major, gpa, experience, skills, education));
 			}
 			return resumes;
 

@@ -1,4 +1,5 @@
 package src;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
@@ -467,7 +468,6 @@ public class InterfaceManager {
             isVisible = true;
         }
 		UUID tempid = UUID.randomUUID();
-		ArrayList<Double> ratings = new ArrayList<Double>();
         return new Job(tempid, jobTitle, jobDescription, currentUser, new ArrayList<Student>(), isAvailable, isVisible);
     }
 	/**
@@ -530,6 +530,8 @@ public class InterfaceManager {
 		String name = keyboard.nextLine();
 		System.out.println("Please enter your graduation date (MM/YYYY)");
 		String graduationDate = keyboard.nextLine();
+		System.out.println("Please enter your education");
+		String education = keyboard.nextLine();
 		
 		Majors studentMajor = null;
 		while(true){
@@ -537,23 +539,29 @@ public class InterfaceManager {
 			System.out.println("Please Search for your major.");
 			String major = keyboard.nextLine();
 			for(Majors m : Majors.values()) {
-				if(m.toString().contains(major)){
+				if(m.toString().toLowerCase().contains(major.toLowerCase())){
 					majors.add(m);
 				}
 			}
 			for(int i = 0; i<majors.size(); i++) {
 				System.out.println(i+1 + ": " + majors.get(i).toString());
 			}
-			System.out.println("Please enter the number of your selection. Or press zero to search again");
-			int selection = keyboard.nextInt();
-			if(selection > 0 && selection <= majors.size()) {
-				studentMajor = majors.get(selection-1);
-				break;
-			} else if(selection == 0) {
-				continue;
-			} else {
-				System.out.println("Please enter a valid selection.");
+			if(majors.size() == 0) {
+				System.out.println("Could not find a major with that keyword. Please try again.");
 			}
+			else {
+				System.out.println("Please enter the number of your selection. Or press zero to search again");
+				int selection = keyboard.nextInt();
+				if(selection > 0 && selection <= majors.size()) {
+					studentMajor = majors.get(selection-1);
+					break;
+				} else if(selection == 0) {
+					continue;
+				} else {
+					System.out.println("Please enter a valid selection.");
+			}
+			}
+			
 		}
 		
 		System.out.println("Please enter your GPA. x/4.0");
@@ -569,11 +577,12 @@ public class InterfaceManager {
 			skills.add(skill);
 			i++;
 			System.out.println("Would you like to enter another skill?. \nEnter the appropriate number for your selection. \n1. Yes \n2. No");
-			if (keyboard.nextInt() == 2) {
+			int selection = keyboard.nextInt();
+				if (selection == 2) {
+					keyboard.nextLine();
+					break;
+				}
 				keyboard.nextLine();
-				break;
-			}
-			keyboard.nextLine();
 		
 		}
 		
@@ -586,13 +595,15 @@ public class InterfaceManager {
 			experience.add(exp);
 			j++;
 			System.out.println("Would you like to enter another experience?. \nEnter the appropriate number for your selection. \n1. Yes \n2. No");
-			if (keyboard.nextInt() == 2) {
+			int selection = keyboard.nextInt();
+			if (selection == 2) {
 				keyboard.nextLine();
 				break;
 			}
 			keyboard.nextLine();
+			break;
 		}
-		return new Resume(tempid, name, graduationDate, studentMajor, GPA, skills, experience);
+		return new Resume(tempid, name, graduationDate, studentMajor, GPA, skills, experience, education);
 	}
 
 	/**

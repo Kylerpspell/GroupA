@@ -39,8 +39,8 @@ public class Student implements Account{
 	 */
 	public Student(UUID id, String name, String password, String email, Resume resume, ArrayList<String> externalDocuments, ArrayList<Double> ratings) {
         this.id = id;
-		this.password = email;
-		this.email = password;
+		this.password = password;
+		this.email = email;
 		this.UserAccountType = AccountType.ACCOUNT_TYPE_STUDENT;
 		this.name = name;
 		this.Resume = resume;
