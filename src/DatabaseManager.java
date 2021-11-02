@@ -81,8 +81,11 @@ public class DatabaseManager {
 	}
 
 	public static boolean validEmail(String email) {
-		//TODO was throwing error, need to fix
-		return true;
+		//TODO ODarius-I just added an else statement not sure if that fixes the issue or not
+		if(email.contains("@") && email.contains("."))
+			return true;
+		else
+			return false;
 	}
 
 	public static boolean validPassword(String password) {
