@@ -45,7 +45,7 @@ public class InterfaceManager {
 		while(currentUser != null) {
 			switch (currentUser.getAccountType()) {
 				case ACCOUNT_TYPE_STUDENT:
-					System.out.println("Would you like to: \n1. Create resume. \n2. View Jobs. \n3. Search Jobs. \n4. View your Resume. \n5. Logout. \nPlease enter the appropriate number of your selection.");
+					System.out.println("Would you like to: \n1. Create resume. \n2. View Jobs. \n3. Search Jobs. \n4. Apply to a Job \n5. View your Resume. \n5. Logout. \nPlease enter the appropriate number of your selection.");
 					int response = keyboard.nextInt();
 					keyboard.nextLine();
 					switch (response) {
@@ -61,9 +61,12 @@ public class InterfaceManager {
 							sortJobs(word);
 							break;
 						case 4:
-							viewResume(currentUser.getStudent());
+							applyToJob(currentUser.getStudent());
 							break;
 						case 5:
+							viewResume(currentUser.getStudent());
+							break;
+						case 6:
 							logout();
 							break;
 					}
@@ -590,6 +593,21 @@ public class InterfaceManager {
 			keyboard.nextLine();
 		}
 		return new Resume(tempid, name, graduationDate, studentMajor, GPA, skills, experience);
+	}
+
+	/**
+	 * Adds student to applicants arrayList for a specific job
+	 * @param student student to apply for the job
+	 */
+	public void applyToJob(Student student) {
+		System.out.println("Please enter the title of the job you wish to apply to.");
+		String response = keyboard.nextLine();
+		for (Job job : database.getJobs().getJobList()) {
+			if (job.checkAvailability() == true && job.getJobTitle().equalsIgnoreCase(response)) {
+				job.addApplicant(student);
+			}
+		}
+
 	}
 
  }
