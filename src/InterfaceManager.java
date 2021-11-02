@@ -102,6 +102,41 @@ public class InterfaceManager {
 					}
 						break;
 					case 3:
+						if (currentUser.getEmployer().getPostedJobs() != null) {
+							System.out.println("Please select the number of the job for which you'd like to search its applicants.");
+							for (Job job : currentUser.getEmployer().getPostedJobs()) {
+								int i = 1;
+								System.out.println(i+".");
+								System.out.println(job.toString()); 
+							}
+							int jobPick = (keyboard.nextInt());
+							keyboard.nextLine();
+							if (currentUser.getEmployer().getPostedJobs().size() >= jobPick) {
+								Job job = currentUser.getEmployer().getPostedJobs().get(jobPick - 1);
+								viewApplicants(job);
+								System.out.println("Please select the number of the Student who's resume you'd like to view.");
+								for (Student student : job.getApplicants()) {
+									int i = 1;
+									System.out.println(i+".");
+									System.out.println(student.toString()); 
+								}
+								int studentPick = (keyboard.nextInt());
+								keyboard.nextLine();
+								if (currentUser.getEmployer().getPostedJobs().size() >= jobPick) {
+									Student student = job.getApplicants().get(studentPick - 1);
+									viewResume(student);;
+								}
+								else {
+									System.out.println("Invalid input or no applicants available for this job.");
+								}
+							}
+							else {
+								System.out.println("Invalid input or no posted jobs available for this account.");
+							}
+						}
+						else {
+							System.out.println("Invalid input or no posted jobs available for this account.");	
+						}
 						break;
 					case 4:
 						double searchNum;
