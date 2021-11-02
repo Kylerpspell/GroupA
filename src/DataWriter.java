@@ -1,7 +1,11 @@
 package src;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.BufferedWriter;
 import java.util.ArrayList;
+import java.nio.file.Path;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -185,4 +189,22 @@ public class DataWriter extends DataConstants {
 		
 		return jobDetails;
 	}
+	public static void writeToFile(String file, String content){
+		try (FileWriter fw = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(fw)) {
+			bw.write(content);
+			bw.newLine(); // add new line, System.lineSeparator()
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// append mode
+		try (FileWriter fw = new FileWriter(file, true);
+			BufferedWriter bw = new BufferedWriter(fw)) {
+			bw.write(content);
+			bw.newLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+}
 }

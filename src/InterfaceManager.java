@@ -51,7 +51,7 @@ public class InterfaceManager {
 			switch (currentUser.getAccountType()) {
 			case ACCOUNT_TYPE_STUDENT:
 				System.out.println(
-						"Would you like to: \n1. Create resume. \n2. View Jobs. \n3. Search Jobs. \n4. Apply to a Job \n5. View your Resume. \n5. Logout. \nPlease enter the appropriate number of your selection.");
+						"Would you like to: \n1. Create resume. \n2. View Jobs. \n3. Search Jobs. \n4. Apply to a Job \n5. View your Resume. \n6. Save resume to file \n7. Logout. \nPlease enter the appropriate number of your selection.");
 				int response = keyboard.nextInt();
 				keyboard.nextLine();
 				switch (response) {
@@ -72,7 +72,12 @@ public class InterfaceManager {
 				case 5:
 					viewResume(currentUser.getStudent());
 					break;
+				
 				case 6:
+					DataWriter.writeToFile("data/Exports/"+currentUser.getStudent().getEmail()+".txt", currentUser.getStudent().getResume().formatString());
+					break;
+	
+				case 7:
 					logout();
 					break;
 				}
