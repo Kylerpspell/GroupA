@@ -19,5 +19,23 @@
     "isVisible": "true",
     "JobID": "Apple",
     "Posting employer": "fc0f8f1d-7528-4908-8b63-5d5a8f01ad58"
+  },
+  {
+    "isAvailible": "true",
+    "Applicants": [],
+    "Job Description": "you'd probably just get us coffee and stuff",
+    "id": "60693b59-3b63-4777-9eed-2a7f74be53f7",
+    "isVisible": "true",
+    "JobID": "legit Intern",
+    "Posting employer": "c6e79e35-0bfb-4a96-9f03-44a1c63f8cb7"
+  },
+  {
+    "isAvailible": "true",
+    "Applicants": [],
+    "Job Description": "this one involves very little relavant work. We need you to move large boulders in and out of our office.",
+    "id": "375201a7-43b2-4878-9cf7-53d6890710d7",
+    "isVisible": "true",
+    "JobID": "AnotherTrashJob",
+    "Posting employer": "c6e79e35-0bfb-4a96-9f03-44a1c63f8cb7"
   }
 ]

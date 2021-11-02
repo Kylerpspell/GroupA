@@ -10,6 +10,7 @@ public class Resume {
     private double GPA;
     private ArrayList<String> experiences;
     private ArrayList<String> skills;
+	private String education;
 
     /**
      * Parameterized constructor for Resume 
@@ -21,7 +22,7 @@ public class Resume {
      * @param experiences Array list of String experiences for the students
      * @param skills Array list of String skills for the students
      */
-	public Resume(UUID id, String name, String graduationDate, Majors major, double GPA, ArrayList<String> experiences, ArrayList<String> skills) {
+	public Resume(UUID id, String name, String graduationDate, Majors major, double GPA, ArrayList<String> experiences, ArrayList<String> skills, String education) {
 		this.id = id;
         this.name = name;
 		this.graduationDate = graduationDate;
@@ -29,6 +30,7 @@ public class Resume {
 		this.GPA = GPA;
 		this.experiences = experiences;
 		this.skills = skills;
+		this.education = education;
 	}
     
     /**
@@ -69,6 +71,9 @@ public class Resume {
         this.GPA = GPA;
     }
 
+	public String getEducation() {
+		return this.education;
+	}
     /**
      * Accessor method for experiences 
      * @return Array list of strings listing experiences on the resume 

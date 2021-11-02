@@ -36,11 +36,11 @@
     "Name": "Bill Gates"
   },
   {
-    "Email": "csce8675309",
+    "Email": "kpspell@email.sc.edu",
     "id": "920bdec5-17b8-4daa-a20d-94f4c2fa2fab",
     "ExternalDocuments": [],
     "AccountType": "ACCOUNT_TYPE_STUDENT",
-    "Password": "kpspell@email.sc.edu",
+    "Password": "csce8675309",
     "Resume": "0dd56ddf-5ec3-43b5-ba28-ed8ee13a23cb",
     "Ratings": [],
     "Name": "Kyler"
@@ -53,6 +53,26 @@
     "id": "f576a1e1-9baa-4d62-89f5-0620df24f08f",
     "AccountType": "ACCOUNT_TYPE_EMPLOYER",
     "Password": "passwordIsSecure",
+    "Ratings": []
+  },
+  {
+    "Email": "tst@email.sc.edu",
+    "id": "4e297af5-bbad-4aa5-960c-e5f426ea0f5a",
+    "ExternalDocuments": [],
+    "AccountType": "ACCOUNT_TYPE_STUDENT",
+    "Password": "testPassword",
+    "Resume": "bd6c99eb-7310-4204-b581-0f64826c24e6",
+    "Ratings": [],
+    "Name": "test"
+  },
+  {
+    "CompanyName": "badCompany",
+    "Email": "badCompany@spamMail.com",
+    "CompanyDescription": "We are a bad company",
+    "CompanyWebsite": "www.BadCompany.com",
+    "id": "c6e79e35-0bfb-4a96-9f03-44a1c63f8cb7",
+    "AccountType": "ACCOUNT_TYPE_EMPLOYER",
+    "Password": "password",
     "Ratings": []
   }
 ]

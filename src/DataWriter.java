@@ -85,7 +85,6 @@ public class DataWriter extends DataConstants {
 		for(int i=0; i< resumeList.size(); i++) {
 			jsonResumes.add(getResumeJSON(resumeList.get(i)));
 		}
-
 		
 		//Write JSON file
 		try (FileWriter file = new FileWriter(RESUMES_FILE_NAME)) {
@@ -159,6 +158,7 @@ public class DataWriter extends DataConstants {
 		resumeDetails.put(RESUME_EXPERIENCE, resume.getExperiences());
 		resumeDetails.put(RESUME_SKILLS, resume.getSkills());
 		resumeDetails.put(RESUME_UUID, resume.getId().toString());
+		resumeDetails.put(RESUME_EDUCATION, resume.getEducation());
 		
 		return resumeDetails;
 	}

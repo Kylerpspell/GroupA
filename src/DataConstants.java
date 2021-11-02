@@ -39,4 +39,5 @@ public abstract class DataConstants {
 	protected static final String RESUME_GPA = "GPA";
 	protected static final String RESUME_EXPERIENCE = "Experiences";
 	protected static final String RESUME_SKILLS = "Skills";
+	protected static final String RESUME_EDUCATION = "Education";
 }
