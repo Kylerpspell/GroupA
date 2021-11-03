@@ -84,7 +84,7 @@ public class InterfaceManager {
 				break;
 			case ACCOUNT_TYPE_ADMIN:
 				System.out.println(
-					"Would you like to: \n1. Edit job Visibility. \n2. View applicants to a job posting. \n3. Logout.");
+					"Would you like to: \n1. Edit job Visibility. \n2. Manage a Student's ratings \n3. Logout.");
 					response = keyboard.nextInt();
 					keyboard.nextLine();
 					switch (response) {
@@ -114,6 +114,61 @@ public class InterfaceManager {
 							}
 							break;
 						case 2:
+							if (database.getAccounts().getAccountList() != null) {
+								System.out.println(
+									"Please select the number of the job for whom you'd like to manage their ratings.");
+								for (Account student : database.getAccounts().getAccountList()) {
+									if (student.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
+										int i = 1;
+										System.out.println(i + ".   ");
+										System.out.println(student.toString());
+									}
+								}
+								int studentPick = (keyboard.nextInt());
+								keyboard.nextLine();
+								if (database.getAccounts().getAccountList().size() >= studentPick) {
+									Student student = null;
+									int j = 0;
+									int x = 1;
+									for (Account acc : database.getAccounts().getAccountList()) {
+										j++;
+										if (acc.getAccountType() == AccountType.ACCOUNT_TYPE_STUDENT) {
+											x++;
+										}
+										if (x == studentPick) {
+											student = database.getAccounts().getAccountList().get(j).getStudent();
+										}
+									}
+									System.out.println("Would you like to \n1. Add a rating \n2. Remove a rating");
+									response = keyboard.nextInt();
+									keyboard.nextLine();
+									if (response == 1) {
+										System.out.println("What rating would you like to add");
+										student.addRating(keyboard.nextDouble());
+									} 
+									else if (response == 2) {
+										if (student.getRatings() != null) {
+											System.out.println("Please select the rating you wish to remove.");
+											for (Double rating : student.getRatings()) {
+												int i = 1;
+												System.out.println(i + ".   ");
+												System.out.println(rating);
+											}
+											int deletion = keyboard.nextInt();
+											keyboard.nextLine();
+											//student.removeRating(rating, employerAccount);
+										}
+										else {
+											System.out.println("No ratings available for this Student");
+										}
+									}
+									else {
+										System.out.println("Invalid input. Returning to account main menu");
+									}
+								} else {
+									System.out.println("Invalid input or no students with ratings available");
+								}
+							}
 							break;
 						case 3:
 							logout();
