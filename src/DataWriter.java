@@ -1,11 +1,8 @@
 package src;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
-import java.nio.file.Path;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
