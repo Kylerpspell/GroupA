@@ -8,13 +8,3 @@ Experiences:
 Skills: 
 	 -went to disney world
 
-Name: Kyler
-Graduation Date: 05/2023
-Major: COMPUTER_SCIENCE_COMPUTER_ENGINEERING
-GPA: 3.0
-Experiences: 
-	 -minecrafter
-	 -can sing my abc's backwards
-Skills: 
-	 -went to disney world
-

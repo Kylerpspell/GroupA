@@ -1,0 +1,14 @@
+Name: Steve Micheals
+Graduation Date: 05/2023
+Major: INTEGRATED_INFORMATION_TECHNOLOGY
+GPA: 3.4
+Experiences: 
+	 -Python
+	 -Java
+	 -JavaScript
+	 -HTML
+	 -CSS
+Skills: 
+	 -Software Dev Intern for JP Morgan from AUG-MAY 2019, Created a Python program to predict client needs and managed incoming customers and future predictions
+	 -Test Engineer inter for Bank of America from MAY-AUG 2020, Created JUnit test cases to test new features of the back end of the banks website, executed test cases and reported issues to engineering
+

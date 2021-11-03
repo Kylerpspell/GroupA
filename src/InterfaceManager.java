@@ -133,17 +133,18 @@ public class InterfaceManager {
 						break;
 					case 2:
 						if (currentUser.getEmployer().getPostedJobs(database) != null) {
-							System.out.println(
-									"Please select the number of the job for which you'd like to search its applicants.");
-							for (Job job : currentUser.getEmployer().getPostedJobs(database)) {
+							ArrayList<Job> postedJobs = currentUser.getEmployer().getPostedJobs(database);
+							System.out.println("Please select the number of the job for which you'd like to search its applicants.");
 								int i = 1;
-								System.out.println(i + ".   ");
-								System.out.println(job.toString());
-							}
+								for (Job job : postedJobs) {
+									System.out.println(i + ".   ");
+									System.out.println(job.toString());
+									i++;
+								}
 							int jobPick = (keyboard.nextInt());
 							keyboard.nextLine();
-							if (currentUser.getEmployer().getPostedJobs(database).size() >= jobPick) {
-								Job job = currentUser.getEmployer().getPostedJobs(database).get(jobPick - 1);
+							if (postedJobs.size() >= jobPick && jobPick > 0) {
+								Job job = postedJobs.get(jobPick - 1);
 								viewApplicants(job);
 							} else {
 								System.out.println("Invalid input or no posted jobs available for this account.");
@@ -447,8 +448,9 @@ public class InterfaceManager {
 		database.getResumes().addResume(newResume);
 		ArrayList<String> documents = new ArrayList<String>();
 		ArrayList<Double> ratings = new ArrayList<Double>();
-
-		return new Student(UUID.randomUUID(), name, password, email, newResume, documents, ratings);
+		Student ret = new Student(UUID.randomUUID(), name, password, email, newResume, documents, ratings);
+		database.addAccount(ret);
+		return ret;
 	}
 
 	/**
@@ -578,7 +580,7 @@ public class InterfaceManager {
 	public void viewApplicants(Job job) {
 		System.out.println("Applicants:");
 		for (Student applicant : job.getApplicants()) {
-			System.out.println(applicant.toString());
+			System.out.println(applicant.getResume().formatString());
 		}
 	}
 
@@ -699,7 +701,6 @@ public class InterfaceManager {
 				break;
 			}
 			keyboard.nextLine();
-			break;
 		}
 		return new Resume(tempid, name, graduationDate, studentMajor, GPA, skills, experience, education);
 	}
