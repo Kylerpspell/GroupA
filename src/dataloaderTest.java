@@ -1,6 +1,5 @@
 package src;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.UUID;
