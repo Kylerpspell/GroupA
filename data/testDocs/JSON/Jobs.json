@@ -1,0 +1,62 @@
+[
+  {
+    "isAvailible": "true",
+    "Applicants": [
+      "b7781df9-a42a-4cc4-a685-7a72bc90c9b5",
+      "7b4bbacd-7d22-44f3-9467-8a80515ac17e"
+    ],
+    "Job Description": "This is a stock finding job, good luck with it!",
+    "id": "e6e23452-c4c6-421d-bac5-e8a9e185b2cd",
+    "isVisible": "true",
+    "JobID": "StockFinder",
+    "Posting employer": "fc0f8f1d-7528-4908-8b63-5d5a8f01ad58"
+  },
+  {
+    "isAvailible": "false",
+    "Applicants": ["7b4bbacd-7d22-44f3-9467-8a80515ac17e"],
+    "Job Description": "We make iphones and stuff",
+    "id": "e6c789bc-cb38-45c8-bd7c-ad09ed7794af",
+    "isVisible": "true",
+    "JobID": "Apple",
+    "Posting employer": "fc0f8f1d-7528-4908-8b63-5d5a8f01ad58"
+  },
+  {
+    "isAvailible": "true",
+    "Applicants": ["920bdec5-17b8-4daa-a20d-94f4c2fa2fab"],
+    "Job Description": "you'd probably just get us coffee and stuff",
+    "id": "60693b59-3b63-4777-9eed-2a7f74be53f7",
+    "isVisible": "true",
+    "JobID": "legit Intern",
+    "Posting employer": "c6e79e35-0bfb-4a96-9f03-44a1c63f8cb7"
+  },
+  {
+    "isAvailible": "true",
+    "Applicants": [],
+    "Job Description": "this one involves very little relavant work. We need you to move large boulders in and out of our office.",
+    "id": "375201a7-43b2-4878-9cf7-53d6890710d7",
+    "isVisible": "true",
+    "JobID": "AnotherTrashJob",
+    "Posting employer": "c6e79e35-0bfb-4a96-9f03-44a1c63f8cb7"
+  },
+  {
+    "isAvailible": "true",
+    "Applicants": [
+      "920bdec5-17b8-4daa-a20d-94f4c2fa2fab",
+      "7c0ff099-d720-4b84-8a38-4145bd9711ab"
+    ],
+    "Job Description": "Looking for a javascript developer, that knows how to create interactive webpages for clickbait ",
+    "id": "7bf7de50-91ce-4dc7-9230-3ab9baeb0c71",
+    "isVisible": "true",
+    "JobID": "Javascript Developer",
+    "Posting employer": "f576a1e1-9baa-4d62-89f5-0620df24f08f"
+  },
+  {
+    "isAvailible": "true",
+    "Applicants": [],
+    "Job Description": "Looking for a web developer. Looking for experience in javascript, HTML and CSS",
+    "id": "7bf7de50-91ce-4dc7-9230-3ab9baeb0c71",
+    "isVisible": "true",
+    "JobID": "Web developer",
+    "Posting employer": "f576a1e1-9baa-4d62-89f5-0620df24f08f"
+  }
+]
