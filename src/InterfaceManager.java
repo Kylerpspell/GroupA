@@ -23,6 +23,10 @@ public class InterfaceManager {
 		return interfaceManager;
 	}
 
+	public Account getCurrentUser() {
+		return this.currentUser;
+	}
+
 	/**
 	 * Main interface method to interact with user
 	 */

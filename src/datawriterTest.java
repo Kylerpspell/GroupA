@@ -1,10 +1,12 @@
 package src;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
 
 import java.util.UUID;
 
 public class datawriterTest {
+	
 	@Test
 	public void saveAccountTest() {
 		DatabaseManager db = DatabaseManager.getInstance();
@@ -33,4 +35,6 @@ public class datawriterTest {
 		db.addJob(tempJob);
 		DataWriter.saveJobs();
 	}
+
+
 }
