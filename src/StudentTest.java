@@ -8,12 +8,29 @@ public class StudentTest {
 
     @Test
     public void addExternalDocumentTest(){
+        Student s = new Student();
+        ArrayList<String> eD1 = s.getExternalDocuments();
+        String doc = "data/Documents/test";
 
+        s.addExternalDocument(doc);
+
+        ArrayList<String> eD2 = s.getExternalDocuments();
+
+        assertEquals(eD2.size(), eD1.size()+1);
     }
 
     @Test
     public void removeExternalDocumentTest(){
+        Student s = new Student();
+        String doc = "data/Documents/test";
+        s.addExternalDocument(doc);
+        ArrayList<String> eD1 = s.getExternalDocuments();
 
+        s.removeExternalDocument(doc);
+
+        ArrayList<String> eD2 = s.getExternalDocuments();
+
+        assertEquals(eD2.size(), eD1.size()-1);
     }
 
     @Test
@@ -26,10 +43,5 @@ public class StudentTest {
         ArrayList<Double> ratings2 = e.getRatings();
 
         assertEquals(ratings2.size(), ratings1.size()+1);
-    }
-
-    @Test
-    public void getAvgRating(){
-        
     }
 }
