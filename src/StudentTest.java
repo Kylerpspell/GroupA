@@ -8,40 +8,44 @@ public class StudentTest {
 
     @Test
     public void addExternalDocumentTest(){
-        Student s = new Student();
-        ArrayList<String> eD1 = s.getExternalDocuments();
+        DatabaseManager db = DatabaseManager.getInstance();
+        Student s = db.getAccounts().getAccountList().get(2).getStudent();
+        int ed1 = s.getExternalDocuments().size();
         String doc = "data/Documents/test";
 
         s.addExternalDocument(doc);
 
-        ArrayList<String> eD2 = s.getExternalDocuments();
+        int ed2 = s.getExternalDocuments().size();
 
-        assertEquals(eD2.size(), eD1.size()+1);
+        assertEquals(ed2, ed1+1);
     }
 
     @Test
     public void removeExternalDocumentTest(){
-        Student s = new Student();
+        DatabaseManager db = DatabaseManager.getInstance();
+        Student s = db.getAccounts().getAccountList().get(2).getStudent();
+
         String doc = "data/Documents/test";
         s.addExternalDocument(doc);
-        ArrayList<String> eD1 = s.getExternalDocuments();
+        int ed1 = s.getExternalDocuments().size();
 
         s.removeExternalDocument(doc);
 
-        ArrayList<String> eD2 = s.getExternalDocuments();
+        int ed2 = s.getExternalDocuments().size();;
 
-        assertEquals(eD2.size(), eD1.size()-1);
+        assertEquals(ed2, ed1-1);
     }
 
     @Test
     public void addRating(){
-        Employer e = new Employer();
-        Student s = new Student();
-        ArrayList<Double> ratings1 = e.getRatings();
+        DatabaseManager db = DatabaseManager.getInstance();
+        Employer e = db.getAccounts().getAccountList().get(1).getEmployer();
+        Student s = db.getAccounts().getAccountList().get(2).getStudent();
+        int ed1 = s.getExternalDocuments().size();
         s.addRating(2, e);
 
-        ArrayList<Double> ratings2 = e.getRatings();
+        int ed2 = s.getExternalDocuments().size();
 
-        assertEquals(ratings2.size(), ratings1.size()+1);
+        assertEquals(ed2, ed1+1);
     }
 }

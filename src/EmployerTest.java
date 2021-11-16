@@ -8,25 +8,28 @@ public class EmployerTest {
     
     @Test
     public void giveStudentRatingTest(){
-        Employer e = new Employer();
-        Student s = new Student();
-        ArrayList<Double> ratings1 = e.getRatings();
+        DatabaseManager db = DatabaseManager.getInstance();
+        Employer e = db.getAccounts().getAccountList().get(1).getEmployer();
+        Student s = db.getAccounts().getAccountList().get(2).getStudent();
+        int r1 = e.getRatings().size();
         e.giveStudentRating(s ,2);
 
-        ArrayList<Double> ratings2 = e.getRatings();
+        int r2 = e.getRatings().size();
 
-        assertEquals(ratings2.size(), ratings1.size()+1);
+        assertEquals(r2, r1+1);
     }
 
     @Test
     public void addRatingTest(){
-        Employer e = new Employer();
-        ArrayList<Double> ratings1 = e.getRatings();
+        DatabaseManager db = DatabaseManager.getInstance();
+        Employer e = db.getAccounts().getAccountList().get(1).getEmployer();
+        int r1 = e.getRatings().size();
+        
         double rating = 2;
         e.addRating(rating);
 
-        ArrayList<Double> ratings2 = e.getRatings();
+        int r2 = e.getRatings().size();
 
-        assertEquals(ratings2.size(), ratings1.size()+1);
+        assertEquals(r2, r1+1);
     }
 }
