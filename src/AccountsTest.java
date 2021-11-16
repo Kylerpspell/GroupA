@@ -20,14 +20,14 @@ public class AccountsTest {
     public void addAccountTest(){
         DatabaseManager db = DatabaseManager.getInstance();
         Accounts nA = db.getAccounts();
-        ArrayList<Account> ac1 = nA.getAccountList();
+        int ac1 = nA.getAccountList().size();
 
         Account ac = new Admin(UUID.randomUUID(), "ee@test.email", "csce1113");
         nA.addAccount(ac);
 
-        ArrayList<Account> ac2 = nA.getAccountList();
+        int ac2 = nA.getAccountList().size();
 
-        assertEquals(ac2.size(), ac1.size()+1);
+        assertEquals(ac2, ac1+1);
     }
 
     @Test
@@ -37,13 +37,13 @@ public class AccountsTest {
 
         Account ac = new Admin(UUID.randomUUID(), "ee@test.email", "csce1113");
         UUID id = ac.getId();
-        ArrayList<Account> ac1 = nA.getAccountList();
+        int ac1 = nA.getAccountList().size();
         
         nA.removeAccount(id);
 
-        ArrayList<Account> ac2 = nA.getAccountList();
+        int ac2 = nA.getAccountList().size();
 
-        assertEquals(ac2.size(), ac1.size()-1);
+        assertEquals(ac2, ac1-1);
     }
 
     @Test
