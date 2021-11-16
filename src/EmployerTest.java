@@ -8,8 +8,9 @@ public class EmployerTest {
     
     @Test
     public void giveStudentRatingTest(){
-        Employer e = new Employer();
-        Student s = new Student();
+        DatabaseManager db = DatabaseManager.getInstance();
+        Employer e = db.getAccounts().getAccountList().get(1).getEmployer();
+        Student s = db.getAccounts().getAccountList().get(2).getStudent();
         ArrayList<Double> ratings1 = e.getRatings();
         e.giveStudentRating(s ,2);
 
@@ -20,8 +21,10 @@ public class EmployerTest {
 
     @Test
     public void addRatingTest(){
-        Employer e = new Employer();
+        DatabaseManager db = DatabaseManager.getInstance();
+        Employer e = db.getAccounts().getAccountList().get(1).getEmployer();
         ArrayList<Double> ratings1 = e.getRatings();
+        
         double rating = 2;
         e.addRating(rating);
 

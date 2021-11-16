@@ -8,7 +8,8 @@ public class StudentTest {
 
     @Test
     public void addExternalDocumentTest(){
-        Student s = new Student();
+        DatabaseManager db = DatabaseManager.getInstance();
+        Student s = db.getAccounts().getAccountList().get(2).getStudent();
         ArrayList<String> eD1 = s.getExternalDocuments();
         String doc = "data/Documents/test";
 
@@ -21,7 +22,9 @@ public class StudentTest {
 
     @Test
     public void removeExternalDocumentTest(){
-        Student s = new Student();
+        DatabaseManager db = DatabaseManager.getInstance();
+        Student s = db.getAccounts().getAccountList().get(2).getStudent();
+
         String doc = "data/Documents/test";
         s.addExternalDocument(doc);
         ArrayList<String> eD1 = s.getExternalDocuments();
@@ -35,8 +38,9 @@ public class StudentTest {
 
     @Test
     public void addRating(){
-        Employer e = new Employer();
-        Student s = new Student();
+        DatabaseManager db = DatabaseManager.getInstance();
+        Employer e = db.getAccounts().getAccountList().get(1).getEmployer();
+        Student s = db.getAccounts().getAccountList().get(2).getStudent();
         ArrayList<Double> ratings1 = e.getRatings();
         s.addRating(2, e);
 
