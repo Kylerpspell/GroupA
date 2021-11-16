@@ -25,6 +25,7 @@ public class ResumeTest {
         ArrayList<Resume> list = DataLoader.getResumes();
         Resume r = list.get(0);
         String doc = "testy";
+        r.AddExperience(doc);
         int ex1 = r.getExperiences().size();
 
         r.removeExperience(doc);
@@ -53,6 +54,7 @@ public class ResumeTest {
         ArrayList<Resume> list = DataLoader.getResumes();
         Resume r = list.get(0);
         String skil = "testy";
+        r.AddExperience(skil);
         int sk1 = r.getSkills().size();
 
         r.removeSkill(skil);
