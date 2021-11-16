@@ -54,7 +54,7 @@ public class ResumeTest {
         ArrayList<Resume> list = DataLoader.getResumes();
         Resume r = list.get(0);
         String skil = "testy";
-        r.AddExperience(skil);
+        r.AddSkill(skil);
         int sk1 = r.getSkills().size();
 
         r.removeSkill(skil);

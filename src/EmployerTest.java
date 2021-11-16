@@ -8,15 +8,7 @@ public class EmployerTest {
     
     @Test
     public void giveStudentRatingTest(){
-        DatabaseManager db = DatabaseManager.getInstance();
-        Employer e = db.getAccounts().getAccountList().get(1).getEmployer();
-        Student s = db.getAccounts().getAccountList().get(2).getStudent();
-        int r1 = e.getRatings().size();
-        e.giveStudentRating(s ,2);
-
-        int r2 = e.getRatings().size();
-
-        assertEquals(r2, r1+1);
+        //This calls the addRating method, covered by the addRatingTest method below
     }
 
     @Test

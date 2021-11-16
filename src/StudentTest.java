@@ -31,7 +31,7 @@ public class StudentTest {
 
         s.removeExternalDocument(doc);
 
-        int ed2 = s.getExternalDocuments().size();;
+        int ed2 = s.getExternalDocuments().size();
 
         assertEquals(ed2, ed1-1);
     }

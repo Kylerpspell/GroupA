@@ -28,6 +28,8 @@ public class AccountsTest {
         int ac2 = nA.getAccountList().size();
 
         assertEquals(ac2, ac1+1);
+        UUID id = ac.getId();
+        nA.removeAccount(id);
     }
 
     @Test
@@ -37,6 +39,7 @@ public class AccountsTest {
 
         Account ac = new Admin(UUID.randomUUID(), "ee@test.email", "csce1113");
         UUID id = ac.getId();
+        nA.addAccount(ac);
         int ac1 = nA.getAccountList().size();
         
         nA.removeAccount(id);
@@ -44,6 +47,7 @@ public class AccountsTest {
         int ac2 = nA.getAccountList().size();
 
         assertEquals(ac2, ac1-1);
+        nA.removeAccount(id);
     }
 
     @Test

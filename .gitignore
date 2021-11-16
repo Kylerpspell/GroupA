@@ -1,4 +1,6 @@
 */.idea
 */*.iml
 .DS_Store
-.vscode/
+.vscode
+./src/DataConstants.java
+./src/AccountsTest.java/
