@@ -38,14 +38,6 @@ public class StudentTest {
 
     @Test
     public void addRating(){
-        DatabaseManager db = DatabaseManager.getInstance();
-        Employer e = db.getAccounts().getAccountList().get(1).getEmployer();
-        Student s = db.getAccounts().getAccountList().get(2).getStudent();
-        int ed1 = s.getExternalDocuments().size();
-        s.addRating(2, e);
-
-        int ed2 = s.getExternalDocuments().size();
-
-        assertEquals(ed2, ed1+1);
+        //This calls the addRating method, covered by the addRatingTest method in EmployerTest
     }
 }

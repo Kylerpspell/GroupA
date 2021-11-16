@@ -10,14 +10,14 @@ public class ResumeTest {
     public void addExperienceTest(){
         ArrayList<Resume> list = DataLoader.getResumes();
         Resume r = list.get(0);
-        ArrayList<String> ex1 = r.getExperiences();
+        int ex1 = r.getExperiences().size();
         String doc = "testy";
 
         r.AddExperience(doc);
 
-        ArrayList<String> ex2 = r.getExperiences();
+        int ex2 = r.getExperiences().size();
 
-        assertEquals(ex2.size(), ex1.size()+1);
+        assertEquals(ex2, ex1+1);
     }
 
     @Test
@@ -25,27 +25,28 @@ public class ResumeTest {
         ArrayList<Resume> list = DataLoader.getResumes();
         Resume r = list.get(0);
         String doc = "testy";
-        ArrayList<String> ex1 = r.getExperiences();
+        r.AddExperience(doc);
+        int ex1 = r.getExperiences().size();
 
         r.removeExperience(doc);
 
-        ArrayList<String> ex2 = r.getExperiences();
+        int ex2 = r.getExperiences().size();
 
-        assertEquals(ex2.size(), ex1.size()-1);
+        assertEquals(ex2, ex1-1);
     }
 
     @Test
     public void addSkillTest(){
         ArrayList<Resume> list = DataLoader.getResumes();
         Resume r = list.get(0);
-        ArrayList<String> sk1 = r.getSkills();
+        int sk1 = r.getSkills().size();
         String skil = "testy";
 
         r.AddSkill(skil);
 
-        ArrayList<String> sk2 = r.getSkills();
+        int sk2 = r.getSkills().size();
 
-        assertEquals(sk2.size(), sk1.size()+1);
+        assertEquals(sk2, sk1+1);
     }
 
     @Test
@@ -53,12 +54,13 @@ public class ResumeTest {
         ArrayList<Resume> list = DataLoader.getResumes();
         Resume r = list.get(0);
         String skil = "testy";
-        ArrayList<String> sk1 = r.getSkills();
+        r.AddExperience(skil);
+        int sk1 = r.getSkills().size();
 
         r.removeSkill(skil);
 
-        ArrayList<String> sk2 = r.getSkills();
+        int sk2 = r.getSkills().size();
 
-        assertEquals(sk2.size(), sk1.size()-1);
+        assertEquals(sk2, sk1-1);
     }
 }
