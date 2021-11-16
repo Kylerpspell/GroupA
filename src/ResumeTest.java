@@ -8,7 +8,8 @@ public class ResumeTest {
 
     @Test
     public void addExperienceTest(){
-        Resume r = new Resume();
+        ArrayList<Resume> list = DataLoader.getResumes();
+        Resume r = list.get(0);
         ArrayList<String> ex1 = r.getExperiences();
         String doc = "testy";
 
@@ -21,7 +22,8 @@ public class ResumeTest {
 
     @Test
     public void removeExperienceTest(){
-        Resume r = new Resume();
+        ArrayList<Resume> list = DataLoader.getResumes();
+        Resume r = list.get(0);
         String doc = "testy";
         ArrayList<String> ex1 = r.getExperiences();
 
@@ -34,7 +36,8 @@ public class ResumeTest {
 
     @Test
     public void addSkillTest(){
-        Resume r = new Resume();
+        ArrayList<Resume> list = DataLoader.getResumes();
+        Resume r = list.get(0);
         ArrayList<String> sk1 = r.getSkills();
         String skil = "testy";
 
@@ -47,7 +50,8 @@ public class ResumeTest {
 
     @Test
     public void removeSkillTest(){
-        Resume r = new Resume();
+        ArrayList<Resume> list = DataLoader.getResumes();
+        Resume r = list.get(0);
         String skil = "testy";
         ArrayList<String> sk1 = r.getSkills();
 

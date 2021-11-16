@@ -2,5 +2,5 @@
 	"java.project.sourcePaths": [
 		"."
 	],
-	"workingDirectory": "${workspaceFolder}"
+	"workingDirectory": "${src}"
 }

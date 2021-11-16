@@ -8,9 +8,9 @@ public class AccountsTest {
 
     @Test
     public void haveAccountTest(){
-        Student s = new Student();
+        ArrayList<Account> s = DataLoader.getAccounts();
         String email = "";
-        Accounts.haveAccount(email);
+        s.haveAccount(email);
 
         ArrayList<Double> ratings2 = e.getRatings();
 
@@ -19,7 +19,7 @@ public class AccountsTest {
 
     @Test
     public void addAccountTest(){
-
+        
     }
 
     @Test
