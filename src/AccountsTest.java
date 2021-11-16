@@ -8,27 +8,46 @@ public class AccountsTest {
 
     @Test
     public void haveAccountTest(){
-        ArrayList<Account> s = DataLoader.getAccounts();
-        String email = "";
-        s.haveAccount(email);
+        DatabaseManager db = DatabaseManager.getInstance();
+        Accounts nA = db.getAccounts();
 
-        ArrayList<Double> ratings2 = e.getRatings();
+        String email = "RyanTheStockGuy@gmail.com";
 
-        assertEquals(ratings2.size(), ratings1.size()+1);
+        assertTrue(nA.haveAccount(email));
     }
 
     @Test
     public void addAccountTest(){
-        
+        DatabaseManager db = DatabaseManager.getInstance();
+        Accounts nA = db.getAccounts();
+        ArrayList<Account> ac1 = nA.getAccountList();
+
+        Account ac = new Admin(UUID.randomUUID(), "ee@test.email", "csce1113");
+        nA.addAccount(ac);
+
+        ArrayList<Account> ac2 = nA.getAccountList();
+
+        assertEquals(ac2.size(), ac1.size()+1);
     }
 
     @Test
     public void removeAccountTest(){
+        DatabaseManager db = DatabaseManager.getInstance();
+        Accounts nA = db.getAccounts();
+
+        Account ac = new Admin(UUID.randomUUID(), "ee@test.email", "csce1113");
+        UUID id = ac.getId();
+        ArrayList<Account> ac1 = nA.getAccountList();
         
+        nA.removeAccount(id);
+
+        ArrayList<Account> ac2 = nA.getAccountList();
+
+        assertEquals(ac2.size(), ac1.size()-1);
     }
 
     @Test
     public void saveAccountTest(){
-        
+        // Calls the DataWriter method, which is already covered in DataWriter Test
     }
 }
