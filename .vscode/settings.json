@@ -1,6 +1,6 @@
 {
-	"java.project.sourcePaths": [
-		"."
-	],
-	"workingDirectory": "src"
+    "java.project.sourcePaths": [
+        "."
+    ],
+    "workingDirectory": "src"
 }
